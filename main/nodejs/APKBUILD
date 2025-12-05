@@ -123,7 +123,7 @@
 pkgname=nodejs
 # Note: Update only to even-numbered versions (e.g. 6.y.z, 8.y.z)!
 # Odd-numbered versions are supported only for 9 months by upstream.
-pkgver=20.15.1
+pkgver=20.19.6
 pkgrel=1
 pkgdesc="JavaScript runtime built on V8 engine - LTS version"
 url="https://nodejs.org/"
@@ -276,7 +276,7 @@ dev() {
 }
 
 sha512sums="
-0eb35b71a63d5894216fae82be859ed1649d955781abdc44ef9d99cf99972f4ec5120239d81c6b0820ddb07abfb264cee2b8b0baaf52acbfa50863e28a3eed0c  node-v20.15.1.tar.gz
+fb1fe0ad045e5b8bcb2e08498118ec53d70eeceecb0ddf2b7076eb773b7f5236f6c79321e287289e7a4fda8c6b92911a34dc050bb0f71aa167777fec5f7833a5  node-v20.19.6.tar.gz
 8c264eefc0bfa9dd57656f9f515e940d5c21b8d836dc549031ee559ba909643f4f2495b8b392ee9976c5eed7c3b4a09db876bbe0f7fcd5b2bf63fafca37bffc2  disable-running-gyp-on-shared-deps.patch
 bf92bef74136ca2e171661a7025d69c88475638ea29b329d1b55fa27ffd6f111af710bcb4b1d10670b14ce914c508afd117123155ec7691a0468f40005d124ba  system-ada.patch
 94db1f150cb962bf19f42e0ef7cec2c0e007d1909611d03a393095720cc8db58322e638ea3c3280b4412f47615963c88e69c71b4c5adf84292b9fc7f3be3b110  system-base64.patch
