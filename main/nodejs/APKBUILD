@@ -131,8 +131,6 @@ arch="all"
 license="MIT"
 depends="ca-certificates"
 makedepends="
-	ada-dev
-	base64-dev
 	brotli-dev
 	c-ares-dev
 	icu-dev
@@ -154,41 +152,12 @@ provider_priority=100  # highest priority (other provider is nodejs-current)
 provides="nodejs-lts=$pkgver-r$pkgrel"  # for backward compatibility
 replaces="nodejs-current nodejs-lts"  # nodejs-lts for backward compatibility
 source="https://nodejs.org/dist/v$pkgver/node-v$pkgver.tar.gz
-	disable-running-gyp-on-shared-deps.patch
-	system-ada.patch
-	system-base64.patch
-	base64.gyp
 	$pkgname.pc.in
 	"
 builddir="$srcdir/node-v$pkgver"
 
 prepare() {
 	default_prepare
-
-	# openssl.cnf is required for build.
-	mv deps/openssl/nodejs-openssl.cnf .
-
-	# Remove bundled dependencies that we're not using.
-	#
-	# NOTE: nghttp3 and ngtcp2 are only used when building with OpenSSL
-	#  that supports QUIC. After the QUIC support is added to openssl, add
-	#  options --shared-nghttp3 and --shared-ngtcp2.
-	rm -rf deps/ada/*.cpp \
-		deps/base64/* \
-		deps/brotli \
-		deps/cares \
-		deps/corepack \
-		deps/nghttp2 \
-		deps/nghttp3 \
-		deps/ngtcp2 \
-		deps/openssl/* \
-		deps/v8/third_party/jinja2 \
-		deps/zlib \
-		tools/inspector_protocol/jinja2
-
-	mv nodejs-openssl.cnf deps/openssl/
-
-	cp "$srcdir"/base64.gyp deps/base64/
 }
 
 build() {
@@ -277,9 +246,5 @@ dev() {
 
 sha512sums="
 fb1fe0ad045e5b8bcb2e08498118ec53d70eeceecb0ddf2b7076eb773b7f5236f6c79321e287289e7a4fda8c6b92911a34dc050bb0f71aa167777fec5f7833a5  node-v20.19.6.tar.gz
-8c264eefc0bfa9dd57656f9f515e940d5c21b8d836dc549031ee559ba909643f4f2495b8b392ee9976c5eed7c3b4a09db876bbe0f7fcd5b2bf63fafca37bffc2  disable-running-gyp-on-shared-deps.patch
-bf92bef74136ca2e171661a7025d69c88475638ea29b329d1b55fa27ffd6f111af710bcb4b1d10670b14ce914c508afd117123155ec7691a0468f40005d124ba  system-ada.patch
-94db1f150cb962bf19f42e0ef7cec2c0e007d1909611d03a393095720cc8db58322e638ea3c3280b4412f47615963c88e69c71b4c5adf84292b9fc7f3be3b110  system-base64.patch
-bb0f74d8fb1ef07fd457670b9073a3cecadb3ac7d4fea008e8f17c091a62d15ef50646be457a50ac24c4129085d4da21beedd03af0739dded5d636916482f082  base64.gyp
 f908fa93f6194ec4f6c5e9d76ed7c918721c7f5d46afcc12de1f84683c185401a27a174b7a7c6a76085a4d0826f964e7088bf5596d4e6901a15bf751846299a6  nodejs.pc.in
 "
