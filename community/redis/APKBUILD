@@ -4,7 +4,7 @@
 # Maintainer: fossdd <fossdd@pwned.life>
 pkgname=redis
 # CAUTION: Do not upgrade to 7.3+ (non-free license).
-pkgver=7.2.7
+pkgver=7.2.12
 pkgrel=0
 pkgdesc="Advanced key-value store"
 url="https://redis.io/"
@@ -111,7 +111,7 @@ package() {
 }
 
 sha512sums="
-daac985fe987ae5bf0067288b45767dded259e6872a307ed3ee12a45e58470d24485cadc270cd46ebe1009d312a8d8b799c19b14c8db246839a2a66285001b17  redis-7.2.7.tar.gz
+725cf8ac649b9c0ec4a72ee8e0a275b4b309841b35231cf5dbc74f1c20db7cce6d040d248e778bdb486c7f6ba0cc76176ed093b36c7d75b5300d89a2fed33b41  redis-7.2.12.tar.gz
 7725486329f2aba8fe03a768f6d8ab78cc96ab6f2ca403af56c252ef7978f7628b580587b372969ca5dd6257780ef58571ce6dc5aca468c3b2a299033b41047f  redis.conf.patch
 a5dc411c2bd7edf61400e29accb375275dd888fda72a8f7e3889be475010c695a22f536be818ef9441e47285c00b451966db924362a7f56806586078c9e3ff8c  sentinel.conf.patch
 f6dcdad1edd6b5fb6aa28ba774bfc8aba035f316695da261fb2ad291b76f00f177479f9d74434d06c26bd15f131edc9a2f55c9880758cf0987800d2031069738  redis.initd
