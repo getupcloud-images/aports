@@ -33,6 +33,7 @@ makedepends="
 	linux-headers
 	mpdecimal-dev
 	musl-libintl
+	musl-locales
 	ncurses-dev
 	openssl-dev
 	readline-dev
