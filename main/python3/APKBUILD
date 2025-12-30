@@ -2,7 +2,7 @@
 # Contributor: Sheila Aman <sheila@vulpine.house>
 pkgname=python3
 # the python3-tkinter's pkgver needs to be synchronized with this.
-pkgver=3.11.8
+pkgver=3.11.14
 _basever="${pkgver%.*}"
 pkgrel=0
 pkgdesc="High-level scripting language"
@@ -272,7 +272,7 @@ pyc2() {
 }
 
 sha512sums="
-434e727fa370def348838fd84acb69b4d309cfb03f61bf5069150164e9ca005637ac01dfbf997f445607d4e28d02c8bed0858b36589240ccadaa4c14c19f2320  Python-3.11.8.tar.xz
+4b99d240dd96a6e154909dcffe87f8bb38193d634cd80a1c3d9e819b7a63af2afa46d5e6423e81f00dd388840dc29a4a71580f6aa1ce9a12e559c1d63f65a205  Python-3.11.14.tar.xz
 46dd8230ee2ab66e9c4157c10b2bd9c414fd7f30be0bee73e21a9eea88f63fff362d47828e0fc77ddc59df097b414b21505f8b5f98bc866381115c58ae3f4862  externally-managed
 ab8eaa2858d5109049b1f9f553198d40e0ef8d78211ad6455f7b491af525bffb16738fed60fc84e960c4889568d25753b9e4a1494834fea48291b33f07000ec2  musl-find_library.patch
 4a7f835feae30dfee6b524d2acceb3f8acd5448303ec312abb3e8de936fa665a1a2fba04410dc108f12a661d21f7920026668f8ff35f265d92c8a88b6f3311d2  fix-test_xml_etree-expat-2.6.0.patch
