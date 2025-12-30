@@ -150,7 +150,8 @@ build() {
 		--with-system-libmpdec \
 		--without-ensurepip
 
-	make
+	NPROC=$(nproc || echo 2)
+	make -j${NPROC}
 }
 
 check() {
