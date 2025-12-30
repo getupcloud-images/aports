@@ -156,7 +156,7 @@ build() {
 		--with-system-libmpdec \
 		--without-ensurepip
 
-	make
+	make -j$(nproc)
 }
 
 check() {
