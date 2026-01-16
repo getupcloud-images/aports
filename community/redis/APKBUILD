@@ -16,7 +16,7 @@ makedepends="linux-headers openssl-dev>3"
 checkdepends="tcl procps"
 install="$pkgname.pre-install $pkgname.post-install"
 subpackages="$pkgname-openrc"
-source="https://download.redis.io/releases/redis-$pkgver.tar.gz
+source="$pkgname-$pkgver.tar.gz::https://github.com/redis/redis/archive/refs/tags/${pkgver}.tar.gz
 	redis.conf.patch
 	sentinel.conf.patch
 	$pkgname.initd
@@ -111,7 +111,7 @@ package() {
 }
 
 sha512sums="
-725cf8ac649b9c0ec4a72ee8e0a275b4b309841b35231cf5dbc74f1c20db7cce6d040d248e778bdb486c7f6ba0cc76176ed093b36c7d75b5300d89a2fed33b41  redis-7.2.12.tar.gz
+40e9c71b51b95c6e00c592e0713a892c54c980713b4c49d81a21875ac656c57d77dab35bcfde6f246ba495500db2aa362cf9bd1577282de92aea26c4b9fa57e2  redis-7.2.12.tar.gz
 7725486329f2aba8fe03a768f6d8ab78cc96ab6f2ca403af56c252ef7978f7628b580587b372969ca5dd6257780ef58571ce6dc5aca468c3b2a299033b41047f  redis.conf.patch
 a5dc411c2bd7edf61400e29accb375275dd888fda72a8f7e3889be475010c695a22f536be818ef9441e47285c00b451966db924362a7f56806586078c9e3ff8c  sentinel.conf.patch
 f6dcdad1edd6b5fb6aa28ba774bfc8aba035f316695da261fb2ad291b76f00f177479f9d74434d06c26bd15f131edc9a2f55c9880758cf0987800d2031069738  redis.initd
