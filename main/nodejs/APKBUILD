@@ -123,8 +123,8 @@
 pkgname=nodejs
 # Note: Update only to even-numbered versions (e.g. 6.y.z, 8.y.z)!
 # Odd-numbered versions are supported only for 9 months by upstream.
-pkgver=20.19.6
-pkgrel=1
+pkgver=20.20.0
+pkgrel=100
 pkgdesc="JavaScript runtime built on V8 engine - LTS version"
 url="https://nodejs.org/"
 arch="all"
@@ -245,6 +245,6 @@ dev() {
 }
 
 sha512sums="
-fb1fe0ad045e5b8bcb2e08498118ec53d70eeceecb0ddf2b7076eb773b7f5236f6c79321e287289e7a4fda8c6b92911a34dc050bb0f71aa167777fec5f7833a5  node-v20.19.6.tar.gz
+3c6238cfb46f2ca1b77dd6150b692a6715befd2dcdbdb8b59b076d3ead05e06344ed762321995105eab34837d527d0b69119d7686038bfcc86e7ab9d0d81072d  node-v20.20.0.tar.gz
 f908fa93f6194ec4f6c5e9d76ed7c918721c7f5d46afcc12de1f84683c185401a27a174b7a7c6a76085a4d0826f964e7088bf5596d4e6901a15bf751846299a6  nodejs.pc.in
 "
