@@ -62,6 +62,9 @@ arch="all"
 license="BSD-2-Clause"
 # Build dependencies of nginx itself (without third-party modules).
 _makedepends_base="
+	alpine-sdk
+	cargo
+	clang-libclang
 	gd-dev
 	geoip-dev
 	libxslt-dev
@@ -143,10 +146,11 @@ case "$CARCH" in
 	*) _has_luajit=true; makedepends="$makedepends luajit-dev";;
 esac
 
-case "$CARCH" in
-	x86) _njs_mods= ;; # has failing tests
-	*) _njs_mods="http-js stream-js";;
-esac
+_njs_mods="http-js stream-js"
+#case "$CARCH" in
+#	x86) _njs_mods= ;; # has failing tests
+#	*) _njs_mods="http-js stream-js";;
+#esac
 
 # Built-in dynamic modules
 for _mod in \
@@ -204,6 +208,9 @@ _dynamic_upstream_depends="$pkgname-mod-stream"
 _dynamic_upstream_so="ngx_http_dynamic_upstream_module.so"
 
 _add_module "http-accounting" "v2.0" "https://github.com/Lax/traffic-accounting-nginx-module"
+
+_add_module "http-acme" "v0.3.1" "https://github.com/nginx/nginx-acme"
+_http_acme_so="ngx_http_acme_module.so"
 
 _add_module "http-array-var" "v0.06" "https://github.com/openresty/array-var-nginx-module"
 _http_array_var_depends="$pkgname-mod-devel-kit"
