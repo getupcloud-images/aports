@@ -67,6 +67,10 @@ prepare() {
 		sed -Ei "s/^\.TH \"$title\"/.TH \"NPM-$title\"/" "$f"
 		mv "$f" "${f%/*}/npm-$name.$sec"
 	done
+
+	echo Updating depends
+	./bin/npm-cli.js update glob --save
+	./bin/npm-cli.js update tar --save
 }
 
 check() {
