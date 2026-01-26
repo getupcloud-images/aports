@@ -13,6 +13,7 @@ subpackages="$pkgname-doc $pkgname-bash-completion"
 source="https://registry.npmjs.org/npm/-/npm-$pkgver.tgz
 	dont-check-for-last-version.patch
 	npmrc
+	update-tar-glob.patch
 	"
 builddir="$srcdir/package"
 
@@ -105,7 +106,8 @@ doc() {
 }
 
 sha512sums="
-C89530D37C4BAA38AFD43E76A077A84B9AA63840B986426584FD5C5A54AB0A0B21BB1595C851042B733784B0B43706D36A494B4D8AE1A086A762CB8D3F95942A  npm-10.9.1.tgz
+3a7506f37e85c1ba1021baad79f0cd9724748131f321fc117c4dc3ba235ec01be7327584a41d15117c01945560aa9373220628fcc1e1dddd877a5fe9b336a900  npm-10.9.4.tgz
 bf1362f6ad18738f54f30976e13da066293e21d0d3d81a5c2802f1064e49fa9bc7693b7e73e58f6c8f7fa545edcbb2dbac4b9c69165a9efc69f32fbc1e676597  dont-check-for-last-version.patch
 6d0ce425061ffff1c5d7a42c9908f3382cd77abf81a9c30a62ff6fff1f0d02ff633b2bb090814aa619f7d2a51237b3da7f85d97d0f584e037639b60ccfaf0e96  npmrc
+b8e884ce1f11290ca328bb772f67dc0a2815d801e380a816cd3b132d8f3de48c4e2d13c6da067f0b3bceae0c7885c574d415534d111dc8acc697c280cacf553a  update-tar-glob.patch
 "
