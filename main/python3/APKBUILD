@@ -44,12 +44,12 @@ source="https://www.python.org/ftp/python/$pkgver/Python-$pkgver.tar.xz
 	musl-find_library.patch
 	custom-bluetooth-h-path.patch
 	arm-alignment.patch
-	https://github.com/python/cpython/commit/5dc101675fd22918facbbe0fecdc821502beaaf0.patch
-	https://github.com/python/cpython/commit/c97e87593063d84a2bd9fe7068b30eb44de23dc0.patch
-	https://github.com/python/cpython/commit/7852d72b653fea0199acf5fc2a84f6f8b84eba8d.patch
-	https://github.com/python/cpython/commit/34d76b00dabde81a793bd06dd8ecb057838c4b38.patch
-	https://github.com/python/cpython/commit/2f840249550e082dc351743f474ba56da10478d2.patch
 	https://github.com/python/cpython/commit/892747b4cf0f95ba8beb51c0d0658bfaa381ebca.patch
+	https://github.com/python/cpython/commit/2f840249550e082dc351743f474ba56da10478d2.patch
+	https://github.com/python/cpython/commit/34d76b00dabde81a793bd06dd8ecb057838c4b38.patch
+	https://github.com/python/cpython/commit/7852d72b653fea0199acf5fc2a84f6f8b84eba8d.patch
+	https://github.com/python/cpython/commit/c97e87593063d84a2bd9fe7068b30eb44de23dc0.patch
+	https://github.com/python/cpython/commit/5dc101675fd22918facbbe0fecdc821502beaaf0.patch
 	"
 options="net" # Required for tests
 builddir="$srcdir/Python-$pkgver"
