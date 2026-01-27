@@ -10,7 +10,8 @@ license="Artistic-2.0"
 depends="nodejs"
 replaces="nodejs-doc"  # for backward compatibility
 subpackages="$pkgname-doc $pkgname-bash-completion"
-source="https://registry.npmjs.org/npm/-/npm-$pkgver.tgz
+source="npm-${pkgver}.tar.gz::https://github.com/npm/cli/archive/refs/tags/v${pkgver}.tar.gz
+	update-tar.patch
 	dont-check-for-last-version.patch
 	npmrc
 	"
@@ -22,6 +23,9 @@ builddir="$srcdir/package"
 
 prepare() {
 	default_prepare
+
+	# rebuild to update modules
+	node scripts/resetdeps.js
 
 	# Remove bunch of unnecessary files to reduce size of the package.
 
@@ -103,7 +107,8 @@ doc() {
 }
 
 sha512sums="
-65a9c38a8172948f617a53619762cd77e12b9950fe1f9239debcb8d62c652f2081824b986fee7c0af6c0a7df615becebe4bf56e17ec27214a87aa29d9e038b4b  npm-10.9.0.tgz
+e2945ec43553d19d291e74e1124b3bd854cce512fcedf2d4cb470c874d3ec42baf14493b42b0ea31d33526df2608605ed737dd164b348ea01a9afab2b4317a9c  npm-10.9.0.tar.gz
+17decd8b410c6596b18be5211db6d33c9fa5124126fe27530e44649e2aa9339b6f6fbd7f7603d9965a5878fd02e4c704c27c9e19f56a48d4777f381df86c6d46  update-tar.patch
 bf1362f6ad18738f54f30976e13da066293e21d0d3d81a5c2802f1064e49fa9bc7693b7e73e58f6c8f7fa545edcbb2dbac4b9c69165a9efc69f32fbc1e676597  dont-check-for-last-version.patch
 6d0ce425061ffff1c5d7a42c9908f3382cd77abf81a9c30a62ff6fff1f0d02ff633b2bb090814aa619f7d2a51237b3da7f85d97d0f584e037639b60ccfaf0e96  npmrc
 "
