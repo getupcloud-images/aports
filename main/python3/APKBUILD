@@ -46,12 +46,14 @@ source="https://www.python.org/ftp/python/$pkgver/Python-$pkgver.tar.xz
 	musl-find_library.patch
 	test_posix-nodev-disable.patch
 	fix-run_fileexflags-test.patch
-	https://github.com/python/cpython/commit/df996ce4b9860f8d0c391d876ffe6d0143132a81.diff
-	https://github.com/python/cpython/commit/1ff4985dccfe14ccb59eaac7f2611764a635f828.diff
-	https://github.com/python/cpython/commit/d9c479e5ed98b2f019b4fb9658f0093b800b9f2e.diff
-	https://github.com/python/cpython/commit/c2d62026344bd3d8282385c2545991f8bfc8b9bd.diff
-	https://github.com/python/cpython/commit/03336d7373be3eb6dcdd94a075089c417dda5df1.diff
-	https://github.com/python/cpython/commit/c02c7df621d2dfbd0d8b0009037283ebe18a28d7.diff
+	https://github.com/python/cpython/commit/14b1fdb0a94b96f86fc7b86671ea9582b8676628.patch
+  https://github.com/python/cpython/commit/9c9dda6625a2a90d2a06c657eee021d6be19842d.patch
+  https://github.com/python/cpython/commit/4802b96a2cde58570c24c13ef3289490980961c5.patch
+  https://github.com/python/cpython/commit/4ed11d3cd288e6b90196a15c5a825a45d318fe47.patch
+  https://github.com/python/cpython/commit/62700107418eb2cca3fc88da036a243ea975f172.patch
+  https://github.com/python/cpython/commit/a76e4cd62dd68e7cbe86e37e6ed988495a646b66.patch
+  https://github.com/python/cpython/commit/5a8b19677d818fb41ee55f310233772e15aa1a2b.patch
+  https://github.com/python/cpython/commit/c8a5f3435c342964e0a432cc9fb448b7dbecd1ba.patch
 	"
 
 options="net" # Required for tests
