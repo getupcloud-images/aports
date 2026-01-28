@@ -10,12 +10,12 @@ license="Artistic-2.0"
 depends="nodejs"
 replaces="nodejs-doc"  # for backward compatibility
 subpackages="$pkgname-doc $pkgname-bash-completion"
-source="npm-${pkgver}.tar.gz::https://github.com/npm/cli/archive/refs/tags/v${pkgver}.tar.gz
-	update-tar.patch
-	dont-check-for-last-version.patch
+# https://registry.npmjs.org/npm/-/npm-$pkgver.tgz
+source="cli-${pkgver}.tar.gz::https://github.com/npm/cli/archive/refs/tags/v${pkgver}.tar.gz
 	npmrc
 	"
-builddir="$srcdir/package"
+	#dont-check-for-last-version.patch ## this fails tests
+builddir="$srcdir/cli-${pkgver}"
 
 # secfixes:
 #   10.9.1-r0:
@@ -26,8 +26,27 @@ builddir="$srcdir/package"
 prepare() {
 	default_prepare
 
-	# rebuild to update modules
-	node scripts/resetdeps.js
+  git init .
+  git remote add origin "git+https://github.com/npm/cli.git" # satisfies test #79 test/lib/commands/publish.js
+  git add .
+  git config --global user.name || git config --global user.name "Quor"
+  git config --global user.email || git config --global user.email "quor@quor.dev"
+  git commit -am 'Placeholder'
+
+  node scripts/resetdeps.js
+
+  ## From https://github.com/npm/cli/wiki/Release-Process#updating-dependencies
+  node . i @npmcli/template-oss@latest -ws -iwr --save-exact
+  node . i glob@10.5.0
+  node . i tar@7.5.7
+  node . i diff@5.2.2
+
+  node scripts/resetdeps.js
+
+  npmtarball="$(node . pack --loglevel=silent --json | jq -r .[0].filename)"
+  rm -rf $builddir/package
+  tar xzvf $npmtarball -C $builddir
+  cd $builddir/package
 
 	# Remove bunch of unnecessary files to reduce size of the package.
 
@@ -70,13 +89,12 @@ prepare() {
 		sed -Ei "s/^\.TH \"$title\"/.TH \"NPM-$title\"/" "$f"
 		mv "$f" "${f%/*}/npm-$name.$sec"
 	done
-
-	echo Updating depends
-	./bin/npm-cli.js update glob --save
-	./bin/npm-cli.js update tar --save
 }
 
 check() {
+  cd "$builddir"
+  node . run test
+  cd "$builddir/package"
 	./bin/npm-cli.js --version
 	./bin/npx-cli.js --version
 }
@@ -85,7 +103,7 @@ package() {
 	local destdir="$pkgdir/usr/lib/node_modules/npm"
 
 	mkdir -p "$destdir"
-	cp -r "$builddir"/* "$destdir"/
+	cp -r "$builddir"/package/* "$destdir"/
 	cp "$srcdir"/npmrc "$destdir"/
 
 	cd "$pkgdir"
@@ -113,7 +131,7 @@ doc() {
 }
 
 sha512sums="
-e4817238bcbd816a5eff551bfb09b313bc48e024582611b90bcf8f7d6a7faf85edf93ad813285be14b5d4f533b99eec620b9df94da4c98fc2667cfbe86ba5652  npm-10.9.4.tar.gz
+e2945ec43553d19d291e74e1124b3bd854cce512fcedf2d4cb470c874d3ec42baf14493b42b0ea31d33526df2608605ed737dd164b348ea01a9afab2b4317a9c  npm-10.9.0.tar.gz
 17decd8b410c6596b18be5211db6d33c9fa5124126fe27530e44649e2aa9339b6f6fbd7f7603d9965a5878fd02e4c704c27c9e19f56a48d4777f381df86c6d46  update-tar.patch
 bf1362f6ad18738f54f30976e13da066293e21d0d3d81a5c2802f1064e49fa9bc7693b7e73e58f6c8f7fa545edcbb2dbac4b9c69165a9efc69f32fbc1e676597  dont-check-for-last-version.patch
 6d0ce425061ffff1c5d7a42c9908f3382cd77abf81a9c30a62ff6fff1f0d02ff633b2bb090814aa619f7d2a51237b3da7f85d97d0f584e037639b60ccfaf0e96  npmrc
