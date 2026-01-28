@@ -45,6 +45,10 @@ source="https://www.python.org/ftp/python/$pkgver/Python-$pkgver.tar.xz
 	externally-managed
 	musl-find_library.patch
 	test_skip_en_US_iso88591.patch
+	https://github.com/python/cpython/commit/22e4d55285cee52bc4dbe061324e5f30bd4dee58.patch
+  https://github.com/python/cpython/commit/a35ca3be5842505dab74dc0b90b89cde0405017a.patch
+  https://github.com/python/cpython/commit/918387e4912d12ffc166c8f2a38df92b6ec756ca.patch
+  https://github.com/python/cpython/commit/f738386838021c762efea6c9802c82de65e87796.patch
 	"
 options="net" # Required for tests
 builddir="$srcdir/Python-$pkgver"
