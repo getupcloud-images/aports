@@ -43,6 +43,13 @@ makedepends="
 source="https://www.python.org/ftp/python/$pkgver/Python-$pkgver.tar.xz
 	externally-managed
 	musl-find_library.patch
+	https://github.com/python/cpython/commit/afc40bdd3dd71f343fd9016f6d8eebbacbd6587c.patch
+  https://github.com/python/cpython/commit/a46c10ec9d4050ab67b8a932e0859a2ea60c3cb8.patch
+  https://github.com/python/cpython/commit/e4846a93ac07a8ae9aa18203af0dd13d6e7a6995.patch
+  https://github.com/python/cpython/commit/3f396ca9d7bbe2a50ea6b8c9b27c0082884d9f80.patch
+  https://github.com/python/cpython/commit/b1869ff648bbee0717221d09e6deff46617f3e85.patch
+  https://github.com/python/cpython/commit/e9970f077240c7c670e8a6fc6662f2b30d3b6ad0.patch
+  https://github.com/python/cpython/commit/5dceb93486176e6b4a6d9754491005113eb23427.patch
 	"
 options="net" # Required for tests
 builddir="$srcdir/Python-$pkgver"
