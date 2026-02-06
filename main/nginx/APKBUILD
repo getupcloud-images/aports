@@ -48,7 +48,7 @@ pkgver=1.29.4
 pkgrel=100
 # Revision of nginx-tests to use for check().
 _tests_rev=51e17e709ede6d4a75737e98d12e775fb4fc424a
-_njs_ver=0.9.4
+_njs_ver=0.9.5
 # Dependency of the naxsi module. The project is active, but they hasn't
 # released a new version since 2017, so we rather bundle it instead of
 # packaging (https://github.com/libinjection/libinjection/issues/50).
