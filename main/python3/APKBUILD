@@ -44,6 +44,7 @@ makedepends="
 source="https://www.python.org/ftp/python/$pkgver/Python-$pkgver.tar.xz
 	externally-managed
 	musl-find_library.patch
+	https://github.com/python/cpython/commit/f4364a51c1a8ce682fe9e4e96c6aba9f1b590422.patch
 	"
 options="net" # Required for tests
 builddir="$srcdir/Python-$pkgver"
@@ -148,7 +149,7 @@ build() {
 		--with-dbmliborder=gdbm:ndbm \
 		--with-system-expat \
 		--with-system-libmpdec \
-		--without-ensurepip
+		--with-ensurepip=install
 
 	NPROC=$(nproc || echo 2)
 	make -j${NPROC}
@@ -209,6 +210,7 @@ package() {
 	rm -r "$pkgdir"/usr/bin/idle* "$pkgdir"/usr/lib/python*/idlelib \
 		"$pkgdir"/usr/lib/python*/tkinter
 
+	ln -s pip3 "$pkgdir"/usr/bin/pip
 	ln -s python3 "$pkgdir"/usr/bin/python
 	ln -s python3-config "$pkgdir"/usr/bin/python-config
 }
