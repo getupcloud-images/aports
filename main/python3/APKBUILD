@@ -44,7 +44,8 @@ makedepends="
 source="https://www.python.org/ftp/python/$pkgver/Python-$pkgver.tar.xz
 	externally-managed
 	musl-find_library.patch
-	https://github.com/python/cpython/commit/f4364a51c1a8ce682fe9e4e96c6aba9f1b590422.patch
+	ensurepip-version.patch
+	https://raw.githubusercontent.com/python/cpython/3.14/Lib/ensurepip/_bundled/pip-26.0.1-py3-none-any.whl
 	"
 options="net" # Required for tests
 builddir="$srcdir/Python-$pkgver"
@@ -108,6 +109,10 @@ prepare() {
 
 	# force system libs
 	rm -r Modules/expat
+
+	rm -f Lib/ensurepip/_bundled/*.whl
+
+	cp "$srcdir/pip-26.0.1-py3-none-any.whl" Lib/ensurepip/_bundled/
 }
 
 build() {
@@ -279,4 +284,6 @@ sha512sums="
 9fd875f7a1d96d64e7150913ef38b72b0aeecfcbc24ba46967e57b6495146b0cba6b940c273561fc4d656b6d0ce2e23ffb7bd32bcd0b61fd59a6d90585998c07  Python-3.14.3.tar.xz
 46dd8230ee2ab66e9c4157c10b2bd9c414fd7f30be0bee73e21a9eea88f63fff362d47828e0fc77ddc59df097b414b21505f8b5f98bc866381115c58ae3f4862  externally-managed
 ab8eaa2858d5109049b1f9f553198d40e0ef8d78211ad6455f7b491af525bffb16738fed60fc84e960c4889568d25753b9e4a1494834fea48291b33f07000ec2  musl-find_library.patch
+c9996d4ed484858a80fd9bc206dcd6197b5ab034e7403df18873bafffb6f275b2cc5e9d1398defbf8a3c9dabff3f72f7c882d0b147201742fafa7687c7bcea35  ensurepip-version.patch
+300413494574e0615925dea146ad5ca2db8115793bcd97b5c56bfe7c55846f8ef9ff5c9a7b9e52eff682edca16c1eddd3b214e6ea01f4da3da8896abd9a953a9  pip-26.0.1-py3-none-any.whl
 "
