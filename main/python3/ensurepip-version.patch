@@ -1,0 +1,13 @@
+diff --git a/Lib/ensurepip/__init__.py b/Lib/ensurepip/__init__.py
+index 21bbfad0fe6..3d5641e3576 100644
+--- a/Lib/ensurepip/__init__.py
++++ b/Lib/ensurepip/__init__.py
+@@ -10,7 +10,7 @@
+ 
+ 
+ __all__ = ["version", "bootstrap"]
+-_PIP_VERSION = "25.3"
++_PIP_VERSION = "26.0.1"
+ 
+ # Directory of system wheel packages. Some Linux distribution packaging
+ # policies recommend against bundling dependencies. For example, Fedora
