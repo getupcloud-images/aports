@@ -1,5 +1,5 @@
 diff --git a/Lib/test/test_re.py b/Lib/test/test_re.py
-index 813cb4a..bab1e3f 100644
+index 813cb4a3f54..bab1e3f5f7f 100644
 --- a/Lib/test/test_re.py
 +++ b/Lib/test/test_re.py
 @@ -1,6 +1,6 @@
@@ -10,7 +10,7 @@ index 813cb4a..bab1e3f 100644
                            warnings_helper, SHORT_TIMEOUT, CPUStopwatch, requires_resource)
  import locale
  import re
-@@ -2176,10 +2176,7 @@ class ReTests(unittest.TestCase):
+@@ -2176,10 +2176,7 @@ def test_bug_20998(self):
          # with ignore case.
          self.assertEqual(re.fullmatch('[a-c]+', 'ABC', re.I).span(), (0, 3))
  
@@ -22,7 +22,7 @@ index 813cb4a..bab1e3f 100644
      def test_locale_caching(self):
          # Issue #22410
          oldlocale = locale.setlocale(locale.LC_CTYPE)
-@@ -2216,10 +2213,7 @@ class ReTests(unittest.TestCase):
+@@ -2216,10 +2213,7 @@ def check_en_US_utf8(self):
          self.assertIsNone(re.match(b'(?Li)\xc5', b'\xe5'))
          self.assertIsNone(re.match(b'(?Li)\xe5', b'\xc5'))
  
