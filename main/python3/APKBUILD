@@ -2,7 +2,7 @@
 # Maintainer: Natanael Copa <ncopa@alpinelinux.org>
 pkgname=python3
 # the python3-tkinter's pkgver needs to be synchronized with this.
-pkgver=3.13.11
+pkgver=3.13.12
 _basever="${pkgver%.*}"
 pkgrel=0
 pkgdesc="High-level scripting language"
@@ -45,10 +45,6 @@ source="https://www.python.org/ftp/python/$pkgver/Python-$pkgver.tar.xz
 	externally-managed
 	musl-find_library.patch
 	test_skip_en_US_iso88591.patch
-	https://github.com/python/cpython/commit/22e4d55285cee52bc4dbe061324e5f30bd4dee58.patch
-  https://github.com/python/cpython/commit/a35ca3be5842505dab74dc0b90b89cde0405017a.patch
-  https://github.com/python/cpython/commit/918387e4912d12ffc166c8f2a38df92b6ec756ca.patch
-  https://github.com/python/cpython/commit/f738386838021c762efea6c9802c82de65e87796.patch
 	"
 options="net" # Required for tests
 builddir="$srcdir/Python-$pkgver"
@@ -279,7 +275,7 @@ pyc2() {
 }
 
 sha512sums="
-11a910785bb3edeb3888331f29d2514d539f08b07d3125186364ab0e261dab29c7e7c70fe08d89718c38b6053cbe932ac4a6062ac291871e6f4173d29425264a  Python-3.13.11.tar.xz
+5edecdf13999d8629f31543dffdcba521dbb5633577e481ee49275e377509a2f6d700624c26f95b57a8ff9501378d10d7c07c1d0e7e19be0d6c88f05b6315a13  Python-3.13.12.tar.xz
 46dd8230ee2ab66e9c4157c10b2bd9c414fd7f30be0bee73e21a9eea88f63fff362d47828e0fc77ddc59df097b414b21505f8b5f98bc866381115c58ae3f4862  externally-managed
 ab8eaa2858d5109049b1f9f553198d40e0ef8d78211ad6455f7b491af525bffb16738fed60fc84e960c4889568d25753b9e4a1494834fea48291b33f07000ec2  musl-find_library.patch
 01968b639033088b61d8929ff654200833dd2d79a41915b96dda6c3350ab1a6a73925269ed873d224d570a3f4c58a49dc8a6996c3b6cca5d3d8e70d7bdfb3ff2  test_skip_en_US_iso88591.patch
