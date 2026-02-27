@@ -54,6 +54,8 @@ source="https://www.python.org/ftp/python/$pkgver/Python-$pkgver.tar.xz
   https://github.com/python/cpython/commit/a76e4cd62dd68e7cbe86e37e6ed988495a646b66.patch
   https://github.com/python/cpython/commit/5a8b19677d818fb41ee55f310233772e15aa1a2b.patch
   https://github.com/python/cpython/commit/c8a5f3435c342964e0a432cc9fb448b7dbecd1ba.patch
+  ensurepip-version.patch
+	https://raw.githubusercontent.com/python/cpython/3.13/Lib/ensurepip/_bundled/pip-26.0.1-py3-none-any.whl
 	"
 
 options="net" # Required for tests
@@ -118,6 +120,10 @@ prepare() {
 
 	# force system libs
 	rm -r Modules/expat
+
+	rm -f Lib/ensurepip/_bundled/*.whl
+
+	cp "$srcdir/pip-26.0.1-py3-none-any.whl" Lib/ensurepip/_bundled/
 }
 
 build() {
@@ -159,7 +165,7 @@ build() {
 		--with-dbmliborder=gdbm:ndbm \
 		--with-system-expat \
 		--with-system-libmpdec \
-		--without-ensurepip
+		--with-ensurepip=install
 
 	NPROC=$(nproc || echo 2)
 	make -j${NPROC}
@@ -220,6 +226,7 @@ package() {
 	rm -r "$pkgdir"/usr/bin/idle* "$pkgdir"/usr/lib/python*/idlelib \
 		"$pkgdir"/usr/lib/python*/tkinter
 
+	ln -s pip3 "$pkgdir"/usr/bin/pip
 	ln -s python3 "$pkgdir"/usr/bin/python
 	ln -s python3-config "$pkgdir"/usr/bin/python-config
 }

@@ -1,0 +1,13 @@
+diff --git a/Lib/ensurepip/__init__.py b/Lib/ensurepip/__init__.py
+index f827afa4646..41be7c32cfa 100644
+--- a/Lib/ensurepip/__init__.py
++++ b/Lib/ensurepip/__init__.py
+@@ -10,7 +10,7 @@
+ 
+ __all__ = ["version", "bootstrap"]
+ _PACKAGE_NAMES = ('pip',)
+-_PIP_VERSION = "25.0.1"
++_PIP_VERSION = "26.0.1"
+ _PROJECTS = [
+     ("pip", _PIP_VERSION, "py3"),
+ ]
