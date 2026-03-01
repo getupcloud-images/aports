@@ -11,7 +11,7 @@ license="Libpng"
 makedepends_build="gawk autoconf automake libtool"
 makedepends_host="linux-headers zlib-dev"
 subpackages="$pkgname-doc $pkgname-static $pkgname-dev $pkgname-utils"
-source="libpng-$pkgver.tar.gz::https://github.com/pnggroup/libpng/archive/refs/tags/v$pkgver.tar.gz
+source="libpng-$pkgver.tar.gz::https://github.com/pnggroup/libpng/archive/refs/tags/$pkgver.tar.gz
 	https://downloads.sourceforge.net/sourceforge/libpng-apng/libpng-$_apng_version-apng.patch.gz
 	libpng-fix-arm-neon.patch
 	"
