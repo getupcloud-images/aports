@@ -2,7 +2,7 @@
 # Contributor: Sheila Aman <sheila@vulpine.house>
 pkgname=python3
 # the python3-tkinter's pkgver needs to be synchronized with this.
-pkgver=3.11.14
+pkgver=3.11.15
 _basever="${pkgver%.*}"
 pkgrel=0
 pkgdesc="High-level scripting language"
@@ -43,16 +43,8 @@ makedepends="
 source="https://www.python.org/ftp/python/$pkgver/Python-$pkgver.tar.xz
 	externally-managed
 	musl-find_library.patch
-	https://github.com/python/cpython/commit/afc40bdd3dd71f343fd9016f6d8eebbacbd6587c.patch
-  https://github.com/python/cpython/commit/a46c10ec9d4050ab67b8a932e0859a2ea60c3cb8.patch
-  https://github.com/python/cpython/commit/e4846a93ac07a8ae9aa18203af0dd13d6e7a6995.patch
-  https://github.com/python/cpython/commit/3f396ca9d7bbe2a50ea6b8c9b27c0082884d9f80.patch
-  https://github.com/python/cpython/commit/b1869ff648bbee0717221d09e6deff46617f3e85.patch
-  https://github.com/python/cpython/commit/e9970f077240c7c670e8a6fc6662f2b30d3b6ad0.patch
-  https://github.com/python/cpython/commit/5dceb93486176e6b4a6d9754491005113eb23427.patch
-  https://github.com/python/cpython/commit/842ce19a0c0b58d61591e8f6a708c38db1fb94e4.patch
   ensurepip-version.patch
-  https://raw.githubusercontent.com/python/cpython/3.13/Lib/ensurepip/_bundled/pip-26.0.1-py3-none-any.whl
+  https://files.pythonhosted.org/packages/de/f0/c81e05b613866b76d2d1066490adf1a3dbc4ee9d9c839961c3fc8a6997af/pip-26.0.1-py3-none-any.whl
   https://files.pythonhosted.org/packages/e1/c6/76dc613121b793286a3f91621d7b75a2b493e0390ddca50f11993eadf192/setuptools-82.0.0-py3-none-any.whl
 	"
 options="net" # Required for tests
@@ -288,16 +280,9 @@ pyc2() {
 }
 
 sha512sums="
-8b5aa917fe67dbaa3c306239ed56c16cd7a3b4b701fab0b3dc0d342d60176c75440713bcab0c59a3289ac4a0f06103bd31140c492556e1937fcdbd990675f9e5  Python-3.11.14.tar.xz
+1667f4839acfd23d05917a12993983b7dc3ab4438a37c72496fd040ac6981f4dea9dc95461ca701a6862beedb56c423fb83398b8b18e39e1efe12f539fced1c1  Python-3.11.15.tar.xz
 46dd8230ee2ab66e9c4157c10b2bd9c414fd7f30be0bee73e21a9eea88f63fff362d47828e0fc77ddc59df097b414b21505f8b5f98bc866381115c58ae3f4862  externally-managed
 ab8eaa2858d5109049b1f9f553198d40e0ef8d78211ad6455f7b491af525bffb16738fed60fc84e960c4889568d25753b9e4a1494834fea48291b33f07000ec2  musl-find_library.patch
-2c6880677775cba01abaf4d9cd3999f47af86cc8464713a4d7f3d87727037a3a315c68e5e288169956010a134d68a14ef7505ad97d96577b467c9e6f5746735e  afc40bdd3dd71f343fd9016f6d8eebbacbd6587c.patch
-3853f48b7bc8d31c2f7a5f72fae1270af92b937d9da51c78a2e6cb7f5728dbfe354658d2dde758e9ac01e906b630889d2a1b5c2a6eea7b80dc12160eebc744da  a46c10ec9d4050ab67b8a932e0859a2ea60c3cb8.patch
-b62307329d23dcc2f0a3d4920de95f8d9d4b23ab97b9451376fc1ad87566406110b85193033bde0a545a2bbf9bcab2bda7b64a49b45fb0f4b5a2dfda111cbf14  e4846a93ac07a8ae9aa18203af0dd13d6e7a6995.patch
-7d99a06c9714ba26c3858cfd65b6adbfaacf9096e4dc4e7a506b155325c6ae81f03ce7f5571739ce56dfcd23fa6248c98b7d1838225db68b18b7993a384a2ec1  3f396ca9d7bbe2a50ea6b8c9b27c0082884d9f80.patch
-9a6b72630aa00d349a94117f6501cb743fc8e5f136b4e492d5ce620405579912662d95a44a81dd126a21d2402413f339be8943dc002c4d89545b7c01a9c72a4d  b1869ff648bbee0717221d09e6deff46617f3e85.patch
-310b6fef5e68f95c733ef26031db11580ac47ea05430499f872a413dd58ae71f7a7ae0104cb088eca26e406165bb4006d0027e113f65d43548dd9cd36b38b450  e9970f077240c7c670e8a6fc6662f2b30d3b6ad0.patch
-3bf4f52f1ece13b2d4c254e5b6d0af439e36f7bff9fd2784304d1a151f8f1b696e0bc586f9a7d3725e892dece139c99264fd13d765aa430d6df2bcf2b7dd04d5  5dceb93486176e6b4a6d9754491005113eb23427.patch
 4f3ec5cc55f4dac34d6ad80aa5270570e7af053b1d056b75cc465cc8c0055b113e670b1106acb5c249ca3e4777ebee45466cb0c9899bd18af64892fafb7db322  ensurepip-version.patch
 300413494574e0615925dea146ad5ca2db8115793bcd97b5c56bfe7c55846f8ef9ff5c9a7b9e52eff682edca16c1eddd3b214e6ea01f4da3da8896abd9a953a9  pip-26.0.1-py3-none-any.whl
 8f4c0f24477d2e410e5dd2face08efce78266b62be1c81656f928232919fbe8b1469a454f4b910088b5a8a161b0531692e5e73d5cb76f5428774dd75f5d71242  setuptools-82.0.0-py3-none-any.whl
