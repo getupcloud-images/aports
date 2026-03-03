@@ -2,7 +2,7 @@
 # Maintainer: Natanael Copa <ncopa@alpinelinux.org>
 pkgname=python3
 # the python3-tkinter's pkgver needs to be synchronized with this.
-pkgver=3.12.12
+pkgver=3.12.13
 _basever="${pkgver%.*}"
 pkgrel=0
 pkgdesc="High-level scripting language"
@@ -46,17 +46,8 @@ source="https://www.python.org/ftp/python/$pkgver/Python-$pkgver.tar.xz
 	musl-find_library.patch
 	test_posix-nodev-disable.patch
 	fix-run_fileexflags-test.patch
-	https://github.com/python/cpython/commit/14b1fdb0a94b96f86fc7b86671ea9582b8676628.patch
-  https://github.com/python/cpython/commit/9c9dda6625a2a90d2a06c657eee021d6be19842d.patch
-  https://github.com/python/cpython/commit/4802b96a2cde58570c24c13ef3289490980961c5.patch
-  https://github.com/python/cpython/commit/4ed11d3cd288e6b90196a15c5a825a45d318fe47.patch
-  https://github.com/python/cpython/commit/62700107418eb2cca3fc88da036a243ea975f172.patch
-  https://github.com/python/cpython/commit/a76e4cd62dd68e7cbe86e37e6ed988495a646b66.patch
-  https://github.com/python/cpython/commit/5a8b19677d818fb41ee55f310233772e15aa1a2b.patch
-  https://github.com/python/cpython/commit/c8a5f3435c342964e0a432cc9fb448b7dbecd1ba.patch
-  https://github.com/python/cpython/commit/e417f05ad77a4c30ddc07f99e90fc0cef43e831a.patch
   ensurepip-version.patch
-	https://raw.githubusercontent.com/python/cpython/3.13/Lib/ensurepip/_bundled/pip-26.0.1-py3-none-any.whl
+	https://files.pythonhosted.org/packages/de/f0/c81e05b613866b76d2d1066490adf1a3dbc4ee9d9c839961c3fc8a6997af/pip-26.0.1-py3-none-any.whl
 	"
 
 options="net" # Required for tests
@@ -293,15 +284,11 @@ pyc2() {
 }
 
 sha512sums="
-4b99d240dd96a6e154909dcffe87f8bb38193d634cd80a1c3d9e819b7a63af2afa46d5e6423e81f00dd388840dc29a4a71580f6aa1ce9a12e559c1d63f65a205  Python-3.12.12.tar.xz
+e1eb66f0b34581f0155e3ce25ba72cf0b4b1107672ed0ad3e86bcfe616945c9204c41ffc492f32b1066b9154913ff88343038967ad8711dd05e6f2332fdb735b  Python-3.12.13.tar.xz
 46dd8230ee2ab66e9c4157c10b2bd9c414fd7f30be0bee73e21a9eea88f63fff362d47828e0fc77ddc59df097b414b21505f8b5f98bc866381115c58ae3f4862  externally-managed
 ab8eaa2858d5109049b1f9f553198d40e0ef8d78211ad6455f7b491af525bffb16738fed60fc84e960c4889568d25753b9e4a1494834fea48291b33f07000ec2  musl-find_library.patch
 606cf7b3df0c81c90571c6bc65e4f07e065867739fa0d36e9c8e1ad2d6bcd64d265f90c4a7881880fc7e0c85eed94d1f72655a5c70d92ca63e5cc4bd3be8f145  test_posix-nodev-disable.patch
 0e1155b1976be46d68fe50161b9644ac272d95c51f44ada51a0fd67a0154df89833752e97cfc85e977b384fca82b58907c30405a103f3a33a1483b9f76ce632f  fix-run_fileexflags-test.patch
-8cda8bd89d8c87ac7e9f5f59e1fcde5e29b634f19a63402f33d8189a8a0d6bec534692e6ed19cc1d793a50a49e1db4498f83490c20f1c53f76cb45f02d74d860  df996ce4b9860f8d0c391d876ffe6d0143132a81.diff
-b61cd1b95b0e3f045087832a56bc38dece2d33bedb1cfdc591a2a784c2def74ab99614ff902c4efd7ea39c924536385eb1b36f7ead88c162102df629d99cc7c0  1ff4985dccfe14ccb59eaac7f2611764a635f828.diff
-93ae4f90565b03b3c2ff25ab70ae892653320057cf52328aed52269d739fba77983414de7fe1980e79d222df93f2a01814feb89b42cfe0c03542b07aba7e37f1  d9c479e5ed98b2f019b4fb9658f0093b800b9f2e.diff
-f2ceb029ed16296fa53a525c5efadd6a3e61cdd2ffd38f09d6a786a3909abfaf0f64af763f3f8ec9878d6eb271208ba56531f57b4b7be694cd0b51bd0ff825d4  c2d62026344bd3d8282385c2545991f8bfc8b9bd.diff
-cd82f30db875d4a61dac20e9e3244dbed5584d963014b3ff5a7f9754ada0a9b1bbfb1663fcc49e47ce29989bffe10d9c0248a3887b2e29f2fb7d639a6570b2d5  03336d7373be3eb6dcdd94a075089c417dda5df1.diff
-f3f09fe78bb6c05aba8d30773a36f014b892167025ef4bfbd838135b2d0ea28479b0573166b81de8320b2e36106ded9971fbd8a931810211e6b10ef0f0c19fd3  c02c7df621d2dfbd0d8b0009037283ebe18a28d7.diff
+54502754604dda0d41c235b7b3b93d599ea9bab438990dc6409495b3322b68ff1001ecb92ef483cf325ebf78dcd4b757df19930d56b289a8a3cc09fa3c5649e1  ensurepip-version.patch
+300413494574e0615925dea146ad5ca2db8115793bcd97b5c56bfe7c55846f8ef9ff5c9a7b9e52eff682edca16c1eddd3b214e6ea01f4da3da8896abd9a953a9  pip-26.0.1-py3-none-any.whl
 "
