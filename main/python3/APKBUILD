@@ -2,7 +2,7 @@
 # Contributor: Sheila Aman <sheila@vulpine.house>
 pkgname=python3
 # the python3-tkinter's pkgver needs to be synchronized with this.
-pkgver=3.10.19
+pkgver=3.10.20
 _bluez_ver=5.65
 _basever="${pkgver%.*}"
 pkgrel=3
@@ -44,12 +44,9 @@ source="https://www.python.org/ftp/python/$pkgver/Python-$pkgver.tar.xz
 	musl-find_library.patch
 	custom-bluetooth-h-path.patch
 	arm-alignment.patch
-	https://github.com/python/cpython/commit/892747b4cf0f95ba8beb51c0d0658bfaa381ebca.patch
-	https://github.com/python/cpython/commit/2f840249550e082dc351743f474ba56da10478d2.patch
-	https://github.com/python/cpython/commit/34d76b00dabde81a793bd06dd8ecb057838c4b38.patch
-	https://github.com/python/cpython/commit/7852d72b653fea0199acf5fc2a84f6f8b84eba8d.patch
-	https://github.com/python/cpython/commit/c97e87593063d84a2bd9fe7068b30eb44de23dc0.patch
-	https://github.com/python/cpython/commit/5dc101675fd22918facbbe0fecdc821502beaaf0.patch
+	ensurepip-version.patch
+	https://files.pythonhosted.org/packages/de/f0/c81e05b613866b76d2d1066490adf1a3dbc4ee9d9c839961c3fc8a6997af/pip-26.0.1-py3-none-any.whl
+	https://files.pythonhosted.org/packages/e1/c6/76dc613121b793286a3f91621d7b75a2b493e0390ddca50f11993eadf192/setuptools-82.0.0-py3-none-any.whl
 	"
 options="net" # Required for tests
 builddir="$srcdir/Python-$pkgver"
@@ -94,6 +91,11 @@ prepare() {
 	autoreconf -fi
 
 	sed "s|@bluetoothdir@|\"$srcdir/bluez-$_bluez_ver\"|g" -i setup.py
+
+	rm -f Lib/ensurepip/_bundled/*.whl
+
+	cp "$srcdir/pip-26.0.1-py3-none-any.whl" Lib/ensurepip/_bundled/
+	cp "$srcdir/setuptools-82.0.0-py3-none-any.whl" Lib/ensurepip/_bundled/
 }
 
 build() {
@@ -119,7 +121,7 @@ build() {
 		--with-system-expat \
 		--with-system-ffi \
 		--with-system-libmpdec \
-		--without-ensurepip \
+		--with-ensurepip=install \
 		--with-bluetoothdir="$srcdir/bluez-$_bluez_ver"
 
 	# set thread stack size to 1MB so we don't segfault before we hit
@@ -198,6 +200,7 @@ package() {
 	rm -r "$pkgdir"/usr/bin/idle* "$pkgdir"/usr/lib/python*/idlelib \
 		"$pkgdir"/usr/lib/python*/tkinter
 
+	ln -s /usr/bin/pip3 "$pkgdir"/usr/bin/pip
 	ln -s /usr/bin/python3 "$pkgdir"/usr/bin/python
 	ln -s /usr/bin/python3-config "$pkgdir"/usr/bin/python-config
 }
@@ -231,10 +234,13 @@ gdbm() {
 }
 
 sha512sums="
-9ea1e952bb5f7c9cc8d3efd8e7ae0059c129b6e09d12ded7d4e22476fad35f2c8186b1e003ea35a0099ffa5ff0a114985c3e960fba84e7037670b840a3e19c68  Python-3.10.19.tar.xz
+591d3acf7ef47307b8c58fec9516731b374bcdf6eb21883410f67402f823a183f1abffec1116583e394610730f414d5a98b4c3437ea5174a4d2adbb99b8f6e5b  Python-3.10.20.tar.xz
 c20c09a1a75053c77d73b3ce15ac7fd321eb6df5ca1646d57c6848b87c0c9957908bc17dd928da4ef2aacfc8667877cbc7511c1ba43db839bfa9bf1fb8269907  bluez-5.65.tar.xz
 fe123dd871f7a3fa868c499a957b94f1d815a1e1de964aaff1116c579defd4d9d1e9b7eb418cf114b169b97426ed603bf4b1e61b45ec483df06abe988c6a30ee  fix-xattrs-glibc.patch
 ab8eaa2858d5109049b1f9f553198d40e0ef8d78211ad6455f7b491af525bffb16738fed60fc84e960c4889568d25753b9e4a1494834fea48291b33f07000ec2  musl-find_library.patch
 14b00953cdb5fe757b38dbf759d7203c3504b46e330494ec195db92290640ec640fb29cc4456208a25dadc028ebaf211b0df71f458a3b76023fdafb4f91ff46a  custom-bluetooth-h-path.patch
 a84483246e413650a904c34c18f5e4f4168c39067d069f48557c330de6eb3db19fd96a4d453d742db3dcb7c7f962722903f62823c752ff90510c89830435ffc0  arm-alignment.patch
+8cd023b681a386b801655d0cb49b3dcb14126cf9b4b6e196c52a0631b8f7c98925280fe64f784eba09a6d31f25f04c91e996943b934e8aaf24839a2ebe045bbe  ensurepip-version.patch
+300413494574e0615925dea146ad5ca2db8115793bcd97b5c56bfe7c55846f8ef9ff5c9a7b9e52eff682edca16c1eddd3b214e6ea01f4da3da8896abd9a953a9  pip-26.0.1-py3-none-any.whl
+8f4c0f24477d2e410e5dd2face08efce78266b62be1c81656f928232919fbe8b1469a454f4b910088b5a8a161b0531692e5e73d5cb76f5428774dd75f5d71242  setuptools-82.0.0-py3-none-any.whl
 "
