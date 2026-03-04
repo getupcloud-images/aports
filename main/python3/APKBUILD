@@ -45,7 +45,7 @@ source="https://www.python.org/ftp/python/$pkgver/Python-$pkgver.tar.xz
 	externally-managed
 	musl-find_library.patch
 	ensurepip-version.patch
-	https://raw.githubusercontent.com/python/cpython/3.14/Lib/ensurepip/_bundled/pip-26.0.1-py3-none-any.whl
+	https://files.pythonhosted.org/packages/de/f0/c81e05b613866b76d2d1066490adf1a3dbc4ee9d9c839961c3fc8a6997af/pip-26.0.1-py3-none-any.whl
 	"
 options="net" # Required for tests
 builddir="$srcdir/Python-$pkgver"
