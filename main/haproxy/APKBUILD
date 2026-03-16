@@ -17,8 +17,7 @@ install="haproxy.pre-install haproxy.pre-upgrade"
 subpackages="$pkgname-doc $pkgname-openrc"
 source="https://www.haproxy.org/download/$_pkgmajorver/src/haproxy-$pkgver.tar.gz
 	haproxy.initd
-	haproxy.cfg
-	entrypoint.sh"
+	haproxy.cfg"
 
 # secfixes:
 #   2.1.4-r0:
@@ -60,5 +59,4 @@ sha512sums="
 4d1d31fbe8ff027367b3018958e973f7e1151bb178847b456ec458f6558ac58e6d9391dee853c0eebe27ca045ba64329072e98d867114de4c26fec136ef42b07  haproxy-3.2.14.tar.gz
 4aa8fc812079baf1d17cf9484a9b44568c3dd94f35243a57a4a7868e7f88146a4e94c80ea8ab86f1b08a524567e269a3ec119b67fc679f6bd0d9f1c70ce4f080  haproxy.initd
 26bc8f8ac504fcbaec113ecbb9bb59b9da47dc8834779ebbb2870a8cadf2ee7561b3a811f01e619358a98c6c7768e8fdd90ab447098c05b82e788c8212c4c41f  haproxy.cfg
-a5f26c83994731e48975fb2cbb1ea52a1daf752c63ab75ad248a72e7c5281e3c6c2d4612e7b43a5173b1446a8395bf9bc603854474a8d33bdd20cedb99db5276  entrypoint.sh
 "
