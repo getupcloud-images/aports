@@ -26,6 +26,7 @@ subpackages="
 	"
 source="https://github.com/openssl/openssl/releases/download/openssl-$pkgver/openssl-$pkgver.tar.gz
 	auxv.patch
+	cve-2026-2673::https://github.com/openssl/openssl/commit/2157c9d81f7b0bd7dfa25b960e928ec28e8dd63f.diff
 	"
 builddir="$srcdir/openssl-$pkgver"
 
