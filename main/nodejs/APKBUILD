@@ -49,6 +49,7 @@ source="https://nodejs.org/dist/v$pkgver/node-v$pkgver.tar.gz
 	$pkgname.pc.in
 	node_sea.patch
 	node_snapshotable.patch
+	https://github.com/nodejs/node/commit/dabb2f5f0c0367bf8e0e116b311b9308111ab4c7.diff
 	"
 builddir="$srcdir/node-v$pkgver"
 
