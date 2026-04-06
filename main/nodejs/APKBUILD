@@ -254,11 +254,11 @@ build() {
 
 _update_modules()
 {
-	if [ -e "UPDATE_MODULES.txt" ]; then
-		for module in $(cat UPDATE_MODULES.txt); do
+	if [ -n "$UPDATE_MODULES" ]; then
+		for module in ${UPDATE_MODULES//:/ }; do
 			./tools/dep_updaters/update-${module}.sh
 		done
-fi
+	fi
 }
 
 _build() {
