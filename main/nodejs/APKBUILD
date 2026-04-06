@@ -161,6 +161,8 @@ prepare() {
 }
 
 build() {
+	_update_modules
+
 	# Add defines recommended in libuv readme.
 	local common_flags="-D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64"
 
@@ -185,6 +187,15 @@ build() {
 	cp out/Release/lib/libnode.so* out/Release/
 
 	sed "s/@VERSION@/$pkgver/" "$srcdir"/$pkgname.pc.in > out/Release/$pkgname.pc
+}
+
+_update_modules()
+{
+	if [ -n "$UPDATE_MODULES" ]; then
+		for module in ${UPDATE_MODULES//:/ }; do
+			./tools/dep_updaters/update-${module}.sh
+		done
+	fi
 }
 
 _build() {
