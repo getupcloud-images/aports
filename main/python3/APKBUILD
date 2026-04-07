@@ -47,7 +47,7 @@ source="Python-${_basever}.tar.gz::https://github.com/python/cpython/archive/ref
 	https://files.pythonhosted.org/packages/de/f0/c81e05b613866b76d2d1066490adf1a3dbc4ee9d9c839961c3fc8a6997af/pip-26.0.1-py3-none-any.whl
 	"
 options="net" # Required for tests
-builddir="$srcdir/Python-$pkgver"
+builddir="$srcdir/cpython-$_basever"
 
 # secfixes:
 #   3.12.11-r0:
@@ -280,7 +280,7 @@ pyc2() {
 }
 
 sha512sums="
-9fd875f7a1d96d64e7150913ef38b72b0aeecfcbc24ba46967e57b6495146b0cba6b940c273561fc4d656b6d0ce2e23ffb7bd32bcd0b61fd59a6d90585998c07  Python-3.14.3.tar.xz
+41dee7d3ed234ca796759580f17d4d83ed9d9b29c1e3dd45f6282252ee9797358f47ffae0f4b09a5a6f4c74dc9ef0236e25b6ad17fba6164025e9c6592a235ef  Python-3.14.tar.gz
 46dd8230ee2ab66e9c4157c10b2bd9c414fd7f30be0bee73e21a9eea88f63fff362d47828e0fc77ddc59df097b414b21505f8b5f98bc866381115c58ae3f4862  externally-managed
 ab8eaa2858d5109049b1f9f553198d40e0ef8d78211ad6455f7b491af525bffb16738fed60fc84e960c4889568d25753b9e4a1494834fea48291b33f07000ec2  musl-find_library.patch
 300413494574e0615925dea146ad5ca2db8115793bcd97b5c56bfe7c55846f8ef9ff5c9a7b9e52eff682edca16c1eddd3b214e6ea01f4da3da8896abd9a953a9  pip-26.0.1-py3-none-any.whl
