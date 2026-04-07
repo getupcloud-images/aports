@@ -10,11 +10,12 @@ license="Artistic-2.0"
 depends="nodejs"
 replaces="nodejs-doc"  # for backward compatibility
 subpackages="$pkgname-doc $pkgname-bash-completion"
-source="https://registry.npmjs.org/npm/-/npm-$pkgver.tgz
-	dont-check-for-last-version.patch
+#source="https://registry.npmjs.org/npm/-/npm-$pkgver.tgz
+source="cli-${pkgver}.tar.gz::https://github.com/npm/cli/archive/refs/tags/v${pkgver}.tar.gz
 	npmrc
 	"
-builddir="$srcdir/package"
+	#dont-check-for-last-version.patch ## this fails tests
+builddir="$srcdir/cli-${pkgver}"
 
 # secfixes:
 #   10.9.1-r0:
@@ -24,6 +25,18 @@ builddir="$srcdir/package"
 
 prepare() {
 	default_prepare
+
+	git init .
+	git remote add origin "git+https://github.com/npm/cli.git" # satisfies test #79 test/lib/commands/publish.js
+	git add .
+	git config --global user.name || git config --global user.name "Quor"
+	git config --global user.email || git config --global user.email "quor@quor.dev"
+	git commit -am 'Placeholder'
+	node scripts/resetdeps.js
+	npmtarball="$(node . pack --loglevel=silent --json | jq -r .[0].filename)"
+	rm -rf $builddir/package
+	tar xzf $npmtarball -C $builddir
+	cd $builddir/package
 
 	# Remove bunch of unnecessary files to reduce size of the package.
 
@@ -69,15 +82,19 @@ prepare() {
 }
 
 check() {
+	cd "$builddir/package"
 	./bin/npm-cli.js --version
 	./bin/npx-cli.js --version
+	cd "$builddir"
+	# run tests for debugging purpose only
+	node . run test || true
 }
 
 package() {
 	local destdir="$pkgdir/usr/lib/node_modules/npm"
 
 	mkdir -p "$destdir"
-	cp -r "$builddir"/* "$destdir"/
+	cp -r "$builddir"/package/* "$destdir"/
 	cp "$srcdir"/npmrc "$destdir"/
 
 	cd "$pkgdir"
@@ -105,7 +122,6 @@ doc() {
 }
 
 sha512sums="
-cdca14b85d647b3192028d02aadbe82d75f79a446aceea9874be98e6d768f20ebd3555770a48d0e9906106007877bbc690f715e9372f2e2dc644a3c3157fb14c  npm-11.12.1.tgz
-b5c25a015c2a38a6a4cad7081c7c42d063fee19a59bbfb8063fe184d14297ec30eda7907a6d101b190213ab7bfd7e962fb884c2048c9e2a8536e804c210db5f3  dont-check-for-last-version.patch
+7dc67fb1807b0f98dd26b4e543a359ce942228e6765d45e90302f9388e1f734ee799636a0cf2e5b7c58d2f4fa78290070951a16c7f0f92b1df7f1bf55487c0fa  cli-11.12.1.tar.gz
 e92d222af8d406cc3974f7360fad881fb8ddeb838256dc6baf9343f61df30a6fc02ff59f9c06027a7eb663d7322bcf05087622607523d6edafa2c7d20cf557e4  npmrc
 "
