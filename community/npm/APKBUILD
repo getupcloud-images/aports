@@ -23,16 +23,28 @@ builddir="$srcdir/cli-${pkgver}"
 #   8.1.4-r0:
 #     - CVE-2021-43616
 
-prepare() {
-	default_prepare
-
+_update_modules()
+{
+	# scripts/resetdeps.js requires it to be a git repo
 	git init .
 	git remote add origin "git+https://github.com/npm/cli.git" # satisfies test #79 test/lib/commands/publish.js
 	git add .
 	git config --global user.name || git config --global user.name "Quor"
 	git config --global user.email || git config --global user.email "quor@quor.dev"
-	git commit -am 'Placeholder'
+	git commit -am '[Auto-commit] Update modules'
+
 	node scripts/resetdeps.js
+
+	for module in ${UPDATE_MODULES//:/ }; do
+		node . i $module
+	done
+}
+
+prepare() {
+	default_prepare
+
+	# Rebuild npm from source
+	_update_modules
 	npmtarball="$(node . pack --loglevel=silent --json | jq -r .[0].filename)"
 	rm -rf $builddir/package
 	tar xzf $npmtarball -C $builddir
