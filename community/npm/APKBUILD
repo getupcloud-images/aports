@@ -35,10 +35,15 @@ _update_modules()
 
 	node scripts/resetdeps.js
 
-	for module in ${UPDATE_MODULES//:/ }; do
-		echo -e "\e[1m++ Updating module $module\e[0m"
-		node . i $module
-	done
+	if [ "$UPDATE_MODULES" == all ]; then
+		echo -e "\e[1m++ Updating all modules\e[0m"
+		node . update
+	else
+		for module in ${UPDATE_MODULES//:/ }; do
+			echo -e "\e[1m++ Updating module $module\e[0m"
+			node . i $module
+		done
+	fi
 }
 
 prepare() {
