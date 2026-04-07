@@ -36,6 +36,7 @@ _update_modules()
 	node scripts/resetdeps.js
 
 	for module in ${UPDATE_MODULES//:/ }; do
+		echo -e "\e[1m++ Updating module $module\e[0m"
 		node . i $module
 	done
 }
