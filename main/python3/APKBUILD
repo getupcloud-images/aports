@@ -41,7 +41,7 @@ makedepends="
 	xz-dev
 	zlib-dev
 	"
-source="Python-$pkgver.tar.xz::https://github.com/python/cpython/archive/refs/heads/${_basever}.tar.gz
+source="Python-${_basever}.tar.gz::https://github.com/python/cpython/archive/refs/heads/${_basever}.tar.gz
 	externally-managed
 	musl-find_library.patch
 	https://files.pythonhosted.org/packages/de/f0/c81e05b613866b76d2d1066490adf1a3dbc4ee9d9c839961c3fc8a6997af/pip-26.0.1-py3-none-any.whl
