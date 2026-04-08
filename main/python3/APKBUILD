@@ -41,7 +41,7 @@ makedepends="
 	xz-dev
 	zlib-dev
 	"
-source="https://www.python.org/ftp/python/$pkgver/Python-$pkgver.tar.xz
+source="Python-${_basever}.tar.gz::https://github.com/python/cpython/archive/refs/heads/${_basever}.tar.gz
 	externally-managed
 	musl-find_library.patch
 	test_posix-nodev-disable.patch
@@ -51,7 +51,7 @@ source="https://www.python.org/ftp/python/$pkgver/Python-$pkgver.tar.xz
 	"
 
 options="net" # Required for tests
-builddir="$srcdir/Python-$pkgver"
+builddir="$srcdir/cpython-$_basever"
 
 # secfixes:
 #   3.12.11-r0:
