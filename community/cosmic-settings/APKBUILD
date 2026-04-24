@@ -1,7 +1,7 @@
 # Contributor: Clayton Craft <clayton@craftyguy.net>
 # Maintainer: Clayton Craft <clayton@craftyguy.net>
 pkgname=cosmic-settings
-pkgver=1.0.9
+pkgver=1.0.11
 _upstreamver="${pkgver/_beta/-beta.}"
 _upstreamver="${_upstreamver/_p/.}"
 pkgrel=0
@@ -16,7 +16,7 @@ depends="
 	cosmic-icons
 "
 makedepends="
-	cargo
+	cargo-auditable
 	clang-libclang
 	cosmic-icons
 	cosmic-randr
@@ -36,15 +36,15 @@ builddir="$srcdir/$pkgname-epoch-$_upstreamver"
 
 prepare() {
 	default_prepare
-	cargo fetch --target="$CTARGET" --locked
+	cargo fetch --target="$CHOST" --locked
 }
 
 build() {
-	just build-release --frozen
+	cargo auditable build --release --frozen
 }
 
 check() {
-	cargo test --release --frozen
+	cargo test --frozen
 }
 
 package() {
@@ -52,5 +52,5 @@ package() {
 }
 
 sha512sums="
-522966e4aa872999dfed716e562dbba60a4b5062fb30b78eea42adaa2cdbae527c023366c8eb729145b5d2a10dfb8a73cc84072fae527cdeb98eb8025711b2c4  cosmic-settings-1.0.9.tar.gz
+6010dd34514c08aa45636729fb229ab1da213094905925a14f3f37339bb8444840daaa636ce63e3d9f8b204f51c75d35c3351ec1ef529c76a3f3ea464d8b203c  cosmic-settings-1.0.11.tar.gz
 "

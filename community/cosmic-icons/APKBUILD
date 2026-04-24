@@ -1,7 +1,7 @@
 # Contributor: Clayton Craft <clayton@craftyguy.net>
 # Maintainer: Clayton Craft <clayton@craftyguy.net>
 pkgname=cosmic-icons
-pkgver=1.0.9
+pkgver=1.0.11
 _upstreamver="${pkgver/_beta/-beta.}"
 _upstreamver="${_upstreamver/_p/.}"
 pkgrel=0
@@ -22,5 +22,5 @@ package() {
 }
 
 sha512sums="
-79bcea874f294e66c27b51922156a567ec2baa5b8e7956f1eb59a0b883dcc8b060ea00a2b9b26784fce5b77d12db739c552e7ccf6dcb4b79abc771ee3e6ed728  cosmic-icons-1.0.9.tar.gz
+f7c894fcbb6fd579415364248f62b4fbd2db2ad9a0f2d4a3a3d963b91bc428081bc906b6e05befe1d57dfde4657103108a2371e5ed829fe42fe2246e7de7a46a  cosmic-icons-1.0.11.tar.gz
 "

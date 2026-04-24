@@ -1,7 +1,7 @@
 # Contributor: Clayton Craft <clayton@craftyguy.net>
 # Maintainer: Clayton Craft <clayton@craftyguy.net>
 pkgname=cosmic-notifications
-pkgver=1.0.9
+pkgver=1.0.11
 _upstreamver="${pkgver/_beta/-beta.}"
 _upstreamver="${_upstreamver/_p/.}"
 pkgrel=0
@@ -14,7 +14,7 @@ depends="
 	cosmic-icons
 "
 makedepends="
-	cargo
+	cargo-auditable
 	just
 	libxkbcommon-dev
 	wayland-dev
@@ -25,15 +25,15 @@ builddir="$srcdir/$pkgname-epoch-$_upstreamver"
 
 prepare() {
 	default_prepare
-	cargo fetch --target="$CTARGET" --locked
+	cargo fetch --target="$CHOST" --locked
 }
 
 build() {
-	just build-release --frozen
+	cargo auditable build --release --frozen
 }
 
 check() {
-	cargo test --release --frozen
+	cargo test --frozen
 }
 
 package() {
@@ -41,5 +41,5 @@ package() {
 }
 
 sha512sums="
-c83e93a85d28c4a1fbb4c66678346e239547541b193907aeced8b191fbf2b1c9a0ca922eb57f7c4c99e116142ef95018efb206308bd3a832dc9e5fd67eacf4a2  cosmic-notifications-1.0.9.tar.gz
+b1c557153e174b346c82ed1bb1fc2630cf8114c11eb5e1b50eda65a2ed5ae36dc4ea2be055a4e976cb282395345786fb566db718bb318bf578329242dafcc500  cosmic-notifications-1.0.11.tar.gz
 "

@@ -1,7 +1,7 @@
 # Contributor: Jonas <spameier+alpine@proton.me>
 # Maintainer: Jonas <spameier+alpine@proton.me>
 pkgname=goshs
-pkgver=2.0.0
+pkgver=2.0.3
 pkgrel=0
 pkgdesc="A SimpleHTTPServer written in Go, enhanced with features and with a nice design."
 url="https://goshs.de"
@@ -26,5 +26,5 @@ package() {
 }
 
 sha512sums="
-375f4c8664d6c8b86cb5f078a0829bf1b87cec9f199f23eed91a606db1a85c589baf2a9528e06c770dfa384f2723aaed49ec53fd3b94bfbba0899341f3469007  goshs-2.0.0.tar.gz
+a38c5618ec216798cd3efb1aac8e31a7e3aac55b61dc905e0b76f0ef1fb88df6810daa29d855a6a3317cb260a87233de7d522765084071e71430be3785e3cd18  goshs-2.0.3.tar.gz
 "

@@ -1,7 +1,7 @@
 # Contributor: Clayton Craft <clayton@craftyguy.net>
 # Maintainer: Clayton Craft <clayton@craftyguy.net>
 pkgname=cosmic-session
-pkgver=1.0.9
+pkgver=1.0.11
 _upstreamver="${pkgver/_beta/-beta.}"
 _upstreamver="${_upstreamver/_p/.}"
 pkgrel=0
@@ -33,7 +33,7 @@ depends="
 	xwayland
 "
 makedepends="
-	cargo
+	cargo-auditable
 	dbus-dev
 	glib-dev
 	just
@@ -48,15 +48,15 @@ builddir="$srcdir/$pkgname-epoch-$_upstreamver"
 
 prepare() {
 	default_prepare
-	cargo fetch --target="$CTARGET" --locked
+	cargo fetch --target="$CHOST" --locked
 }
 
 build() {
-	just build-release
+	cargo auditable build --release --frozen
 }
 
 check() {
-	cargo test --release --frozen
+	cargo test --frozen
 }
 
 package() {
@@ -64,6 +64,6 @@ package() {
 }
 
 sha512sums="
-d845ad928992865ebdb6b2149c57bea23feb67dc405ee472cd1d50da0fc41bf552284fb0d8102a0889a6ff46989c5d4d8941ebfa22a10dee3b421e0d809e12a6  cosmic-session-1.0.9.tar.gz
+d75ce74f4fc38a3c696bb6ac88058fc4a71c3655390ef34302a6055f1d9dbcc5d453875b6a2847aa9295bffaaaab40fb04876a81c06a7f12026b190e0f3c7975  cosmic-session-1.0.11.tar.gz
 70c8c1d76043af2d985e94c23fbcd0b2971f2c164cdc662e67ff19f18b396b61fa68fc109c2511f60a6161119e6b39401e51166f71091c5d4560bbf0e90f2ea1  rustix-loongarch64.patch
 "

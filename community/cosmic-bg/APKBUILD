@@ -1,7 +1,7 @@
 # Contributor: Clayton Craft <clayton@craftyguy.net>
 # Maintainer: Clayton Craft <clayton@craftyguy.net>
 pkgname=cosmic-bg
-pkgver=1.0.9
+pkgver=1.0.11
 _upstreamver="${pkgver/_beta/-beta.}"
 _upstreamver="${_upstreamver/_p/.}"
 pkgrel=0
@@ -14,7 +14,7 @@ depends="
 	cosmic-icons
 "
 makedepends="
-	cargo
+	cargo-auditable
 	just
 	libxkbcommon-dev
 "
@@ -24,15 +24,15 @@ builddir="$srcdir/$pkgname-epoch-$_upstreamver"
 
 prepare() {
 	default_prepare
-	cargo fetch --target="$CTARGET" --locked
+	cargo fetch --target="$CHOST" --locked
 }
 
 build() {
-	just build-release --frozen
+	cargo auditable build --release --frozen
 }
 
 check() {
-	cargo test --release --frozen
+	cargo test --frozen
 }
 
 package() {
@@ -40,5 +40,5 @@ package() {
 }
 
 sha512sums="
-f91740934dae0b3ad929b48cd026dbd3e22b5983d0ecbed44bcd5a2cd2b3b56184e91b942fe16c9367729e14cf00e033ecfca69fbc0c4b337eb00602233fd1a3  cosmic-bg-1.0.9.tar.gz
+0c9dc8b95ff90533667312c5fc16fd00e3fe2d33f5c9f11007d7ad90630b5fedc1733f24fa11a72f0e68e046d730d640f4fb81ad19eca813771394c08293009e  cosmic-bg-1.0.11.tar.gz
 "

@@ -1,7 +1,7 @@
 # Contributor: Clayton Craft <clayton@craftyguy.net>
 # Maintainer: Clayton Craft <clayton@craftyguy.net>
 pkgname=cosmic-screenshot
-pkgver=1.0.9
+pkgver=1.0.11
 _upstreamver="${pkgver/_beta/-beta.}"
 _upstreamver="${_upstreamver/_p/.}"
 pkgrel=0
@@ -17,7 +17,7 @@ depends="
 	xdg-desktop-portal-cosmic
 "
 makedepends="
-	cargo
+	cargo-auditable
 	just
 "
 options="net !check"  # fetch dependencies, no tests
@@ -26,15 +26,15 @@ builddir="$srcdir/$pkgname-epoch-$_upstreamver"
 
 prepare() {
 	default_prepare
-	cargo fetch --target="$CTARGET" --locked
+	cargo fetch --target="$CHOST" --locked
 }
 
 build() {
-	just build-release --frozen
+	cargo auditable build --release --frozen
 }
 
 check() {
-	cargo test --release --frozen
+	cargo test --frozen
 }
 
 package() {
@@ -42,5 +42,5 @@ package() {
 }
 
 sha512sums="
-4459cab6bebc29785209c4e93bfe317a52347b2e3c0ec2d3706506568cc3ad52e92cc7cb4279c5668eff462f20bcca4bca00a0039234efa0faf7367170e6d116  cosmic-screenshot-1.0.9.tar.gz
+d1c5e7706f10b266e16bbb2ae4b7f7bf222386516cca110e03685d4e3da0bce48257a4c5b6275987d02fd49d94293028d08a08f1a7c50de38ae32a5b4d1ddb31  cosmic-screenshot-1.0.11.tar.gz
 "

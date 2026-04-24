@@ -1,7 +1,7 @@
 # Contributor: Clayton Craft <clayton@craftyguy.net>
 # Maintainer: Clayton Craft <clayton@craftyguy.net>
 pkgname=cosmic-player
-pkgver=1.0.9
+pkgver=1.0.11
 _upstreamver="${pkgver/_beta/-beta.}"
 _upstreamver="${_upstreamver/_p/.}"
 pkgrel=0
@@ -14,7 +14,7 @@ depends="
 	gst-plugins-good
 "
 makedepends="
-	cargo
+	cargo-auditable
 	clang-libclang
 	glib-dev
 	gst-plugins-base-dev
@@ -29,15 +29,15 @@ builddir="$srcdir/$pkgname-epoch-$_upstreamver"
 
 prepare() {
 	default_prepare
-	cargo fetch --target="$CTARGET" --locked
+	cargo fetch --target="$CHOST" --locked
 }
 
 build() {
-	just build-release --frozen
+	cargo auditable build --release --frozen
 }
 
 check() {
-	cargo test --release --frozen
+	cargo test --frozen
 }
 
 package() {
@@ -45,5 +45,5 @@ package() {
 }
 
 sha512sums="
-d01ec2da9e52609d86536109925218330d3fc4e48ac04dda45046f0432a842c85b424e864b3c6998b5e555fb05132cc208dfed84d3052071f2ef55bc161c2f6d  cosmic-player-1.0.9.tar.gz
+c32b8dadb488ccccc94c8eb6061237bf2983e00e424e04f7d4d3513a61b29bbe2fdf5290655a86bfab88b9893fb79c8cc841726741672533db067f847785768f  cosmic-player-1.0.11.tar.gz
 "

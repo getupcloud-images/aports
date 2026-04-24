@@ -1,7 +1,7 @@
 # Contributor: Clayton Craft <clayton@craftyguy.net>
 # Maintainer: Clayton Craft <clayton@craftyguy.net>
 pkgname=cosmic-workspaces
-pkgver=1.0.9
+pkgver=1.0.11
 _upstreamver="${pkgver/_beta/-beta.}"
 _upstreamver="${_upstreamver/_p/.}"
 pkgrel=0
@@ -14,7 +14,7 @@ depends="
 	cosmic-icons
 "
 makedepends="
-	cargo
+	cargo-auditable
 	eudev-dev
 	desktop-file-utils
 	just
@@ -30,15 +30,15 @@ builddir="$srcdir/$pkgname-epoch-epoch-$_upstreamver"
 
 prepare() {
 	default_prepare
-	cargo fetch --target="$CTARGET" --locked
+	cargo fetch --target="$CHOST" --locked
 }
 
 build() {
-	make ARGS+=' --frozen --release'
+	cargo auditable build --release --frozen
 }
 
 check() {
-	cargo test --release --frozen
+	cargo test --frozen
 }
 
 package() {
@@ -46,5 +46,5 @@ package() {
 }
 
 sha512sums="
-44c529e3080893808cb6b085a40b6742fbae5f682dc09186cda9520068f706dfa901da2eda53f3c973a32886cc8d10a653522ddbbb3ed61f9de962e86fcb690f  cosmic-workspaces-1.0.9.tar.gz
+4b47d17541c68243fab69080f0c6af848a6d343234afb7d074d96a25abeff8cbc25b83c8c05ad5d1b839b464ba65cd3380d0778f2eca0c197d947e4521cf1f76  cosmic-workspaces-1.0.11.tar.gz
 "

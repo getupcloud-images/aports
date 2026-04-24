@@ -1,7 +1,7 @@
 # Contributor: Clayton Craft <clayton@craftyguy.net>
 # Maintainer: Clayton Craft <clayton@craftyguy.net>
 pkgname=cosmic-launcher
-pkgver=1.0.9
+pkgver=1.0.11
 _upstreamver="${pkgver/_beta/-beta.}"
 _upstreamver="${_upstreamver/_p/.}"
 pkgrel=0
@@ -15,7 +15,7 @@ depends="
 "
 makedepends="
 	appstream-glib
-	cargo
+	cargo-auditable
 	desktop-file-utils
 	intltool
 	just
@@ -29,15 +29,15 @@ builddir="$srcdir/$pkgname-epoch-$_upstreamver"
 
 prepare() {
 	default_prepare
-	cargo fetch --target="$CTARGET" --locked
+	cargo fetch --target="$CHOST" --locked
 }
 
 build() {
-	cargo build --release --frozen
+	cargo auditable build --release --frozen
 }
 
 check() {
-	cargo test --release --frozen
+	cargo test --frozen
 }
 
 package() {
@@ -45,5 +45,5 @@ package() {
 }
 
 sha512sums="
-19990464f311b88cb4762ca540b538e6bb35a4f50d8cba98d6ce21b5f5a218847eefdb4168ba4feb66f80cc81205cc60db683a105f241d3de0be8956b37e366e  cosmic-launcher-1.0.9.tar.gz
+1ee0a7bc84f8bcbbef82a4b761dc9ab045ad79b54c1a04b6d9cf5eeacf1314157aa880dfe574c358e2c1877d35ba669e6d269e081068cf8bdd8b470ceaa60949  cosmic-launcher-1.0.11.tar.gz
 "
