@@ -1,9 +1,9 @@
 maintainer="Hoang Nguyen <folliekazetani@protonmail.com>"
 pkgname=gallery-dl
-pkgver=1.31.10
-pkgrel=1
+pkgver=1.32.0
+pkgrel=0
 pkgdesc="CLI tool to download image galleries"
-url="https://github.com/mikf/gallery-dl"
+url="https://codeberg.org/mikf/gallery-dl"
 arch="noarch"
 license="GPL-2.0-or-later"
 depends="py3-requests python3"
@@ -16,7 +16,8 @@ subpackages="
 	$pkgname-zsh-completion
 	$pkgname-fish-completion
 	"
-source="$pkgname-$pkgver-1.tar.gz::https://github.com/mikf/gallery-dl/archive/v$pkgver.tar.gz"
+source="$pkgname-$pkgver.tar.gz::https://codeberg.org/mikf/gallery-dl/archive/v$pkgver.tar.gz"
+builddir="$srcdir/$pkgname"
 
 build() {
 	make man completion
@@ -36,5 +37,5 @@ package() {
 }
 
 sha512sums="
-b227a0a398cae7e5b7b03a386641f062d83ab9e6281f54de5a5597d08ffe1b6368a4079ecff316ba60ad4a1dca288f8865c0779df69dd8965bdfcbc27ff1f05b  gallery-dl-1.31.10-1.tar.gz
+dbf8a6ebd749b6bd54a1a5f3502e4cfb8210f3fef0fb64b7d08fdef6910a4e54dc7d45255129c115f91bd5e4d514b30392eb24b9f88b5b7aefc21238d489e9d7  gallery-dl-1.32.0.tar.gz
 "
