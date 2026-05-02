@@ -1,7 +1,7 @@
 # Contributor: Henrik Riomar <henrik.riomar@gmail.com>
 # Maintainer: Henrik Riomar <henrik.riomar@gmail.com>
 pkgname=nats-server
-pkgver=2.12.6
+pkgver=2.14.0
 pkgrel=0
 pkgdesc="High-Performance server for NATS.io"
 url="https://github.com/nats-io/nats-server"
@@ -58,6 +58,6 @@ package() {
 }
 
 sha512sums="
-93b86f5e259020ebf4b1e6244b999e41500d778433654614f1ef435c0b249337919e2eb3e867b7c4256cb4348d27b9d3f2f83bb46dcc4284159ac42495b1ff05  nats-server-2.12.6.tar.gz
-45c5134c126eea0905ad30bbc3ed3369130a7b23addd3dfba66d5fed76b1a4d21ac001d01e78ad40610021146dc58940ff4de8e6a2c87f1c828a595547e76f15  make-tests-more-forgiving-on-timings.patch
+f7724a2c87c6305cb8664a692aef70ff7b32e3c640c9b84d21d9552f32ed6431bcb2760c1c6ce1e1d24d1fb594310b591d35485d032e7c77c5105aee09c6fd98  nats-server-2.14.0.tar.gz
+c99d5643509eed91d305606c8521db148f1bf1fbe9da3ace52da98aee5f24401640bf6540203fe4e560b2a3cd406f6263fa10024f0eaaa416b1fe27098c9b7a9  make-tests-more-forgiving-on-timings.patch
 "

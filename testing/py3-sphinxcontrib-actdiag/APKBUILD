@@ -3,7 +3,7 @@
 pkgname=py3-sphinxcontrib-actdiag
 _pkgname=sphinxcontrib-actdiag
 pkgver=3.0.0
-pkgrel=4
+pkgrel=5
 pkgdesc="Sphinx actdiag extension"
 url="https://github.com/blockdiag/sphinxcontrib-actdiag"
 arch="noarch"
@@ -23,7 +23,7 @@ build() {
 
 check() {
 	python3 -m venv --clear --without-pip --system-site-packages .testenv
-	gpep517 install-wheel --destdir .testenv --prefix '' .dist/*.whl
+	.testenv/bin/python3 -m installer .dist/*.whl
 	.testenv/bin/python3 -m unittest discover
 }
 
