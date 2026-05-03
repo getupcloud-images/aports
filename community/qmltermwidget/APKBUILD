@@ -1,5 +1,4 @@
-# Contributor: Bart Ribbers <bribbers@disroot.org>
-# Maintainer: Bart Ribbers <bribbers@disroot.org>
+maintainer=""
 pkgname=qmltermwidget
 pkgver=0.2.0_git20221028
 _commit="ffc6b2b2a20ca785f93300eca93c25c4b74ece17"
@@ -14,7 +13,7 @@ makedepends="
 	"
 checkdepends="
 	qt5-qtquickcontrols
-	xvfb-run
+	xwayland-run
 	"
 source="https://github.com/gber/qmltermwidget/archive/$_commit/qmltermwidget-$_commit.tar.gz
 	0001-Rename-KProcess-to-KTermProcess-to-not-BIC-KF5CoreAd.patch
@@ -28,7 +27,7 @@ build() {
 }
 
 check() {
-	xvfb-run /usr/lib/qt5/bin/qmlscene -l . test-app/test-app.qml
+	wlheadless-run -- /usr/lib/qt5/bin/qmlscene -l . test-app/test-app.qml
 }
 
 package() {

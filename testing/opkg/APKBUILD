@@ -1,12 +1,13 @@
 # Maintainer: Ryan Barnett <ryanbarnett3@gmail.com>
 pkgname=opkg
 pkgver=0.7.0
-pkgrel=0
+pkgrel=1
 pkgdesc="Lightweight package management system"
 url="https://git.yoctoproject.org/opkg/"
 arch="all"
 license="GPL-2.0-or-later"
 makedepends="curl-dev gpgme-dev libarchive-dev zstd-dev autoconf automake libtool pkgconf"
+checkdepends="python3"
 subpackages="$pkgname-dev $pkgname-libs $pkgname-doc"
 source="https://downloads.yoctoproject.org/releases/opkg/opkg-$pkgver.tar.gz
 	skip-test-regress-issue72.patch
