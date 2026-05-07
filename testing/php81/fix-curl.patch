@@ -1,3 +1,4 @@
+Patch-Source: https://github.com/php/php-src/pull/21518
 From e5f3237707ab6854885f556012be6eb13eeb7f7e Mon Sep 17 00:00:00 2001
 From: Shivam Mathur <shivam_jpr@hotmail.com>
 Date: Wed, 25 Mar 2026 14:14:41 +0530
@@ -34,7 +35,7 @@ index ff08528321a0f..e3b97a3ea7326 100644
      check_response($response, $clientCertSubject);
 -    check_error($ch);
 +    check_error($ch, $rejectsZeroLengthBlobs ? 56 : 58);
-     $ch = null;
+     curl_close($ch);
  
      echo "\n";
      echo "case 3: client cert and empty key from string\n";
@@ -62,7 +63,7 @@ index ff08528321a0f..e3b97a3ea7326 100644
 -    check_error($ch);
 +    var_dump((is_string($response) && strpos($response, $clientCertSubject) !== false) === $rejectsZeroLengthBlobs);
 +    var_dump(curl_errno($ch) === ($rejectsZeroLengthBlobs ? 0 : 83));
-     $ch = null;
+     curl_close($ch);
  
  } finally {
 @@ -199,7 +200,7 @@ bool(true)
