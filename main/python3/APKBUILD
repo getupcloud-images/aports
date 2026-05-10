@@ -5,6 +5,7 @@ pkgname=python3
 pkgver=3.12.13
 _basever="${pkgver%.*}"
 pkgrel=0
+_pipver=26.1.1
 pkgdesc="High-level scripting language"
 url="https://www.python.org/"
 arch="all"
@@ -46,8 +47,8 @@ source="Python-${_basever}.tar.gz::https://github.com/python/cpython/archive/ref
 	musl-find_library.patch
 	test_posix-nodev-disable.patch
 	fix-run_fileexflags-test.patch
-  ensurepip-version.patch
-	https://files.pythonhosted.org/packages/de/f0/c81e05b613866b76d2d1066490adf1a3dbc4ee9d9c839961c3fc8a6997af/pip-26.0.1-py3-none-any.whl
+	ensurepip-version.patch
+	https://files.pythonhosted.org/packages/3a/eb/fea4d1d51c49832120f7f285d07306db3960f423a2612c6057caf3e8196f/pip-${_pipver}-py3-none-any.whl
 	"
 
 options="net" # Required for tests
@@ -115,7 +116,7 @@ prepare() {
 
 	rm -f Lib/ensurepip/_bundled/*.whl
 
-	cp "$srcdir/pip-26.0.1-py3-none-any.whl" Lib/ensurepip/_bundled/
+	cp "$srcdir/pip-${_pipver}-py3-none-any.whl" Lib/ensurepip/_bundled/
 }
 
 build() {
@@ -290,5 +291,5 @@ ab8eaa2858d5109049b1f9f553198d40e0ef8d78211ad6455f7b491af525bffb16738fed60fc84e9
 606cf7b3df0c81c90571c6bc65e4f07e065867739fa0d36e9c8e1ad2d6bcd64d265f90c4a7881880fc7e0c85eed94d1f72655a5c70d92ca63e5cc4bd3be8f145  test_posix-nodev-disable.patch
 0e1155b1976be46d68fe50161b9644ac272d95c51f44ada51a0fd67a0154df89833752e97cfc85e977b384fca82b58907c30405a103f3a33a1483b9f76ce632f  fix-run_fileexflags-test.patch
 54502754604dda0d41c235b7b3b93d599ea9bab438990dc6409495b3322b68ff1001ecb92ef483cf325ebf78dcd4b757df19930d56b289a8a3cc09fa3c5649e1  ensurepip-version.patch
-300413494574e0615925dea146ad5ca2db8115793bcd97b5c56bfe7c55846f8ef9ff5c9a7b9e52eff682edca16c1eddd3b214e6ea01f4da3da8896abd9a953a9  pip-26.0.1-py3-none-any.whl
+ae0b4e56ff49adf9bf51b642e11e5e8d063ff7ac94109fffa7f5b8b67d021f702293b91c3edd9dbb3bc40c212abe90578f6cb6ed4e33bba3844d983c18a6de09  pip-26.1.1-py3-none-any.whl
 "
