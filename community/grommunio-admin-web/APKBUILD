@@ -3,8 +3,10 @@ pkgname=grommunio-admin-web
 pkgver=4.0.0
 pkgrel=0
 pkgdesc="Frontend for grommunio management"
+# arm*: passes in ci, fails on the builders with "Zone Allocation failed -
+# process out of memory" or "JavaScript heap out of memory" errors
 # s390x: blocked by grommunio-gromox through grommunio-admin-api
-arch="noarch !s390x"
+arch="noarch !armhf !armv7 !s390x"
 url="https://grommunio.com/"
 license="AGPL-3.0-only"
 options="!check net" # No test suite
