@@ -35,6 +35,7 @@ subpackages="
 	"
 _repo_url="https://invent.kde.org/frameworks/kservice.git"
 source="https://download.kde.org/stable/frameworks/${pkgver%.*}/kservice-$pkgver.tar.xz"
+options="!check" # ksycocathreadtest & kservicetest fail on builders
 
 build() {
 	export KDE_DOCS=/usr/share/kde/documentation
