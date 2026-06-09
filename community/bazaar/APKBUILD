@@ -1,7 +1,7 @@
 maintainer="Achill Gilgenast <achill@achill.org>"
 pkgname=bazaar
-pkgver=0.8.1
-pkgrel=1
+pkgver=0.8.3
+pkgrel=0
 pkgdesc="New App Store for GNOME"
 url="https://usebazaar.org/"
 arch="all !armhf !armv7 !x86" # fails to build
@@ -53,7 +53,7 @@ package() {
 }
 
 sha512sums="
-d8cab1641021cf829290b4f2555d3679540574e9f8e43f09492dbd4be3652fc75557527d909adee0d967e6589a4dba9847a10497b2036ebbd9e4d4df2b72c910  bazaar-0.8.1.tar.gz
+93493c00f1bcb9b2cd16c63563b7cd9b4a947418c2136dce03b1112cf461a31da0a6a385e508cc768697395fc866167a6c18f79179eb8a80936058e41c77db8e  bazaar-0.8.3.tar.gz
 5d17bb1e1831193082336f798a035edf698760c8bbff46813086a59ce3de1c6c5bc8053f26ea36cf6de5595e4330c5afd680482dd7650f95921bb2aa02f89034  strcasestr.patch
 3fb376f2d146318d30f88ce8bc976405b1bab3a3b2cb07c59ce58df2db3f3bed543b554a4c26d7996af45311141479a44582463dfd51ef975ce0785253640589  webkit-2.48.patch
 "

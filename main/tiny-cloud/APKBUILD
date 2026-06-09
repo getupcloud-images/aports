@@ -2,7 +2,7 @@
 # Contributor: Jake Buchholz Göktürk <tomalok@gmail.com>
 # Maintainer: Jake Buchholz Göktürk <tomalok@gmail.com>
 pkgname=tiny-cloud
-pkgver=3.3.1
+pkgver=3.3.2
 pkgrel=0
 pkgdesc="Tiny Cloud instance bootstrapper"
 url="https://gitlab.alpinelinux.org/alpine/cloud/tiny-cloud"
@@ -106,5 +106,5 @@ scaleway() {
 }
 
 sha512sums="
-6c85a33bb7ce981e690cbac212253df0ff68f645b768b561c419e54d9df18e5aa1fef82679d1cfd0e79fef55bc315f0e722d924a6898a86c702f64c4bd1ed948  tiny-cloud-3.3.1.tar.gz
+b55ea14aef833dd1bdbe1e8427081aade1faca5cce3d004e0667d387cb558feefbbea58d903113ff87112d25b26baa6ae9399e640b179c62d13b6bc825473cab  tiny-cloud-3.3.2.tar.gz
 "

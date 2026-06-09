@@ -2,7 +2,7 @@
 # Maintainer: Guy Godfroy <guy.godfroy@gugod.fr>
 pkgname=py3-joserfc
 _pkgname=joserfc
-pkgver=1.6.7
+pkgver=1.7.1
 pkgrel=0
 pkgdesc="Implementations of JOSE RFCs in Python"
 url="https://jose.authlib.org"
@@ -33,5 +33,5 @@ package() {
 }
 
 sha512sums="
-ade3174924db02f9b9a989e574a37841c5f85719c93fd5f71741ba71ae80465b4bce2dd8298fda755ad118085cb700b6ea0998a153652c2323d1474aef0ec67e  joserfc-1.6.7.tar.gz
+89c120e7a480e8ffc53e6dc45d75b9c18aee63f1dbf476e7dd40ef828b517f8e0f6a67bf475dff5cc290976b2058d8c250869d5844884ffe190d3291e53a208e  joserfc-1.7.1.tar.gz
 "
