@@ -2,7 +2,7 @@
 # Maintainer: Marian Buschsieweke <marian.buschsieweke@posteo.net>
 pkgname=avr-libc
 pkgver=2.3.1
-pkgrel=0
+pkgrel=1
 pkgdesc="The C runtime library for the AVR family of microcontrollers"
 url="https://github.com/avrdudes/avr-libc"
 depends="gcc-avr"
@@ -22,12 +22,13 @@ build() {
 	CC=avr-gcc ./configure \
 		--build="$(/bin/sh config.guess)" \
 		--host=avr \
-		--prefix=/usr
-	make
-}
+		--prefix=/usr \
+		--quiet
+	make --silent
+ }
 
 package() {
-	make install DESTDIR="$pkgdir"
+	make --silent install DESTDIR="$pkgdir"
 }
 
 sha512sums="
