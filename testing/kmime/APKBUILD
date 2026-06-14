@@ -1,29 +1,33 @@
 # The group tag is just to easily find this APKBUILD by some scripts for automation
 # group=kde-frameworks
 maintainer="team/kde <bribbers@disroot.org>"
-pkgname=kcrash
+pkgname=kmime
 pkgver=6.27.0
 pkgrel=0
-pkgdesc="Support for application crash analysis and bug report from apps"
-# armhf blocked by qt6-qtdeclarative -> kcoreaddons
-arch="all !armhf"
+pkgdesc="Library to assist handling MIME data"
+arch="all"
 url="https://community.kde.org/Frameworks"
-license="LGPL-2.1-or-later"
+license="LGPL-2.0-only AND LGPL-2.0-or-later"
 depends_dev="
-	kcoreaddons-dev
-	kwindowsystem-dev
+	kcodecs-dev
+	qt6-qtbase-dev
 	"
 makedepends="$depends_dev
-	doxygen
 	extra-cmake-modules
 	kde-qdoc-common
 	qt6-qttools-dev
 	samurai
 	"
-checkdepends="xwayland-run"
-subpackages="$pkgname-dev $pkgname-doc"
-_repo_url="https://invent.kde.org/frameworks/kcrash.git"
-source="https://download.kde.org/stable/frameworks/${pkgver%.*}/kcrash-$pkgver.tar.xz"
+subpackages="
+	$pkgname-dev
+	$pkgname-lang
+	"
+case "$CARCH" in
+	armhf) ;;
+	*) subpackages="$subpackages $pkgname-doc"
+esac
+_repo_url="https://invent.kde.org/frameworks/kmime.git"
+source="https://download.kde.org/stable/frameworks/${pkgver%.*}/kmime-$pkgver.tar.xz"
 
 build() {
 	export KDE_DOCS=/usr/share/kde/documentation
@@ -39,8 +43,7 @@ build() {
 }
 
 check() {
-	# kcrashtest is broken
-	wlheadless-run -- ctest --test-dir build -E "kcrashtest"
+	ctest --test-dir build -E "kmime-messagetest"
 }
 
 package() {
@@ -51,5 +54,5 @@ package() {
 }
 
 sha512sums="
-84e3828fa5cad16931eabdf7dd459b552a600cd142691f5b85d9bed807fc856cd8bf688d716aad99f409db599912dfa42347a05b10bb30b4486b3ffdf6f8318c  kcrash-6.27.0.tar.xz
+f0299d9d75c30e49f4143fbc107e25ceb3226a587c089e9c1e47ad6a8509eae9b05172644c5b487ab2a4dc5c510a9760b61b0bb98ee8aed7e622dce36d503e3a  kmime-6.27.0.tar.xz
 "
