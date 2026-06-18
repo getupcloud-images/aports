@@ -5,7 +5,7 @@ pkgname=python3
 pkgver=3.14.3
 _basever="${pkgver%.*}"
 pkgrel=0
-_pipver=26.1.1
+_pipver=26.1.2
 pkgdesc="High-level scripting language"
 url="https://www.python.org/"
 arch="all"
@@ -45,7 +45,7 @@ makedepends="
 source="Python-${_basever}.tar.gz::https://github.com/python/cpython/archive/refs/heads/${_basever}.tar.gz
 	externally-managed
 	musl-find_library.patch
-	https://files.pythonhosted.org/packages/3a/eb/fea4d1d51c49832120f7f285d07306db3960f423a2612c6057caf3e8196f/pip-${_pipver}-py3-none-any.whl
+	https://files.pythonhosted.org/packages/5d/95/6b5cb3461ea5673ba0995989746db58eb18b91b54dbf331e72f569540946/pip-${_pipver}-py3-none-any.whl
 	"
 options="net" # Required for tests
 builddir="$srcdir/cpython-$_basever"
@@ -281,8 +281,8 @@ pyc2() {
 }
 
 sha512sums="
-41dee7d3ed234ca796759580f17d4d83ed9d9b29c1e3dd45f6282252ee9797358f47ffae0f4b09a5a6f4c74dc9ef0236e25b6ad17fba6164025e9c6592a235ef  Python-3.14.tar.gz
+766a0e1cecea90a324260e51745bc600ff17c0caf6cec7b03c39fd9b51435ef4294e54843b4bce1b73c63ef3958863439635bdbed15c282b53fd45de4c8f0879  Python-3.14.tar.gz
 46dd8230ee2ab66e9c4157c10b2bd9c414fd7f30be0bee73e21a9eea88f63fff362d47828e0fc77ddc59df097b414b21505f8b5f98bc866381115c58ae3f4862  externally-managed
 ab8eaa2858d5109049b1f9f553198d40e0ef8d78211ad6455f7b491af525bffb16738fed60fc84e960c4889568d25753b9e4a1494834fea48291b33f07000ec2  musl-find_library.patch
-ae0b4e56ff49adf9bf51b642e11e5e8d063ff7ac94109fffa7f5b8b67d021f702293b91c3edd9dbb3bc40c212abe90578f6cb6ed4e33bba3844d983c18a6de09  pip-26.1.1-py3-none-any.whl
+232005367f7345db948414e60990dc458eae40a06fcdf72094c370fe0752b56d7302375612543fc0e91684c066c5506f37282b72d6e2ed8b1ef36b7f00f6a420  pip-26.1.2-py3-none-any.whl
 "
