@@ -1,8 +1,8 @@
 # Contributor: Sheila Aman <sheila@vulpine.house>
 # Maintainer: Natanael Copa <ncopa@alpinelinux.org>
 pkgname=python3
-# the python3-tkinter's pkgver needs to be synchronized with this.
-pkgver=3.14.3
+# python3-extra's pkgver needs to be synchronized with this.
+pkgver=3.14.6
 _basever="${pkgver%.*}"
 pkgrel=0
 _pipver=26.1.2
@@ -15,12 +15,12 @@ subpackages="
 	$pkgname-dbg
 	$pkgname-dev
 	$pkgname-doc
+	$pkgname-idle::noarch
 	$pkgname-tests::noarch
 	$pkgname-pyc:_default_pyc
 	$pkgname-pycache-pyc2
 	$pkgname-pycache-pyc1
 	$pkgname-pycache-pyc0
-	$pkgname-gdbm
 	pyc:_pyc_meta:noarch
 	"
 depends="libssl3>=3.3.0"
@@ -29,7 +29,6 @@ makedepends="
 	bluez-headers
 	bzip2-dev
 	expat-dev
-	gdbm-dev
 	libffi-dev
 	linux-headers
 	mpdecimal-dev
@@ -42,15 +41,21 @@ makedepends="
 	xz-dev
 	zlib-dev
 	"
-source="Python-${_basever}.tar.gz::https://github.com/python/cpython/archive/refs/heads/${_basever}.tar.gz
+source="https://www.python.org/ftp/python/$pkgver/Python-$pkgver.tar.xz
+	idle.desktop
 	externally-managed
 	musl-find_library.patch
+	s390x-c-stack-size.patch
 	https://files.pythonhosted.org/packages/5d/95/6b5cb3461ea5673ba0995989746db58eb18b91b54dbf331e72f569540946/pip-${_pipver}-py3-none-any.whl
 	"
 options="net" # Required for tests
-builddir="$srcdir/cpython-$_basever"
+builddir="$srcdir/Python-$pkgver"
 
 # secfixes:
+#   3.14.5-r0:
+#     - CVE-2026-2297
+#     - CVE-2026-3644
+#     - CVE-2026-4224
 #   3.12.11-r0:
 #     - CVE-2024-12718
 #     - CVE-2025-4138
@@ -134,6 +139,10 @@ build() {
 		# for an easy reproduction, run the testsuite of community/py3-lmdb
 		export CFLAGS_NODIST="${CFLAGS_NODIST/-fstack-clash-protection}"
 		export CXXFLAGS_NODIST="${CXXFLAGS_NODIST/-fstack-clash-protection}"
+		# because test_time fails in docker on ppc64le (see check()),
+		# we need to exclude that from the tests that run for PGO
+		# purposes during the build, as well
+		export PROFILE_TASK='-m test --pgo --timeout=$(TESTTIMEOUT) --exclude test_time'
 		;;
 	esac
 
@@ -151,7 +160,6 @@ build() {
 		--enable-shared \
 		--with-lto \
 		--with-computed-gotos \
-		--with-dbmliborder=gdbm:ndbm \
 		--with-system-expat \
 		--with-system-libmpdec \
 		--with-ensurepip=install
@@ -211,13 +219,16 @@ package() {
 	install -Dm644 "$srcdir"/externally-managed \
 		"$pkgdir"/usr/lib/python$_basever/EXTERNALLY-MANAGED
 
-	# those are provided by python3-tkinter
-	rm -r "$pkgdir"/usr/bin/idle* "$pkgdir"/usr/lib/python*/idlelib \
-		"$pkgdir"/usr/lib/python*/tkinter
-
-	ln -s pip3 "$pkgdir"/usr/bin/pip
 	ln -s python3 "$pkgdir"/usr/bin/python
 	ln -s python3-config "$pkgdir"/usr/bin/python-config
+
+	local size
+	for size in 16 32 48 256; do
+		local dir="$pkgdir"/usr/share/icons/hicolor/"$size"x"$size"/apps
+		install -dm755 "$dir"
+		ln -s ../../../../../lib/python3.14/idlelib/Icons/idle_$size.png "$dir"/idle.png
+	done
+	install -Dm0644 "$srcdir"/idle.desktop "$pkgdir"/usr/share/applications/idle.desktop
 }
 
 dev() {
@@ -229,16 +240,18 @@ dev() {
 		"$pkgdir"/usr/include/python$_basever/
 }
 
-tests() {
-	pkgdesc="The test modules from the main python package"
+idle() {
+	pkgdesc="IDE for Python3 using Tkinter"
+	depends="$depends python3-tkinter~$pkgver"
 
-	amove usr/lib/python$_basever/test
+	amove usr/bin/idle* usr/lib/python$_basever/idlelib usr/share/icons usr/share/applications
 }
 
-gdbm() {
-	pkgdesc="Python backend for GNU gdbm"
+tests() {
+	pkgdesc="The test modules from the main python package"
+	provides="python3-tkinter-tests=$pkgver-r$pkgrel"
 
-	amove usr/lib/python3*/lib-dynload/_gdbm.cpython*
+	amove usr/lib/python$_basever/test
 }
 
 _pyc_meta() {
@@ -251,6 +264,7 @@ _pyc_meta() {
 _default_pyc() {
 	pkgdesc="$pkgdesc (install .pyc cache files)"
 	install_if="$pkgname=$pkgver-r$pkgrel"
+	provides="python3-tkinter-pyc=$pkgver-r$pkgrel"
 	depends="
 		$pkgname-pycache-pyc0=$pkgver-r$pkgrel
 		pyc
@@ -281,8 +295,10 @@ pyc2() {
 }
 
 sha512sums="
-766a0e1cecea90a324260e51745bc600ff17c0caf6cec7b03c39fd9b51435ef4294e54843b4bce1b73c63ef3958863439635bdbed15c282b53fd45de4c8f0879  Python-3.14.tar.gz
+90a82f46c28f0fca613b67358fdc57c145ab05d20fb56bf3bc0c9e4e54947c7d30fbaa6856c41a41909237a9e601d1a7d19579d4b25c7a784ebcfe9012defc41  Python-3.14.6.tar.xz
+a5b225575f2eabbb724637e308dd90e762b78fe4414b5183c2793c9eb21992a813d3f945af32e693aeaf358f554104f9010aeb801ca1ad813938bd97c73960f8  idle.desktop
 46dd8230ee2ab66e9c4157c10b2bd9c414fd7f30be0bee73e21a9eea88f63fff362d47828e0fc77ddc59df097b414b21505f8b5f98bc866381115c58ae3f4862  externally-managed
 ab8eaa2858d5109049b1f9f553198d40e0ef8d78211ad6455f7b491af525bffb16738fed60fc84e960c4889568d25753b9e4a1494834fea48291b33f07000ec2  musl-find_library.patch
+897025d62fa073d705476426aed95909bbe50004fffac68929fdba50c7aa4a0ab5e66259073132a20df1dfde73cfcb83231c0fd5bee9c63cc72093fa9bbcead5  s390x-c-stack-size.patch
 232005367f7345db948414e60990dc458eae40a06fcdf72094c370fe0752b56d7302375612543fc0e91684c066c5506f37282b72d6e2ed8b1ef36b7f00f6a420  pip-26.1.2-py3-none-any.whl
 "
