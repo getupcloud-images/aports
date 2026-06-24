@@ -1,9 +1,9 @@
 # Contributor: Antoine Fontaine <antoine.fontaine@epfl.ch>
 # Contributor: Celeste <cielesti@protonmail.com>
-# Maintainer:
+# Maintainer: Hugo Osvaldo Barrera <hugo@whynothugo.nl>
 pkgname=py3-matrix-nio
 pkgver=0.25.2
-pkgrel=3
+pkgrel=4
 pkgdesc="Python Matrix client library"
 url="https://github.com/matrix-nio/matrix-nio"
 arch="noarch"
@@ -40,7 +40,10 @@ makedepends="
 	py3-gpep517
 	py3-setuptools
 	"
-subpackages="$pkgname-pyc"
+subpackages="
+	$pkgname-pyc
+	$pkgname-e2e:e2e:noarch
+	"
 source="https://github.com/matrix-nio/matrix-nio/archive/$pkgver/matrix-nio-$pkgver.tar.gz
 	fix-test.patch
 	"
@@ -62,6 +65,18 @@ check() {
 
 package() {
 	python3 -m installer -d "$pkgdir" .dist/*.whl
+}
+
+e2e() {
+	pkgdesc="Python Matrix client library (e2e extras)"
+	depends="
+		$pkgname=$pkgver-r$pkgrel
+		py3-atomicwrites
+		py3-cachetools
+		py3-peewee
+		py3-olm
+		"
+	install -d "$subpkgdir"
 }
 
 sha512sums="
