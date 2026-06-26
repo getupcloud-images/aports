@@ -2,9 +2,9 @@
 # Contributor: Rasmus Thomsen <oss@cogitri.dev>
 # Maintainer: Patrycja Rosa <alpine@ptrcnull.me>
 pkgname=firefox
-pkgver=151.0.3
-_releasedate=2026-06-02
-pkgrel=1
+pkgver=152.0.2
+_releasedate=2026-06-23
+pkgrel=0
 pkgdesc="Firefox web browser"
 url="https://www.firefox.com/"
 # s390x blocked by lld
@@ -78,8 +78,10 @@ riscv64|x86|arm*) ;;
 esac
 source="$pkgname-$pkgver.tar.xz::https://ftp.mozilla.org/pub/firefox/releases/$pkgver/source/firefox-$pkgver.source.tar.xz
 	abseil-cpp.patch
-	bmo-1952657-no-execinfo.patch
 	bmo-1988166-no-single_threaded-h.patch
+	bmo-2039878-vulkan-32bit.patch
+	bmo-2048097-inttypes-x86.patch
+	bmo-2048100-xsimd-ppc64le.patch
 	fix-fortify-system-wrappers.patch
 	fix-rust-target.patch
 	glean-stub.patch
@@ -89,6 +91,7 @@ source="$pkgname-$pkgver.tar.xz::https://ftp.mozilla.org/pub/firefox/releases/$p
 	rust1.90-ppc.patch
 	sandbox-sched_setscheduler.patch
 	sqlite-ppc.patch
+	time64.patch
 	wasip1.patch
 	widevine.patch
 
@@ -130,6 +133,9 @@ prepare() {
 
 	_clear_vendor_checksums audio_thread_priority
 	_clear_vendor_checksums cc
+	_clear_vendor_checksums zeitstempel
+	_clear_vendor_checksums wgpu-hal
+	_clear_vendor_checksums alsa
 
 	base64 -d "$srcdir"/mozilla-location.keys > "$builddir"/mozilla-api-key
 }
@@ -320,10 +326,12 @@ intl() {
 }
 
 sha512sums="
-511723e5cf042abb66cbeda89b78d42de8d1b53544565670173f3e69c2a7ceefc76468c90576221418bfc9b122151ec117978caa4823cfb9b80797f3064bd895  firefox-151.0.3.tar.xz
+e4e54cffffcfd5751eac5817a7b74b0ef0aa43fc00ef29397cc9df9aa52572b2272b96e60373a70d712be4dc849170d8d5c1b449f3ea978b4ab28dee19056b03  firefox-152.0.2.tar.xz
 616169325dc7715d3ff558c1846394d992f1a0a9427af5339e84abf3d9e7d85a5f9f6bae218ee3416ef39769a56150ac35881435ac09b976876fd556fddeac38  abseil-cpp.patch
-32c566a1529d36b4816cef80bb56f0723d0ec2e407e5e4a61cd278d40dafa3a3032d5a77497f191989f4954fa3ee539845dd170a596e0b22c6ef5b337405a72e  bmo-1952657-no-execinfo.patch
 8775931ad403f8a6545ecbedf139b7e7e152a2d6638f70d8feb457ea33e6e86147cd3c882e8059732ae946045b4918b412d0d6ba4dfdaeb2878a2277c6671676  bmo-1988166-no-single_threaded-h.patch
+9677a117e8f196ab969d1d8a5bb0f0eea9ebdfd983c0fce21e7507fd1178de7007bdd2ab59535ffd0703b5cfe4144d089a7bcf36a1518f318b394fa733836cf5  bmo-2039878-vulkan-32bit.patch
+5f02e950b60ff699d73a47da277fb561e887e25e2896920737f55dfd5aeeaad93acb539524414de99376f9ab511934dec4bff2acd7b55d997da8fdff4960760a  bmo-2048097-inttypes-x86.patch
+538b48f94b65b116f6f8d34b8ad9b58cd0bfaee1f83a6c3d7d523102816a619e19eff8b5dd09a6ef5921d85b6ab4c3746cf05eb035aef5b69a594e478a4d6331  bmo-2048100-xsimd-ppc64le.patch
 19eea840aa9c1c21e7bd1f832ec078989fe6f08fca40baa271be7e74f1cffeb5ab8d3218a93e664b8d90a41506dede524e2a5174cd47580866109bc6711ea969  fix-fortify-system-wrappers.patch
 cd68b89e29e5f6379fbd5679db27b9a5ef70ea65e51c0d0a8137e1f1fd210e35a8cfb047798e9549bc7275606d7ec5c8d8af1335d29da4699db7acd8bc7ff556  fix-rust-target.patch
 6140515b66277230e072f8990b4028fb121b2fa675b35104abeb66b5c0847c68081cb4347a7871f8489956f323d0c293559dfe05e143f4c59b83944c3a31efdd  glean-stub.patch
@@ -333,6 +341,7 @@ e75daab5573ec6e28d3940a9bb98304d572dfb26ce7c1709e99fdd75dfa58abce170c96de683f8dc
 b4f580e3081d3ffea691f8382cf46650e8f0ee4c6e8e832ae6550ac0f8c3e99f33fcdd54eee8b5736b4600e48539e5349b41b765368130119b17fc8e71a661c0  rust1.90-ppc.patch
 f8c3555ef6207933cbffbf4fc101a9b4c0d2990c0063162f0f0bde70ef0b46f86bfac42e7110695183424a87948de593f3927b2d8509ede3e4fc7bd8a1fad1ce  sandbox-sched_setscheduler.patch
 67bc0be3da973e6859256bf9be4df7100837430e6076fc0bd623f504c35e02e6c191e9c5a3a1d202e5ad4d89f874f254a09e164e39c7bfd97bbc8d4c8d0632a5  sqlite-ppc.patch
+066d85c494a2ac8d231e57a628093db4c56ea60673305d8662de429b070b4146157f8a33e7d7af3d048f765d528bb746711f86bc8980d2ad419b9c90e674d0a9  time64.patch
 66d4e358a6fe9406fb480f6360533d70adc5a53cc0086170ef7d158d282ba9499e5c2ec28d5b34a9f3be8e3fb35ebca9ca78058ec62574f6049b19dc2ccb0d49  wasip1.patch
 eadf3f2d12d469010a1f6b83bd33ba276cdbf570db8c74c61b7c3d3eda80c7e843c1ea17400412be243b5309383543456f0d6de94b18323c542ba66d5cff89db  widevine.patch
 10190908796ea681cb9c7726e5f000d010dc438560f1c9574ad52f91b984c92634291453d4f7cdb3a5b5e54c1968513bf78d4dc44f5befa39d58065d0e9c3326  loong0001-Enable-WebRTC-for-loongarch64.patch
