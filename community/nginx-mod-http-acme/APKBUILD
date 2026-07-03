@@ -28,6 +28,7 @@ builddir="$srcdir/nginx-acme-$pkgver"
 prepare() {
 	default_prepare
 
+	cargo update openssl
 	cargo fetch --target="$CHOST" --locked
 }
 
