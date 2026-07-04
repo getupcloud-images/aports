@@ -1,8 +1,8 @@
 # Contributor: Mate Farkas <y2k.elma@gmail.com>
 # Maintainer: Mate Farkas <y2k.elma@gmail.com>
 pkgname=asdf
-pkgver=0.18.0
-pkgrel=10
+pkgver=0.19.0
+pkgrel=0
 pkgdesc="The Multiple Runtime Version Manager"
 url="https://asdf-vm.com/"
 arch="all !ppc64le"
@@ -14,6 +14,7 @@ options="net" # net for go
 subpackages="$pkgname-doc"
 source="
 	$pkgname-$pkgver.tar.gz::https://github.com/asdf-vm/asdf/archive/refs/tags/v$pkgver.tar.gz
+	fix-for-latent-timing-issue.patch
 	"
 
 build() {
@@ -30,5 +31,6 @@ package() {
 }
 
 sha512sums="
-2113a618ab67beb785db20f69dac10ff0ac17667b549bf8fbdd6d299e6aa54644021bdc84680e6320aa440c0d3cd56a78d90903c45ea0d524a4a1379762f7c07  asdf-0.18.0.tar.gz
+d3ac6f6aff5e5ef81514c79d2710683a30c465979d64e4c52bb5c70b6b26b84ac7959ad9b903d790178f9ffc72b4999d814d5649304dca9d9f2505f15ab4c797  asdf-0.19.0.tar.gz
+f69964be368e0cf528a8670fc7e3b0ff9a84161268b56be3817934ac5fa8d803cb0090007148fdbd6b2befe253abdd29abd81238832fc25722c01d241fb1e777  fix-for-latent-timing-issue.patch
 "
