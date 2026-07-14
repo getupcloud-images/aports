@@ -2,7 +2,7 @@
 # Maintainer: Martijn Braam <martijn@brixit.nl>
 pkgname=logbookd
 pkgver=0.2.4
-pkgrel=3
+pkgrel=4
 pkgdesc="sqlite backed syslogd implementation"
 url="https://git.sr.ht/~martijnbraam/logbookd"
 arch="all"
@@ -18,7 +18,7 @@ source="
 makedepends="cmake meson sqlite-dev util-linux-dev scdoc"
 
 build() {
-	abuild-meson . output
+	abuild-meson . output -Dfd-activation=true
 	meson compile -C output
 }
 
