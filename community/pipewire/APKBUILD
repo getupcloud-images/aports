@@ -2,8 +2,7 @@
 maintainer="team/alpine-desktop <bribbers@disroot.org>"
 pkgname=pipewire
 pkgver=1.6.8
-pkgrel=0
-_so_ver=0.3
+pkgrel=3
 pkgdesc="Multimedia processing graphs"
 url="https://pipewire.org/"
 arch="all"
@@ -59,6 +58,7 @@ subpackages="
 	gst-plugin-pipewire:gst_plugin
 	$pkgname-zeroconf
 	$pkgname-spa-bluez
+	$pkgname-spa-libcamera
 	$pkgname-spa-vulkan
 	$pkgname-tools
 	$pkgname-spa-tools:spa_tools
@@ -74,6 +74,9 @@ subpackages="
 	$pkgname-filter-graph-ladspa:filter_graph_plugin
 	$pkgname-filter-graph-lv2:filter_graph_plugin
 	$pkgname-filter-graph-sofa:filter_graph_plugin
+	$pkgname-snapcast
+	$pkgname-webrtc
+	$pkgname-rtp
 	"
 install="$pkgname.post-upgrade $pkgname.post-install"
 source="https://gitlab.freedesktop.org/PipeWire/pipewire/-/archive/$pkgver/pipewire-$pkgver.tar.gz
@@ -176,9 +179,9 @@ pulse() {
 	provider_priority=1
 
 	amove usr/bin/pipewire-pulse
-	amove usr/lib/pipewire-$_so_ver/libpipewire-module-protocol-pulse.so
-	amove usr/lib/pipewire-$_so_ver/libpipewire-module-pulse-tunnel.so
-	amove usr/lib/pipewire-$_so_ver/libpipewire-module-filter-chain.so
+	amove usr/lib/pipewire-*/libpipewire-module-protocol-pulse.so
+	amove usr/lib/pipewire-*/libpipewire-module-pulse-tunnel.so
+	amove usr/lib/pipewire-*/libpipewire-module-filter-chain.so
 	amove usr/share/pipewire/pipewire-pulse.conf
 	amove usr/share/pipewire/pipewire-pulse.conf.avail
 }
@@ -209,6 +212,7 @@ jack() {
 	amove usr/bin/pw-jack
 	amove usr/lib/spa-*/jack/libspa-jack.so
 	amove usr/share/pipewire/jack.conf
+	amove usr/lib/pipewire-*/libpipewire-module-*jack*
 }
 
 gst_plugin() {
@@ -223,7 +227,7 @@ echo_cancel() {
 	pkgdesc="WebRTC-based echo canceller module for PipeWire"
 	depends="$pkgname=$pkgver-r$pkgrel"
 
-	amove usr/lib/pipewire-$_so_ver/libpipewire-module-echo-cancel.so
+	amove usr/lib/pipewire-*/libpipewire-module-echo-cancel.so
 }
 
 zeroconf() {
@@ -232,8 +236,8 @@ zeroconf() {
 	provides="pulseaudio-zeroconf=$pkgver-r$pkgrel"
 	provider_priority=1
 
-	amove usr/lib/pipewire-$_so_ver/libpipewire-module-zeroconf-discover.so
-	amove usr/lib/pipewire-$_so_ver/libpipewire-module-raop-*.so
+	amove usr/lib/pipewire-*/libpipewire-module-zeroconf-discover.so
+	amove usr/lib/pipewire-*/libpipewire-module-raop-*.so
 }
 
 bluez() {
@@ -249,6 +253,13 @@ vulkan() {
 	depends=""
 
 	amove usr/lib/spa-*/vulkan
+}
+
+libcamera() {
+	pkgdesc="PipeWire libcamera SPA plugin"
+	depends=""
+
+	amove usr/lib/spa-*/libcamera
 }
 
 tools() {
@@ -292,7 +303,7 @@ libs() {
 }
 
 x11() {
-	amove usr/lib/pipewire-$_so_ver/libpipewire-module-x11-bell.so
+	amove usr/lib/pipewire-*/libpipewire-module-x11-bell.so
 }
 
 filter_graph() {
@@ -301,6 +312,18 @@ filter_graph() {
 
 filter_graph_plugin() {
 	amove usr/lib/spa-*/filter-graph/libspa-filter-graph-plugin-${subpkgname#pipewire-filter-graph-}.so
+}
+
+snapcast() {
+	amove usr/lib/pipewire-*/libpipewire-module-snapcast*
+}
+
+webrtc() {
+	amove usr/lib/spa-*/aec/libspa-aec-webrtc.so
+}
+
+rtp() {
+	amove usr/lib/pipewire-*/libpipewire-module-rtp-*.so
 }
 
 sha512sums="
