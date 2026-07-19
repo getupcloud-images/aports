@@ -1,6 +1,6 @@
 # Maintainer: Robert Mongold <rtmongold@gmail.com>
 pkgname=zapzap
-pkgver=6.5.2.4
+pkgver=7.0
 pkgrel=0
 pkgdesc="Custom WhatsApp desktop client using PyQt"
 url="https://github.com/rafatosta/zapzap"
@@ -46,5 +46,5 @@ package() {
 }
 
 sha512sums="
-f067a346d3c717e30baf05ba4897080f687e30f9d69b6df7a515f44dc495c7cd4030fb3fce8df9fadb398e02ffd04953d4ce57e69ec419a67010ff51b8fb4f30  zapzap-6.5.2.4.tar.gz
+ce6494bf259c68c42838270dc41ef3461f22105689ec826d052bb77fb8fcdfba95aaabbb3b94c4285d9be04f4ee3a75007b3dc2781ad8bce02df72beea02c04f  zapzap-7.0.tar.gz
 "
