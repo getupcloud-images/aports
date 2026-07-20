@@ -1,0 +1,264 @@
+diff --git a/community/php83/APKBUILD b/community/php83/APKBUILD
+index c0ad82cdb2d..1d6c1a7cc53 100644
+--- a/community/php83/APKBUILD
++++ b/community/php83/APKBUILD
+@@ -24,11 +24,12 @@
+ # zlib      | https://bugs.alpinelinux.org/issues/8299
+ # json      | https://wiki.php.net/rfc/always_enable_json
+ 
+-pkgname=php83
++_pkgname=php83
++pkgname=$_pkgname-zts
+ pkgver=8.3.31
+ pkgrel=1
+ _apiver=20230831
+-_suffix=${pkgname#php}
++_suffix=${_pkgname#php}
+ # Is this package the default (latest) PHP version?
+ _default_php="no"
+ provides="$pkgname-cli php-cli php"  # for backward compatibility
+@@ -38,7 +39,7 @@ pkgdesc="The PHP$_suffix language runtime engine"
+ url="https://www.php.net/"
+ arch="all"
+ license="PHP-3.01 BSD-3-Clause LGPL-2.0-or-later MIT Zend-2.0"
+-depends="$pkgname-common"
++depends="$pkgname-common !$_pkgname"
+ depends_dev="$pkgname=$pkgver-r$pkgrel autoconf pcre2-dev re2c"
+ # Most dependencies between extensions is auto-discovered (see _extension()).
+ _depends_mysqlnd="$pkgname-openssl"
+@@ -101,9 +102,9 @@ subpackages="$pkgname-dbg $pkgname-dev $pkgname-doc
+ # - https://downloads.php.net/~eric/php-${pkgver}RC1.tar.xz
+ # stable releases https://www.php.net/distributions/php-$pkgver.tar.xz
+ source="https://www.php.net/distributions/php-$pkgver.tar.xz
+-	$pkgname-fpm.initd
+-	$pkgname-fpm.logrotate
+-	$pkgname-module.conf
++	$_pkgname-fpm.initd
++	$_pkgname-fpm.logrotate
++	$_pkgname-module.conf
+ 	disabled-tests.list
+ 	disabled-tests.loongarch64.list
+ 	disabled-tests.x86.list
+@@ -112,16 +113,16 @@ source="https://www.php.net/distributions/php-$pkgver.tar.xz
+ 	install-pear.patch
+ 	includedir.patch
+ 	sharedir.patch
+-	$pkgname-fpm-version-suffix.patch
++	$_pkgname-fpm-version-suffix.patch
+ 	phpinfo-avif.patch
+ 	loongarch64-support-for-fibers.patch
+ 	fix-curl.patch
+ 	"
+ builddir="$srcdir/php-$pkgver"
+ 
+-_libdir="usr/lib/$pkgname"
++_libdir="usr/lib/$_pkgname"
+ _extension_dir="$_libdir/modules"
+-_extension_confd="/etc/$pkgname/conf.d"
++_extension_confd="/etc/$_pkgname/conf.d"
+ 
+ _extensions="
+ 	bcmath
+@@ -349,12 +350,12 @@ _build() {
+ 		--prefix=/usr \
+ 		--program-suffix=$_suffix \
+ 		--libdir=/$_libdir \
+-		--datadir=/usr/share/$pkgname \
+-		--sysconfdir=/etc/$pkgname \
++		--datadir=/usr/share/$_pkgname \
++		--sysconfdir=/etc/$_pkgname \
+ 		--localstatedir=/var \
+ 		--with-layout=GNU \
+ 		--with-pic \
+-		--with-config-file-path=/etc/$pkgname \
++		--with-config-file-path=/etc/$_pkgname \
+ 		--with-config-file-scan-dir=$_extension_confd \
+ 		--disable-rpath \
+ 		--disable-short-tags \
+@@ -372,21 +373,24 @@ build() {
+ 	# rebuilds them once after `make distclean` clears the autoconf cache.
+ 	_build --disable-all --disable-phpdbg --disable-cli --with-apxs2
+ 	# Stash apache2 module outside $builddir; distclean will wipe sapi/.
+-	install -Dm755 libs/libphp.so "$srcdir"/mod_php$_suffix.so
++	install -Dm755 libs/libphp.so /tmp/mod_php$_suffix.so
+ 	make distclean
+ 
+ 	local enable_litespeed
+ 	[ -z ${subpackages##*-litespeed*} ] && enable_litespeed=--enable-litespeed
+ 	_build $_shared_extensions \
+ 		--enable-phpdbg \
+-		--with-pear=/usr/share/$pkgname \
++		--with-pear=/usr/share/$_pkgname \
+ 		--enable-fpm \
+ 		--with-fpm-acl \
+ 		$enable_litespeed \
+-		--enable-embed
++		--enable-embed \
++		--with-readline \
++		--enable-zts \
++		--disable-zend-signals
+ 
+ 	# Restore apache2 module to where package() expects it.
+-	install -Dm755 "$srcdir"/mod_php$_suffix.so \
++	install -Dm755 /tmp/mod_php$_suffix.so \
+ 		sapi/apache2handler/mod_php$_suffix.so
+ }
+ 
+@@ -422,7 +426,7 @@ package() {
+ 	make -j1 INSTALL_ROOT="$pkgdir" install
+ 	rm "$pkgdir"/usr/lib/php$_suffix/modules/zend_test.so
+ 
+-	install -Dm644 php.ini-production "$pkgdir"/etc/$pkgname/php.ini
++	install -Dm644 php.ini-production "$pkgdir"/etc/$_pkgname/php.ini
+ 
+ 	local file; for file in pear peardev pecl; do
+ 		sed -i -e "s|/usr/bin/php|/usr/bin/php$_suffix|g" \
+@@ -445,6 +449,7 @@ package() {
+ }
+ 
+ dev() {
++	depends="!$_pkgname-dev"
+ 	default_dev
+ 	replaces="php-dev"
+ 
+@@ -460,19 +465,20 @@ dev() {
+ }
+ 
+ doc() {
++	depends="!$_pkgname-doc"
+ 	default_doc
+ 
+ 	cd "$builddir"
+ 
+-	mkdir -p "$subpkgdir"/usr/share/doc/$pkgname
++	mkdir -p "$subpkgdir"/usr/share/doc/$_pkgname
+ 	cp CODING_STANDARDS.md EXTENSIONS LICENSE NEWS \
+ 		README* UPGRADING* \
+-		"$subpkgdir"/usr/share/doc/$pkgname/
++		"$subpkgdir"/usr/share/doc/$_pkgname/
+ }
+ 
+ apache2() {
+ 	pkgdesc="PHP$_suffix Module for Apache2"
+-	depends="$depends apache2"
++	depends="$depends apache2 !$_pkgname-apache2"
+ 	provides="php-apache2"
+ 
+ 	amove usr/lib/apache2/mod_php$_suffix.so
+@@ -482,6 +488,7 @@ apache2() {
+ 
+ phpdbg() {
+ 	pkgdesc="Interactive PHP$_suffix debugger"
++	depends="!$_pkgname-phpdbg"
+ 	provides="php-phpdbg"
+ 
+ 	amove usr/bin/phpdbg$_suffix
+@@ -503,6 +510,7 @@ embed() {
+ 
+ litespeed() {
+ 	pkgdesc="PHP$_suffix LiteSpeed SAPI"
++	depends="!$_pkgname-litespeed"
+ 	provides="php-lightspeed"
+ 
+ 	amove usr/bin/lsphp$_suffix
+@@ -514,6 +522,7 @@ litespeed() {
+ 
+ cgi() {
+ 	pkgdesc="PHP$_suffix Common Gateway Interface"
++	depends="!$_pkgname-cgi"
+ 	provides="php-cgi"
+ 
+ 	amove usr/bin/php-cgi$_suffix
+@@ -526,27 +535,28 @@ cgi() {
+ fpm() {
+ 	pkgdesc="PHP$_suffix FastCGI Process Manager"
+ 	provides="php-fpm"
++	depends="!$_pkgname-fpm"
+ 
+-	amove etc/$pkgname/php-fpm* usr/sbin var
+-	amove usr/share/$pkgname/fpm
++	amove etc/$_pkgname/php-fpm* usr/sbin var
++	amove usr/share/$_pkgname/fpm
+ 
+ 	local file; for file in php-fpm.conf php-fpm.d/www.conf; do
+-		mv "$subpkgdir"/etc/$pkgname/$file.default \
+-			"$subpkgdir"/etc/$pkgname/$file
++		mv "$subpkgdir"/etc/$_pkgname/$file.default \
++			"$subpkgdir"/etc/$_pkgname/$file
+ 	done
+ 
+-	install -D -m 755 "$srcdir"/$pkgname-fpm.initd \
++	install -D -m 755 "$srcdir"/$_pkgname-fpm.initd \
+ 		"$subpkgdir"/etc/init.d/php-fpm$_suffix
+ 
+-	install -D -m 644 "$srcdir"/$pkgname-fpm.logrotate \
++	install -D -m 644 "$srcdir"/$_pkgname-fpm.logrotate \
+ 		"$subpkgdir"/etc/logrotate.d/php-fpm$_suffix
+ 
+-	mkdir -p "$subpkgdir"/var/log/$pkgname
++	mkdir -p "$subpkgdir"/var/log/$_pkgname
+ }
+ 
+ pear() {
+ 	pkgdesc="PHP$_suffix Extension and Application Repository"
+-	depends="$pkgname $pkgname-xml"
++	depends="$pkgname $pkgname-xml !$_pkgname-xml"
+ 	provides="php-pear"
+ 
+ 	mkdir -p "$subpkgdir"/usr/bin
+@@ -557,13 +567,13 @@ pear() {
+ 		fi
+ 	done
+ 
+-	amove etc/$pkgname/pear.conf usr/share
++	amove etc/$_pkgname/pear.conf usr/share
+ }
+ 
+ common() {
+ 	pkgdesc="$pkgdesc (common config)"
+ 	provides="php-common $pkgname-zlib php-zlib $pkgname-json php-json"  # for backward compatibility
+-	depends=""
++	depends="!$_pkgname-common"
+ 
+ 	amove etc
+ 	mkdir -p "$subpkgdir"/$_extension_confd "$subpkgdir"/$_extension_dir
+@@ -571,6 +581,7 @@ common() {
+ 
+ phar() {
+ 	_extension
++	depends="!$_pkgname-phar"
+ 
+ 	amove usr/bin/phar$_suffix.phar usr/bin/phar$_suffix
+ 
+@@ -588,7 +599,7 @@ _extension() {
+ 	provides="php-$extname"
+ 
+ 	: "${extdepends:=$(_resolve_extension_deps "$extname")}"
+-	depends="$depends $extdepends"
++	depends="$depends $extdepends !$_pkgname-${extname}"
+ 
+ 	local load_order=$(_extension_load_order "$extname")
+ 
+@@ -647,21 +658,4 @@ _extensions_by_load_order() {
+ 	printf '%s\n' $list | sort -t ';' -k 1 | sed -E 's/\d+;//'
+ }
+ 
+-sha512sums="
+-2341ce4061f5e654780c97145ea7bf92fa14f2d5c2ea83d38b8919ee5018c040a08c83c9b7cee97e4bba39267d412f5bf18c515f2001db1659a49449299cbeef  php-8.3.31.tar.xz
+-39be7f05f71656107f730818d6abcb4065e550e5b2e2c7021b3490d329c967064012dbeb63ee790ecb65a8e0f7a0f59148de2c692d7879d773acee21fe412bee  php83-fpm.initd
+-1b177644e92be37b28ccc3f8a583aeaf636293d45517d6225c0d6e1c7639d33f734e5f671b5e703b8be00c936422de4a1845039b0eff0e60df5e70cde13186b7  php83-fpm.logrotate
+-283716161585c68b41be2540312414f028dfee9fcd63fde34662379dd3f05709136e9bd2dc1ba843e8832fdde643eba202d024623d1d46300f9fbf3bebdbf0d2  php83-module.conf
+-3ddc55ffee6159ed8bf09c4a3e1e58469558b02ae534c3955ce4d23e1c14e0397d6d3f69db7ea0cd7a0568a2161d2d80ab2d3b94eaca54253537b5c8c7f81cba  disabled-tests.list
+-34b98b9a63865f6306049b95be4ae208b507aa9792207f8277e764c3da4eb15f1a55460cdf76c9959960530d4cf60dca35f6eb8c0c83c230c17a38b1df660a5b  disabled-tests.loongarch64.list
+-6d3bc15982e13ec4c065b6445e07818d589f2cc677147a57929d1739b3e6b119cc9be6a07d3a99bb5e989e47a62fa6047f967c3c962253845d4bab224b378db3  disabled-tests.x86.list
+-30cba10c11f800d23e013c7f92cadb7e2a9ac5e89e5466445c77761369e7f3b8daba7ae64e23967329139b01f37f187acd2f1f1e3dfb0bca2e900a7d7e1afd07  disabled-tests.ppc64le.list
+-82ada02bee221863649475a43bbc141b61c253f88ddc5ef5a0181d5f47b33dfbf47216df2ccc43cfb0c8bfd6e7c5f7e2a74a6b92d88ca7cc1bcbe8878a095a9c  disabled-tests.s390x.list
+-ec206639d076ddac6c2d1db697a5428ed3be979157db39417af7fbe6ab837e8dc00315ae0e55aea4f92f45ca5827c88cc4933099fad9c962f029ca81bef779d7  install-pear.patch
+-200138f00a0cc04b299588ee9cbc15660fb4b9176e2c596c72601a1f50291419a3774d251f68ccb44a7142af07b3df74fa886f1cfb90d516094dc08df0232868  includedir.patch
+-5f91185f7006e4133f986d372a948cb1f4cb6419baaccb8951e066c7654040b8df4fd8997cc10f936233406982d3811e12e01c1a25c949c2995ce93193174e27  sharedir.patch
+-1af8ce5c76d153bd9d61d49864201a5144d26f3131b47c517d329f19267965d8b4eafcc96b319f15967d85a8243a653dee323599b6ca9dbde9ff83b31517767e  php83-fpm-version-suffix.patch
+-8833c5c6f5225f5e85a9cd842274e4e6b2f55dc572a13bdb3066c624f82c9f39fa07cb2f8f242092ff814f61f0cb8abaa792b1f93c16ad341f1a8dec05a6ca2d  phpinfo-avif.patch
+-6b81d6644a6c0d777712507276f367d54b3ea6062178372f576a49707ad7e808848386dacb745abebed2ba036c2bca967c54d54fc3ec99e8d5e9c5bb09f6a8b0  loongarch64-support-for-fibers.patch
+-270b8890cb2e1036b1d0acf8b1d4fc1ff629fd8e96e3f334d17c4e94b7c283b21c66cbc5e55daf02d0f1cb8ca9bffc77ae528349fcdd742a6522baf683346fa3  fix-curl.patch
+-"
++sha512sums=""
