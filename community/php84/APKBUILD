@@ -266,8 +266,7 @@ _shared_extensions="
 	--with-mysqli=shared --with-mysql-sock=/run/mysqld/mysqld.sock
 	--enable-mysqlnd=shared
 	--enable-opcache=shared
-	--with-openssl=shared --with-system-ciphers --with-openssl-argon2
-	--with-password-argon2
+	--with-openssl=shared --with-system-ciphers
 	--enable-pcntl=shared
 	--enable-pdo=shared
 		--with-pdo-dblib=shared,/usr
