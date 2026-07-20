@@ -24,11 +24,12 @@
 # zlib      | https://bugs.alpinelinux.org/issues/8299
 # json      | https://wiki.php.net/rfc/always_enable_json
 
-pkgname=php83
+_pkgname=php83
+pkgname=$_pkgname-zts
 pkgver=8.3.31
 pkgrel=1
 _apiver=20230831
-_suffix=${pkgname#php}
+_suffix=${_pkgname#php}
 # Is this package the default (latest) PHP version?
 _default_php="no"
 provides="$pkgname-cli php-cli php"  # for backward compatibility
@@ -38,7 +39,7 @@ pkgdesc="The PHP$_suffix language runtime engine"
 url="https://www.php.net/"
 arch="all"
 license="PHP-3.01 BSD-3-Clause LGPL-2.0-or-later MIT Zend-2.0"
-depends="$pkgname-common"
+depends="$pkgname-common !$_pkgname"
 depends_dev="$pkgname=$pkgver-r$pkgrel autoconf pcre2-dev re2c"
 # Most dependencies between extensions is auto-discovered (see _extension()).
 _depends_mysqlnd="$pkgname-openssl"
@@ -101,9 +102,9 @@ subpackages="$pkgname-dbg $pkgname-dev $pkgname-doc
 # - https://downloads.php.net/~eric/php-${pkgver}RC1.tar.xz
 # stable releases https://www.php.net/distributions/php-$pkgver.tar.xz
 source="https://www.php.net/distributions/php-$pkgver.tar.xz
-	$pkgname-fpm.initd
-	$pkgname-fpm.logrotate
-	$pkgname-module.conf
+	$_pkgname-fpm.initd
+	$_pkgname-fpm.logrotate
+	$_pkgname-module.conf
 	disabled-tests.list
 	disabled-tests.loongarch64.list
 	disabled-tests.x86.list
@@ -112,16 +113,16 @@ source="https://www.php.net/distributions/php-$pkgver.tar.xz
 	install-pear.patch
 	includedir.patch
 	sharedir.patch
-	$pkgname-fpm-version-suffix.patch
+	$_pkgname-fpm-version-suffix.patch
 	phpinfo-avif.patch
 	loongarch64-support-for-fibers.patch
 	fix-curl.patch
 	"
 builddir="$srcdir/php-$pkgver"
 
-_libdir="usr/lib/$pkgname"
+_libdir="usr/lib/$_pkgname"
 _extension_dir="$_libdir/modules"
-_extension_confd="/etc/$pkgname/conf.d"
+_extension_confd="/etc/$_pkgname/conf.d"
 
 _extensions="
 	bcmath
@@ -349,12 +350,12 @@ _build() {
 		--prefix=/usr \
 		--program-suffix=$_suffix \
 		--libdir=/$_libdir \
-		--datadir=/usr/share/$pkgname \
-		--sysconfdir=/etc/$pkgname \
+		--datadir=/usr/share/$_pkgname \
+		--sysconfdir=/etc/$_pkgname \
 		--localstatedir=/var \
 		--with-layout=GNU \
 		--with-pic \
-		--with-config-file-path=/etc/$pkgname \
+		--with-config-file-path=/etc/$_pkgname \
 		--with-config-file-scan-dir=$_extension_confd \
 		--disable-rpath \
 		--disable-short-tags \
@@ -372,21 +373,24 @@ build() {
 	# rebuilds them once after `make distclean` clears the autoconf cache.
 	_build --disable-all --disable-phpdbg --disable-cli --with-apxs2
 	# Stash apache2 module outside $builddir; distclean will wipe sapi/.
-	install -Dm755 libs/libphp.so "$srcdir"/mod_php$_suffix.so
+	install -Dm755 libs/libphp.so /tmp/mod_php$_suffix.so
 	make distclean
 
 	local enable_litespeed
 	[ -z ${subpackages##*-litespeed*} ] && enable_litespeed=--enable-litespeed
 	_build $_shared_extensions \
 		--enable-phpdbg \
-		--with-pear=/usr/share/$pkgname \
+		--with-pear=/usr/share/$_pkgname \
 		--enable-fpm \
 		--with-fpm-acl \
 		$enable_litespeed \
-		--enable-embed
+		--enable-embed \
+		--with-readline \
+		--enable-zts \
+		--disable-zend-signals
 
 	# Restore apache2 module to where package() expects it.
-	install -Dm755 "$srcdir"/mod_php$_suffix.so \
+	install -Dm755 /tmp/mod_php$_suffix.so \
 		sapi/apache2handler/mod_php$_suffix.so
 }
 
@@ -422,7 +426,7 @@ package() {
 	make -j1 INSTALL_ROOT="$pkgdir" install
 	rm "$pkgdir"/usr/lib/php$_suffix/modules/zend_test.so
 
-	install -Dm644 php.ini-production "$pkgdir"/etc/$pkgname/php.ini
+	install -Dm644 php.ini-production "$pkgdir"/etc/$_pkgname/php.ini
 
 	local file; for file in pear peardev pecl; do
 		sed -i -e "s|/usr/bin/php|/usr/bin/php$_suffix|g" \
@@ -445,6 +449,7 @@ package() {
 }
 
 dev() {
+	depends="!$_pkgname-dev"
 	default_dev
 	replaces="php-dev"
 
@@ -460,19 +465,20 @@ dev() {
 }
 
 doc() {
+	depends="!$_pkgname-doc"
 	default_doc
 
 	cd "$builddir"
 
-	mkdir -p "$subpkgdir"/usr/share/doc/$pkgname
+	mkdir -p "$subpkgdir"/usr/share/doc/$_pkgname
 	cp CODING_STANDARDS.md EXTENSIONS LICENSE NEWS \
 		README* UPGRADING* \
-		"$subpkgdir"/usr/share/doc/$pkgname/
+		"$subpkgdir"/usr/share/doc/$_pkgname/
 }
 
 apache2() {
 	pkgdesc="PHP$_suffix Module for Apache2"
-	depends="$depends apache2"
+	depends="$depends apache2 !$_pkgname-apache2"
 	provides="php-apache2"
 
 	amove usr/lib/apache2/mod_php$_suffix.so
@@ -482,6 +488,7 @@ apache2() {
 
 phpdbg() {
 	pkgdesc="Interactive PHP$_suffix debugger"
+	depends="!$_pkgname-phpdbg"
 	provides="php-phpdbg"
 
 	amove usr/bin/phpdbg$_suffix
@@ -503,6 +510,7 @@ embed() {
 
 litespeed() {
 	pkgdesc="PHP$_suffix LiteSpeed SAPI"
+	depends="!$_pkgname-litespeed"
 	provides="php-lightspeed"
 
 	amove usr/bin/lsphp$_suffix
@@ -514,6 +522,7 @@ litespeed() {
 
 cgi() {
 	pkgdesc="PHP$_suffix Common Gateway Interface"
+	depends="!$_pkgname-cgi"
 	provides="php-cgi"
 
 	amove usr/bin/php-cgi$_suffix
@@ -526,27 +535,28 @@ cgi() {
 fpm() {
 	pkgdesc="PHP$_suffix FastCGI Process Manager"
 	provides="php-fpm"
+	depends="!$_pkgname-fpm"
 
-	amove etc/$pkgname/php-fpm* usr/sbin var
-	amove usr/share/$pkgname/fpm
+	amove etc/$_pkgname/php-fpm* usr/sbin var
+	amove usr/share/$_pkgname/fpm
 
 	local file; for file in php-fpm.conf php-fpm.d/www.conf; do
-		mv "$subpkgdir"/etc/$pkgname/$file.default \
-			"$subpkgdir"/etc/$pkgname/$file
+		mv "$subpkgdir"/etc/$_pkgname/$file.default \
+			"$subpkgdir"/etc/$_pkgname/$file
 	done
 
-	install -D -m 755 "$srcdir"/$pkgname-fpm.initd \
+	install -D -m 755 "$srcdir"/$_pkgname-fpm.initd \
 		"$subpkgdir"/etc/init.d/php-fpm$_suffix
 
-	install -D -m 644 "$srcdir"/$pkgname-fpm.logrotate \
+	install -D -m 644 "$srcdir"/$_pkgname-fpm.logrotate \
 		"$subpkgdir"/etc/logrotate.d/php-fpm$_suffix
 
-	mkdir -p "$subpkgdir"/var/log/$pkgname
+	mkdir -p "$subpkgdir"/var/log/$_pkgname
 }
 
 pear() {
 	pkgdesc="PHP$_suffix Extension and Application Repository"
-	depends="$pkgname $pkgname-xml"
+	depends="$pkgname $pkgname-xml !$_pkgname-xml"
 	provides="php-pear"
 
 	mkdir -p "$subpkgdir"/usr/bin
@@ -557,13 +567,13 @@ pear() {
 		fi
 	done
 
-	amove etc/$pkgname/pear.conf usr/share
+	amove etc/$_pkgname/pear.conf usr/share
 }
 
 common() {
 	pkgdesc="$pkgdesc (common config)"
 	provides="php-common $pkgname-zlib php-zlib $pkgname-json php-json"  # for backward compatibility
-	depends=""
+	depends="!$_pkgname-common"
 
 	amove etc
 	mkdir -p "$subpkgdir"/$_extension_confd "$subpkgdir"/$_extension_dir
@@ -571,6 +581,7 @@ common() {
 
 phar() {
 	_extension
+	depends="!$_pkgname-phar"
 
 	amove usr/bin/phar$_suffix.phar usr/bin/phar$_suffix
 
@@ -588,7 +599,7 @@ _extension() {
 	provides="php-$extname"
 
 	: "${extdepends:=$(_resolve_extension_deps "$extname")}"
-	depends="$depends $extdepends"
+	depends="$depends $extdepends !$_pkgname-${extname}"
 
 	local load_order=$(_extension_load_order "$extname")
 
