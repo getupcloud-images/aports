@@ -1,0 +1,36 @@
+maintainer="Hugo Osvaldo Barrera <hugo@whynothugo.nl>"
+pkgname=tree-sitter-scfg
+pkgver=1.0
+pkgrel=0
+pkgdesc="scfg grammar for tree-sitter"
+url="https://github.com/rockorager/tree-sitter-scfg"
+arch="all"
+license="MIT"
+makedepends="tree-sitter-dev"
+checkdepends="tree-sitter-cli"
+install_if="tree-sitter-grammars"
+source="$pkgname-$pkgver.tar.gz::https://github.com/rockorager/tree-sitter-scfg/archive/$pkgver.tar.gz"
+
+prepare() {
+	default_prepare
+
+	# the corpus is at the historical top-level location, but modern
+	# tree-sitter only looks for it under test/
+	mkdir -p test
+	ln -s ../corpus test/corpus
+}
+
+build() {
+	abuild-tree-sitter build
+}
+
+check() {
+	tree-sitter test
+}
+
+package() {
+	DESTDIR="$pkgdir" abuild-tree-sitter install
+}
+sha512sums="
+4488ae80ad56ab38d2fd978530937f3a8c296f775d4855d692f0f773dcc080087d7c44daddcf6f52b855cb9da9de8ac5f117fedee6247e64eb02e7585b23f890  tree-sitter-scfg-1.0.tar.gz
+"
