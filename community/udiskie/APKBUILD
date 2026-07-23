@@ -1,8 +1,8 @@
 # Contributor: Clayton Craft <clayton@craftyguy.net>
 # Maintainer: Clayton Craft <clayton@craftyguy.net>
 pkgname=udiskie
-pkgver=2.6.1
-pkgrel=1
+pkgver=2.6.2
+pkgrel=0
 pkgdesc="udisks2 frontend that allows managing removable media from userspace"
 url="https://github.com/coldfix/udiskie"
 arch="noarch"
@@ -31,7 +31,10 @@ subpackages="
 	$pkgname-systemd
 	$pkgname-zsh-completion
 	"
-source="$pkgname-$pkgver.tar.gz::https://github.com/coldfix/udiskie/archive/refs/tags/v$pkgver.tar.gz"
+source="
+	$pkgname-$pkgver.tar.gz::https://github.com/coldfix/udiskie/archive/refs/tags/v$pkgver.tar.gz
+	350.patch
+	"
 options="!check"  # tests broken
 
 build() {
@@ -53,5 +56,6 @@ package() {
 }
 
 sha512sums="
-cd23bf2211a6f4be83dbcc1e9e8e418b0f2ed51cb6105a03a4a92a376ab0432b3f0a6c76c711762da96a793855a169a9c0cd1b7d13387cc10e75cf00ce4c2a1e  udiskie-2.6.1.tar.gz
+9d1f21546b132d4da19e22ff2992b8425169868c538cfc07fc911c7a82f853c09b115807612d7b69cc913b45098cf925d1050bce4e27889f17847eded7e9d519  udiskie-2.6.2.tar.gz
+8e0300479ca6026bc9d20d51d6e3b6288dfc0aff49ecb315ab959eba75b71f0d18aec5589e50c33e1d296c9d4620aa80a7cc7e03cb680b0dd02a66d5484c0c98  350.patch
 "
