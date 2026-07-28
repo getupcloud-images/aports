@@ -1,7 +1,7 @@
 maintainer="Bart Ribbers <bribbers@disroot.org>"
 pkgname=libdisplay-info
 pkgver=0.3.0
-pkgrel=0
+pkgrel=1
 pkgdesc="EDID and DisplayID library"
 url="https://gitlab.freedesktop.org/emersion/libdisplay-info"
 arch="all"
@@ -10,7 +10,10 @@ makedepends="
 	hwdata-dev
 	meson
 	"
-subpackages="$pkgname-dev $pkgname-tools"
+subpackages="
+	$pkgname-dev
+	$pkgname-tools
+	"
 source="https://gitlab.freedesktop.org/emersion/libdisplay-info/-/archive/$pkgver/libdisplay-info-$pkgver.tar.gz"
 options="!check" # edid-decode
 
