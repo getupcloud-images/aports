@@ -5,6 +5,7 @@
 pkgname=busybox
 pkgver=1.37.0
 pkgrel=31
+_tag=${pkgver//./_}
 pkgdesc="Size optimized toolbox of many common UNIX utilities"
 url="https://busybox.net/"
 arch="all"
@@ -45,7 +46,7 @@ _openrc_files="acpid.initd
 _mdev_openrc_files="mdev.initd"
 _extras_openrc_files="dnsd.initd httpd.initd inetd.initd udhcpd.initd"
 
-source="https://busybox.net/downloads/busybox-$pkgver.tar.bz2
+source="busybox-${_tag}.tar.gz::https://github.com/vda-linux/busybox_mirror/archive/refs/tags/${_tag}.tar.gz
 	0001-wget-add-header-Accept.patch
 	0002-adduser-default-to-sbin-nologin-as-shell-for-system-.patch
 	0003-ash-add-built-in-BB_ASH_VERSION-variable.patch
@@ -373,7 +374,7 @@ extras_openrc() {
 }
 
 sha512sums="
-ad8fd06f082699774f990a53d7a73b189ed404fe0a2166aff13eae4d9d8ee5c9239493befe949c98801fe7897520dbff3ed0224faa7205854ce4fa975e18467e  busybox-1.37.0.tar.bz2
+25c547f329f9c37b266481aa4cd6d3c0dc65a38cc4ec036868eeab47c0129718c30bd35ac2b252228dbbea81c8d26e4d0e8b6a1e9932ec97c14244d7e75017c8  busybox-1_37_0.tar.gz
 b148e37fc23d65ac011fa85142fcd645a55171593e889a86743b1557d9be05b6c39e8d0a798a536dfa29d17f71d6fb0b422f031128415b07ddec3c209ce93814  0001-wget-add-header-Accept.patch
 c725043253cae924b989cfba739d024b172b20a300de63acd26d4ec0624a13b5ea4b07f53cf991c4991cb611454c70ebe5bdb8e1a8e62d5d5d7e2e3823bed2bf  0002-adduser-default-to-sbin-nologin-as-shell-for-system-.patch
 e9ba4f56bd0841f6b998f79aaf73a09c4096fec0f817594be294c12a03ba712f1103fb8b0716fcf2fb04f5dc9efa04aa6dc9b61150b3df00b302ab6f9608d313  0003-ash-add-built-in-BB_ASH_VERSION-variable.patch
