@@ -3,7 +3,7 @@
 # Maintainer: Natanael Copa <ncopa@alpinelinux.org>
 pkgname=imagemagick
 _pkgname=ImageMagick
-pkgver=7.1.2.27
+pkgver=7.1.2.29
 pkgrel=0
 _pkgver=${pkgver%.*}-${pkgver##*.}
 _abiver=7
@@ -445,5 +445,5 @@ _perlmagick_doc() {
 }
 
 sha512sums="
-cb1126942484a32303a403e65abe2083c8fb70569cbeae3672d15770047d99a4078f8923c63734584aee4ca5bfad3612309eca0ce32fc6ddd935f43d7969fd5b  ImageMagick-7.1.2-27.tar.xz
+77332c0e76904e6b6738359d7feae882b181e205e8ec8d91e9853afae7bb12dc34721a942d5c4e7aeaf96a4fab65e11f434028ab73d3304ebd38ebadcd5cd81b  ImageMagick-7.1.2-29.tar.xz
 "
