@@ -1,7 +1,7 @@
 # Contributor: Jakub Jirutka <jakub@jirutka.cz>
 # Maintainer: Jakub Jirutka <jakub@jirutka.cz>
 pkgname=ngtcp2
-pkgver=1.22.1
+pkgver=1.25.0
 pkgrel=0
 pkgdesc="Implementation of IETF QUIC protocol"
 url="https://nghttp2.org/ngtcp2/"
@@ -71,5 +71,5 @@ gnutls() {
 }
 
 sha512sums="
-f2f137b034932448cd34581d55cbcdaa028c36568d8000f7aad5a35a0765cf4fade62e224a1ad7ef63a9e3a240594b53485e823a8a21c8056dc6f02f5811704d  ngtcp2-1.22.1.tar.xz
+b5ebf0a4248a13b9231ac0b6353adbf6634a19bb57db3cf39947746c399ebc5085f780a540d246b7226bb994a920ad0cc9b755ebd9fe58c18a6838d50b6bc90e  ngtcp2-1.25.0.tar.xz
 "
