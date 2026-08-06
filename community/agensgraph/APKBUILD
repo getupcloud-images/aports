@@ -3,7 +3,7 @@
 pkgname=agensgraph
 # NOTE: When bumping minor, update version in $data_dir in confd and initd.
 pkgver=2.16.0
-pkgrel=2
+pkgrel=3
 pkgdesc="A transactional graph database based on PostgreSQL"
 url="https://bitnine.net/agensgraph/"
 # armhf, armv7, s390x, x86: tests fail, not supported by upstream
@@ -73,11 +73,6 @@ _bindir=usr/libexec/$pkgname
 _datadir=usr/share/$pkgname
 _includedir=usr/include/$pkgname
 _libdir=usr/lib/$pkgname
-
-prepare() {
-	default_prepare
-	update_config_sub
-}
 
 build() {
 	export PYTHON=/usr/bin/python3
