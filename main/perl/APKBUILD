@@ -15,7 +15,7 @@ depends_dev="perl-utils=$pkgver-r$pkgrel"
 makedepends_host="bzip2-dev zlib-dev tzdata"
 subpackages="$pkgname-doc $pkgname-dev $pkgname-utils::noarch"
 [ "$CBUILD" = "$CHOST" ] && subpackages="$subpackages miniperl"
-source="perl-$_pkgver.tar.gz::https://github.com/Perl/perl5/archive/refs/tags/v$_pkgver.tar.gz
+source="perl5-$_pkgver.tar.gz::https://github.com/Perl/perl5/archive/refs/tags/v$_pkgver.tar.gz
 	perl-cross-$_cross.tar.gz.noauto::https://github.com/arsv/perl-cross/releases/download/$_cross/perl-cross-$_cross.tar.gz
 	digest-sha-cflags.patch
 	dont-write-packlist.patch
