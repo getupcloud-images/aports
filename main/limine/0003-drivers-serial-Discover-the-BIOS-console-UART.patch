@@ -290,6 +290,3 @@ index 3d375401..1749407b 100644
  void    acpi_get_smbios(void **smbios32, void **smbios64);
  
  void acpi_map_tables(void);
--- 
-2.55.0
-

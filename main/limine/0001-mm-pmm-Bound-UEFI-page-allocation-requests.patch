@@ -1,6 +1,6 @@
-From 78a569857518813e45979960eb974adb27ebf16e Mon Sep 17 00:00:00 2001
+From 26c5172a15f5db51457f855a143f82140d45e898 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Jake=20Buchholz=20G=C3=B6kt=C3=BCrk?= <tomalok@gmail.com>
-Date: Wed, 12 Aug 2026 11:48:46 -0700
+Date: Wed, 12 Aug 2026 16:31:39 -0700
 Subject: [PATCH] mm/pmm: Bound UEFI page allocation requests
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -23,10 +23,10 @@ Signed-off-by: Jake Buchholz Göktürk <tomalok@gmail.com>
  1 file changed, 77 insertions(+), 12 deletions(-)
 
 diff --git a/common/mm/pmm.s2.c b/common/mm/pmm.s2.c
-index b270762..1a7a089 100644
+index bbd4da0f..dba53ef2 100644
 --- a/common/mm/pmm.s2.c
 +++ b/common/mm/pmm.s2.c
-@@ -308,6 +308,82 @@ static struct memmap_entry *recl;
+@@ -312,6 +312,82 @@ static struct memmap_entry *recl;
  
  extern symbol __slide, __image_base, __image_end;
  
@@ -109,7 +109,7 @@ index b270762..1a7a089 100644
  void init_memmap(void) {
      EFI_STATUS status;
  
-@@ -421,18 +497,7 @@ void init_memmap(void) {
+@@ -434,18 +510,7 @@ void init_memmap(void) {
          }
  #endif
  
@@ -129,6 +129,3 @@ index b270762..1a7a089 100644
      }
  
      memcpy(untouched_memmap, memmap, memmap_entries * sizeof(struct memmap_entry));
--- 
-2.55.0
-

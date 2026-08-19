@@ -1,6 +1,6 @@
-From 6137489dd1ecd0ff3597f65c0260c3033fdf8df2 Mon Sep 17 00:00:00 2001
+From 9b605b359f0a6af44ddccf5bbc1de884f33debcd Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Jake=20Buchholz=20G=C3=B6kt=C3=BCrk?= <tomalok@gmail.com>
-Date: Thu, 13 Aug 2026 09:30:40 -0700
+Date: Thu, 13 Aug 2026 08:20:11 -0700
 Subject: [PATCH] lib/getchar: Bound BIOS waits with a TSC deadline
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -10,12 +10,12 @@ Assisted-by: Codex:gpt-5.6-sol
 Signed-off-by: Jake Buchholz Göktürk <tomalok@gmail.com>
 ---
  common/lib/getchar.c           | 15 +++++++++++---
- common/lib/sleep.asm_bios_ia32 | 31 ++++++++++++++++++++++++-----
+ common/lib/sleep.asm_bios_ia32 | 27 ++++++++++++++++++++++---
  common/sys/cpu.h               | 36 ++++++++++++++++++++++++++++++++++
- 3 files changed, 74 insertions(+), 8 deletions(-)
+ 3 files changed, 72 insertions(+), 6 deletions(-)
 
 diff --git a/common/lib/getchar.c b/common/lib/getchar.c
-index 88f7393..9acccf4 100644
+index 88f73937..9acccf41 100644
 --- a/common/lib/getchar.c
 +++ b/common/lib/getchar.c
 @@ -175,7 +175,8 @@ int getchar_internal(uint8_t scancode, uint8_t ascii, uint32_t shift_state) {
@@ -69,7 +69,7 @@ index 88f7393..9acccf4 100644
          elapsed = now >= start ? now - start
                  : now + (uint32_t)(BDA_TICKS_PER_DAY - start);
 diff --git a/common/lib/sleep.asm_bios_ia32 b/common/lib/sleep.asm_bios_ia32
-index 515e5b4..c3a0717 100644
+index e7457226..c3a07171 100644
 --- a/common/lib/sleep.asm_bios_ia32
 +++ b/common/lib/sleep.asm_bios_ia32
 @@ -2,6 +2,8 @@ section .realmode
@@ -102,8 +102,6 @@ index 515e5b4..c3a0717 100644
  
    .loop:
 -    cmp dword [int_08_ticks_counter], edx
--    je .done
--
 +    mov eax, dword [int_08_ticks_counter]
 +    cmp eax, dword [cs:pit_ticks]
 +    jae .done
@@ -118,17 +116,17 @@ index 515e5b4..c3a0717 100644
 +    ja .done
 +    jb .check_aux
 +    cmp eax, dword [cs:tsc_deadline]
-+    jae .done
-+
+     jae .done
+ 
 +  .check_aux:
      cmp byte [.aux_poll], 0
      je .no_aux
      in al, 0x64
 diff --git a/common/sys/cpu.h b/common/sys/cpu.h
-index 955ada8..566df60 100644
+index 0a804620..12c184c6 100644
 --- a/common/sys/cpu.h
 +++ b/common/sys/cpu.h
-@@ -534,6 +534,42 @@ static inline uint64_t rdtsc_usec(void) {
+@@ -556,6 +556,42 @@ static inline uint64_t rdtsc_usec(void) {
           + exec_ticks % tsc_freq * 1000000 / tsc_freq;
  }
  
@@ -171,6 +169,3 @@ index 955ada8..566df60 100644
  static inline void stall(uint64_t us) {
      uint64_t ticks = (tsc_freq * us + 999999) / 1000000;
      uint64_t next_stop = rdtsc() + ticks;
--- 
-2.55.0
-
