@@ -1,7 +1,7 @@
 # Contributor: Rasmus Thomsen <oss@cogitri.dev>
 maintainer="team/gnome <achill@achill.org>"
 pkgname=gnome-maps
-pkgver=50.2
+pkgver=50.4
 pkgrel=0
 pkgdesc="simple map client"
 url="https://apps.gnome.org/Maps"
@@ -57,5 +57,5 @@ package() {
 }
 
 sha512sums="
-8fa77e202b6a59ee57314aea2e4508d2f67771ddca1cb26ff20c98221ab715939e5d3683dc572c6c23748e5c96b9aa797b9b24fe1ac6aec0a40d2d0558da0aba  gnome-maps-50.2.tar.xz
+0f86a9f34ede03705fe48835e12ebb2a7e70b94d5315589f815bea04065f7d0ca22253ebb3ac0f0dac38853a5d998bb8baa0aaa6add6db96a137a9f8f955cd5f  gnome-maps-50.4.tar.xz
 "
