@@ -5,14 +5,14 @@ pkgname=kimageformats
 pkgver=6.29.0
 pkgrel=0
 pkgdesc="Image format plugins for Qt"
-arch="all"
+# s390x blocked by several test failures
+arch="all !s390x"
 url="https://community.kde.org/Frameworks"
 license="LGPL-2.1-or-later"
 makedepends="
 	extra-cmake-modules
 	karchive-dev
 	libavif-dev
-	libheif-dev
 	libjxl-dev
 	libraw-dev
 	openexr-dev
@@ -28,8 +28,7 @@ build() {
 	cmake -B build -G Ninja \
 		-DCMAKE_BUILD_TYPE=RelWithDebInfo \
 		-DCMAKE_INSTALL_PREFIX=/usr \
-		-DCMAKE_INSTALL_LIBDIR=lib \
-		-DKIMAGEFORMATS_HEIF=ON
+		-DCMAKE_INSTALL_LIBDIR=lib
 	cmake --build build
 }
 
@@ -40,7 +39,6 @@ check() {
 		kimageformats-pic
 		kimageformats-read-avci
 		kimageformats-read-dds
-		kimageformats-read-heif
 		kimageformats-read-hej2
 		kimageformats-read-tim
 		kimageformats-read-xcf
@@ -52,14 +50,6 @@ check() {
 		armv7)
 			tests="$tests
 				kimageformats-read-jxl
-				"
-			;;
-		s390x)
-			tests="$tests
-				kimageformats-read-ff
-				kimageformats-read-iff
-				kimageformats-read-pcx
-				kimageformats-write-avif
 				"
 			;;
 	esac
