@@ -1,10 +1,8 @@
-# Contributor: Bart Ribbers <bribbers@disroot.org>
-
 # The group tag is just to easily find this APKBUILD by some scripts for automation
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kdebugsettings
-pkgver=26.04.3
+pkgver=26.08.0
 pkgrel=0
 arch="all !armhf"
 url="https://kde.org/applications/utilities/"
@@ -23,7 +21,10 @@ makedepends="
 	qt6-qtbase-dev
 	samurai
 	"
-checkdepends="xvfb-run"
+checkdepends="
+	dbus-x11
+	xwayland-run
+	"
 subpackages="$pkgname-lang"
 _repo_url="https://invent.kde.org/utilities/kdebugsettings.git"
 source="https://download.kde.org/stable/release-service/$pkgver/src/kdebugsettings-$pkgver.tar.xz"
@@ -37,7 +38,7 @@ build() {
 }
 
 check() {
-	xvfb-run -a ctest --test-dir build
+	wlheadless-run -- dbus-run-session ctest --test-dir build
 }
 
 package() {
@@ -45,5 +46,5 @@ package() {
 }
 
 sha512sums="
-08c88b2179eb6e2a79cb6d533516a9a6e29229f3f57121b3455746b4c82fb3a3150635e05194efd8d0d013c017d9497a82c3e832bc42d056ad5b208ec1d2f573  kdebugsettings-26.04.3.tar.xz
+5f69f68a74b8f0f7bfcce4e04e1d45eb0d27935118fea02e2a5ab2333e367c92d83afb0ff8be2e355848f01f43af289732e50a828fb86ad5683c19b356b4cd02  kdebugsettings-26.08.0.tar.xz
 "
