@@ -21,7 +21,7 @@ index 742af2c97e..8b39dbbe30 100644
  #define portable_stat ::stat
  #define portable_lstat ::lstat
 diff --git a/src/main/native/unix_jni_linux.cc b/src/main/native/unix_jni_linux.cc
-index a8865586eb..e48af2869d 100644
+index 8962e07338..80f98f072a 100644
 --- a/src/main/native/unix_jni_linux.cc
 +++ b/src/main/native/unix_jni_linux.cc
 @@ -13,6 +13,7 @@
@@ -29,10 +29,10 @@ index a8865586eb..e48af2869d 100644
  
  #include <errno.h>
 +#include <features.h>
+ #include <jni.h>
  #include <stdint.h>
  #include <stdlib.h>
- #include <string.h>
-@@ -45,7 +46,11 @@ std::string ErrorMessage(int error_number) {
+@@ -46,7 +47,11 @@ std::string ErrorMessage(int error_number) {
  
  int portable_fstatat(
      int dirfd, char *name, portable_stat_struct *statbuf, int flags) {

@@ -3,7 +3,7 @@
 # Maintainer: Luca Weiss <luca@lucaweiss.eu>
 pkgname=lomiri-system-settings
 pkgver=1.4.0
-pkgrel=1
+pkgrel=2
 pkgdesc="System Settings application for Lomiri"
 url="https://gitlab.com/ubports/development/core/lomiri-system-settings"
 # armhf: blocked by lomiri-ui-toolkit
@@ -15,10 +15,10 @@ depends="
 	ayatana-indicator-bluetooth
 	ayatana-indicator-datetime
 	ayatana-indicator-power
-	lomiri-content-hub
+	lomiri-content-hub-qt5
 	lomiri-indicator-network
 	lomiri-settings-components
-	lomiri-ui-toolkit
+	lomiri-ui-toolkit-qt5
 	qt5-qtmultimedia
 	"
 makedepends="
@@ -30,7 +30,7 @@ makedepends="
 	elogind-dev
 	geonames-dev
 	gnome-desktop-dev
-	gsettings-qt-dev
+	gsettings-qt-qt5-dev
 	icu-dev
 	intltool
 	libqtdbusmock
