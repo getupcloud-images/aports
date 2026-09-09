@@ -1,7 +1,7 @@
 # Contributor: Carlo Landmeter <clandmeter@alpinelinux.org>
 # Maintainer: Patrycja Rosa <alpine@ptrcnull.me>
 pkgname=shairport-sync
-pkgver=5.1
+pkgver=5.5.1
 pkgrel=0
 pkgdesc="AirTunes emulator. Shairport Sync adds multi-room capability with Audio Synchronisation"
 url="https://github.com/mikebrady/shairport-sync"
@@ -63,6 +63,6 @@ package() {
 }
 
 sha512sums="
-b089a2487559d8245da676f017f702a8bc5e07ba5589c99395576214fbb3442e502fcd9148aec562117e2df580bab5be59c65f4121f0f2915c152c2bb0e773a2  shairport-sync-5.1.tar.gz
+862bcdf0eef997f1f08a7baa20bd63c2283305b21dc69e32accde577d96c50c5873ec732c2465adf299065ed369b11fa968be7f2e14489bf2419d6789a0eead3  shairport-sync-5.5.1.tar.gz
 aeead51ef0f17d360bb1e2d2ae897974ef507ef56db84e6aeb79d8ec522c3bb9336f01ff4150e70fecfebf9808dd7190cb2839e287cf0ef6e1886504c1f1edc6  shairport-sync.initd
 "
