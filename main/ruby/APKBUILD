@@ -6,6 +6,7 @@ pkgname=ruby
 # gems/bundled_gems. If some aport is missing or not in the main repo,
 # create/move it.
 pkgver=3.4.9
+_jsonver=2.21.2
 _abiver="${pkgver%.*}.0"
 pkgrel=0
 pkgdesc="An object-oriented language for quick and easy programming"
@@ -37,6 +38,7 @@ subpackages="$pkgname-dbg $pkgname-doc $pkgname-dev
 	$pkgname-full::noarch
 	"
 source="https://cache.ruby-lang.org/pub/ruby/${pkgver%.*}/ruby-$pkgver.tar.gz
+    json-$_jsonver.tar.gz::https://github.com/ruby/json/archive/refs/tags/v$_jsonver.tar.gz
 	fix-get_main_stack.patch
 	dont-install-bundled-gems.patch
 	fix-riscv64-build.patch
@@ -108,6 +110,12 @@ _rubydir="usr/lib/ruby/$_abiver"
 
 prepare() {
 	default_prepare
+
+    echo "Replacing bundled json with json $_jsonver"
+
+	rm -rf "$builddir"/ext/json
+	cp -a "$srcdir"/json-$_jsonver "$builddir"/ext/json
+    
 	autoconf
 
 	case "$CARCH" in
@@ -174,6 +182,7 @@ check() {
 
 package() {
 	make DESTDIR="$pkgdir" SUDO="" install
+  	echo "Built using Quor APKBUILD.getup" > "$pkgdir"/APKBUILD_GETUP
 
 	install -m 644 -D COPYING "$pkgdir"/usr/share/licenses/$pkgname/COPYING
 
