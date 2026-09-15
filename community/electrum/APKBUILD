@@ -2,7 +2,7 @@
 # Contributor: Rdbo <rdbodev@gmail.com>
 maintainer="Hugo Osvaldo Barrera <hugo@whynothugo.nl>"
 pkgname=electrum
-pkgver=4.7.2
+pkgver=4.8.2
 pkgrel=0
 pkgdesc="Lightweight Bitcoin Wallet"
 url="https://electrum.org/"
@@ -68,8 +68,14 @@ build() {
 check() {
 	python3 -m venv --clear --without-pip --system-site-packages .testenv
 	.testenv/bin/python3 -m installer .dist/*.whl
+	case "$CARCH" in
+	# time-sensitive tests time out.
+	riscv64) pytest_opts="--deselect tests/test_onion_message.py::TestOnionMessageManager::test_request_and_reply" ;;
+	*) pytest_opts= ;;
+	esac
 	.testenv/bin/python3 -m pytest -n auto \
 		--ignore tests/test_qml_types.py \
+		$pytest_opts \
 		tests
 }
 
@@ -79,6 +85,6 @@ package() {
 }
 
 sha512sums="
-ee63a02582c8115bcd3bb58fecfc6821c4c31b91b4bd9d4aa62e3c5a658a095176928678ba300acb590eab2d46d23109e05d4b4c5ae5fabadd0061e8850a1ca0  electrum-4.7.2.tar.gz
+a9610aabdfbb96fe5c5027896be6a537041f4a99a569f3344e28e63841ad60fce4758916479d13d087c2cb5960ce74c44ebcbcd52491437a7a99b1cd0b9caffe  electrum-4.8.2.tar.gz
 b5eef3f92e34a3c7ec6ebfdb0941c6f38fc96fd864e7cbe4447dc791180e1278d6b1a164831ccee020482a26bee942df2885450e12a5314ae7bf5a2772b06b62  0001-apk-add-instead-of-apt-get-install.patch
 "
