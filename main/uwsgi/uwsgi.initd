@@ -16,14 +16,30 @@ description_stats='Dump uWSGI statistics to log file'
 command='/usr/sbin/uwsgi'
 command_args="--die-on-term ${uwsgi_opts:-}"
 command_background='yes'
+
 start_stop_daemon_args="--quiet --wait $wait"
+# The leading space is to avoid fallback to $start_stop_daemon_args when this
+# is empty (supervise-daemon doesn't support --wait).
+supervise_daemon_args=" $supervise_daemon_args"
 
 if [ "$RC_SVCNAME" = 'uwsgi' ]; then
-	: ${name:="uWSGI emperor"}
 	emperor='yes'
+	: ${name:="uWSGI emperor"}
+	if [ -z "$output_logger$error_logger" ]; then
+		: ${logfile="/var/log/uwsgi/uwsgi.log"}
+	fi
+	# NOTE: user and group variables are deprecated (since Alpine v3.25).
+	: ${command_user:="${user:-root}${group:+:}$group"}
 else
-	: ${name:="uWSGI application ${RC_SVCNAME#uwsgi.}"}
 	emperor='no'
+	command_args="--master $command_args"
+	: ${name:="uWSGI application ${RC_SVCNAME#uwsgi.}"}
+	: ${command_user:="${user:-nobody}${group:+:}$group"}
+fi
+# NOTE: logfile variable is deprecated, use output_log/error_log (since Alpine v3.25).
+if [ "$logfile" ]; then
+	: ${output_log:="$logfile"}
+	: ${error_log:="$logfile"}
 fi
 
 depend() {
@@ -33,21 +49,6 @@ depend() {
 }
 
 start_pre() {
-	if [ "$emperor" = 'yes' ]; then
-		: ${logfile:="/var/log/uwsgi/uwsgi.log"}
-		: ${user:="root"}
-	else
-		: ${user:="nobody"}
-		command_args="--master $command_args"
-	fi
-	start_stop_daemon_args="$start_stop_daemon_args
-		--user $user
-		$(optif --group "$group")
-		$(optif --stdout "$logfile")
-		$(optif --stderr "$logfile")
-		$(optif --stdout-logger "$output_logger")
-		$(optif --stderr-logger "$error_logger")"
-
 	if [ -z "$uwsgi_conf" ]; then
 		case "$RC_SVCNAME" in
 			uwsgi) uwsgi_conf='/etc/uwsgi/uwsgi.ini';;
@@ -62,7 +63,7 @@ start_pre() {
 		command_args="$command_args --yaml ${uwsgi_conf%.yml}.yml"
 	fi
 
-	checkpath -d -m 775 -o $user:$group \
+	checkpath -d -m 775 -o "$command_user" \
 		"$(dirname "$pidfile")"
 
 	if yesno "$EINFO_VERBOSE"; then
@@ -72,16 +73,22 @@ start_pre() {
 
 reload() {
 	ebegin "Reloading $name"
-	start-stop-daemon --signal HUP --pidfile "$pidfile"
+
+	if [ "$supervisor" ]; then
+		$supervisor "$RC_SVCNAME" --signal HUP
+	else
+		start-stop-daemon --signal HUP --pidfile "$pidfile"
+	fi
 	eend $?
 }
 
 stats() {
 	ebegin "Dumping statistics for $name to the log file"
-	start-stop-daemon --signal USR1 --pidfile "$pidfile"
-	eend $?
-}
 
-optif() {
-	test -n "$2" && printf "%s %s\n" "$1" "$2"
+	if [ "$supervisor" ]; then
+		$supervisor "$RC_SVCNAME" --signal USR1
+	else
+		start-stop-daemon --signal USR1 --pidfile "$pidfile"
+	fi
+	eend $?
 }
