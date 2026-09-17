@@ -2,8 +2,8 @@
 # Contributor: crapStone <crapstone01@gmail.com>
 # Maintainer: Sean McAvoy <seanmcavoy@gmail.com>
 pkgname=topgrade
-pkgver=17.10.1
-pkgrel=0
+pkgver=17.11.0
+pkgrel=1
 pkgdesc="run upgrades of packages in OS and other package managers"
 url="https://github.com/topgrade-rs/topgrade"
 arch="all"
@@ -16,12 +16,14 @@ subpackages="
 	$pkgname-doc
 	"
 options="net" # cargo
-source="topgrade-$pkgver.tar.gz::https://github.com/topgrade-rs/topgrade/archive/refs/tags/v$pkgver.tar.gz"
+source="topgrade-$pkgver.tar.gz::https://github.com/topgrade-rs/topgrade/archive/refs/tags/v$pkgver.tar.gz
+	update-rustix-crate.patch
+	"
 
 
 prepare() {
 	default_prepare
-	cargo fetch --target="$CTARGET" --locked
+	cargo fetch --target="$CHOST" --locked
 }
 
 build() {
@@ -51,5 +53,6 @@ package() {
 }
 
 sha512sums="
-6bee6b396b884c0c40a98e07b289940fabd43e0be4929a7258513c65706237a0974a338161f4fa9d3464db0f51e400834a8329e0a6198de4ff3d5b93e0a8d1b0  topgrade-17.10.1.tar.gz
+1d03e1d8796743a71407517fed99481685a8a8bbf88aa47c422d5125a5dc4590b343b438c073735ebde3c264357279d2d16f532ea847185ac1c2f656cee1d412  topgrade-17.11.0.tar.gz
+d418ce422b5d34b5e0afd818fa1a426df3ef467e34e450d538d3dc2c6986889954dbca808dfcdfb7fcfb7c592758426aa6230b69c58408a7749a0120107b194f  update-rustix-crate.patch
 "
