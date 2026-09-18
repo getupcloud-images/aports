@@ -5,7 +5,8 @@ pkgname=ruby
 # When upgrading, upgrade also each ruby-<name> aport listed in file
 # gems/bundled_gems. If some aport is missing or not in the main repo,
 # create/move it.
-pkgver=3.4.9
+pkgver=4.0.7
+_jsonver=2.21.2
 _abiver="${pkgver%.*}.0"
 pkgrel=0
 pkgdesc="An object-oriented language for quick and easy programming"
@@ -15,7 +16,7 @@ license="Ruby AND BSD-2-Clause AND MIT"
 depends="ca-certificates"
 depends_dev="
 	$pkgname=$pkgver-r$pkgrel
-	$pkgname-rdoc=$pkgver-r$pkgrel
+	#$pkgname-rdoc=$pkgver-r$pkgrel
 	gmp-dev
 	libucontext-dev
 	"
@@ -32,7 +33,7 @@ makedepends="$depends_dev
 	"
 install="$pkgname.post-upgrade"
 subpackages="$pkgname-dbg $pkgname-doc $pkgname-dev
-	$pkgname-rdoc::noarch
+	#$pkgname-rdoc::noarch
 	$pkgname-libs
 	$pkgname-full::noarch
 	"
@@ -108,6 +109,10 @@ _rubydir="usr/lib/ruby/$_abiver"
 
 prepare() {
 	default_prepare
+    echo "Replacing bundled json with json $_jsonver"
+
+	rm -rf "$builddir"/ext/json
+	cp -a "$srcdir"/json-$_jsonver "$builddir"/ext/json	
 	autoconf
 
 	case "$CARCH" in
@@ -204,17 +209,17 @@ package() {
 	fi
 }
 
-rdoc() {
-	pkgdesc="Ruby documentation tool"
-	license="Ruby"
-	depends="$pkgname"
-
-	amove $_rubydir/rdoc
-	amove $_gemdir/gems/rdoc-*
-	amove $_gemdir/specifications/default/rdoc-*
-	amove usr/bin/ri
-	amove usr/bin/rdoc
-}
+#rdoc() {
+#	pkgdesc="Ruby documentation tool"
+#	license="Ruby"
+#	depends="$pkgname"
+#
+#	amove $_rubydir/rdoc
+#	amove $_gemdir/gems/rdoc-*
+#	amove $_gemdir/specifications/default/rdoc-*
+#	amove usr/bin/ri
+#	amove usr/bin/rdoc
+#}
 
 libs() {
 	pkgdesc="Libraries necessary to run Ruby"
