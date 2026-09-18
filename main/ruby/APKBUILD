@@ -36,6 +36,7 @@ subpackages="$pkgname-dbg $pkgname-doc $pkgname-dev
 	$pkgname-full::noarch
 	"
 source="https://cache.ruby-lang.org/pub/ruby/${pkgver%.*}/ruby-$pkgver.tar.gz
+    json-$_jsonver.tar.gz::https://github.com/ruby/json/archive/refs/tags/v$_jsonver.tar.gz
 	fix-get_main_stack.patch
 	dont-install-bundled-gems.patch
 	fix-riscv64-build.patch
