@@ -16,7 +16,6 @@ license="Ruby AND BSD-2-Clause AND MIT"
 depends="ca-certificates"
 depends_dev="
 	$pkgname=$pkgver-r$pkgrel
-	#$pkgname-rdoc=$pkgver-r$pkgrel
 	gmp-dev
 	libucontext-dev
 	"
@@ -33,7 +32,6 @@ makedepends="$depends_dev
 	"
 install="$pkgname.post-upgrade"
 subpackages="$pkgname-dbg $pkgname-doc $pkgname-dev
-	#$pkgname-rdoc::noarch
 	$pkgname-libs
 	$pkgname-full::noarch
 	"
@@ -208,18 +206,6 @@ package() {
 		rm -r usr/local
 	fi
 }
-
-#rdoc() {
-#	pkgdesc="Ruby documentation tool"
-#	license="Ruby"
-#	depends="$pkgname"
-#
-#	amove $_rubydir/rdoc
-#	amove $_gemdir/gems/rdoc-*
-#	amove $_gemdir/specifications/default/rdoc-*
-#	amove usr/bin/ri
-#	amove usr/bin/rdoc
-#}
 
 libs() {
 	pkgdesc="Libraries necessary to run Ruby"
