@@ -1,33 +1,29 @@
 # Contributor: Clayton Craft <clayton@craftyguy.net>
 # Maintainer: Clayton Craft <clayton@craftyguy.net>
-pkgname=cosmic-player
+pkgname=cosmic-osk
 pkgver=1.9.0
 _upstreamver="${pkgver/_beta/-beta.}"
 _upstreamver="${_upstreamver/_p/.}"
-pkgrel=0
-pkgdesc="Media player for the COSMIC Desktop Environment"
-url="https://github.com/pop-os/cosmic-player"
+pkgrel=1
+pkgdesc="On-screen keyboard for the COSMIC Desktop Environment"
+url="https://github.com/pop-os/cosmic-osk"
 # armv7, armhf, x86: DO NOT RE-ENABLE! 32-bit is problematic, often requires carrying patches to fix
 # riscv64: too slow to build
 # ppc64le, s390x: rustix statx failure
 arch="aarch64 loongarch64 x86_64"
 license="GPL-3.0-only"
 depends="
-	gst-plugins-good
+	cosmic-icons
 "
 makedepends="
 	cargo-auditable
-	clang-libclang
-	glib-dev
-	gst-plugins-base-dev
-	gstreamer-dev
 	just
+	eudev-dev
 	libxkbcommon-dev
-	wayland-dev
 "
 options="net !check"  # fetch dependencies, no tests
 source="
-	$pkgname-$pkgver.tar.gz::https://github.com/pop-os/cosmic-player/archive/refs/tags/epoch-$_upstreamver.tar.gz
+	$pkgname-$pkgver.tar.gz::https://github.com/pop-os/cosmic-osk/archive/refs/tags/epoch-$_upstreamver.tar.gz
 "
 builddir="$srcdir/$pkgname-epoch-$_upstreamver"
 
@@ -49,5 +45,5 @@ package() {
 }
 
 sha512sums="
-7b7af4421c84555dd6ad1ad01304de679467d5297ba038ca25d97c2feb91ceada780bea1181b83e425a1004b0ab90d5882ef4a16fd7d11c94022e27f87c6ea58  cosmic-player-1.9.0.tar.gz
+d5ed1322de54b7b4f51934e47be6b6b95e9367de6a746bce613a030d6f545add3822cbd7f61e2840726a4328ecc4c82a92bb562ec1d2a80665f9a25c44f5094b  cosmic-osk-1.9.0.tar.gz
 "
