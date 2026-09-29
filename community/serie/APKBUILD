@@ -1,7 +1,7 @@
 # Maintainer: qaqland <qaq@qaq.land>
 maintainer="qaqland <qaq@qaq.land>"
 pkgname=serie
-pkgver=0.9.0
+pkgver=0.9.3
 pkgrel=0
 pkgdesc="A rich git commit graph in your terminal"
 url="https://github.com/lusingander/serie"
@@ -34,5 +34,5 @@ package() {
 }
 
 sha512sums="
-c7b6f72575ba0b8e045fb90f6931df71f850b4fb45aa4a96f867407ba2be0179fb3b52c0cde87d268ff8c6fc1d5fceefc45b22acc0e127c4471c0c0e777221c7  serie-0.9.0.tar.gz
+0603f0efe671322daae40869c61b4bd7e38e737a1b1a6bba2365c5c1542a2a36319bb78bbe12e2a2c7a1798bb9ee063c4a9dcc0661d22b46aabfdad6a503edf4  serie-0.9.3.tar.gz
 "
