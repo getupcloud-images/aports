@@ -3,17 +3,13 @@
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=akonadi
 pkgver=26.08.1
-pkgrel=0
+pkgrel=2
 pkgdesc="A cross-desktop storage service for PIM data and meta data providing concurrent read, write, and query access"
 # armhf blocked by qt6-qtdeclarative
 arch="all !armhf"
 url="https://community.kde.org/KDE_PIM"
 license="LGPL-2.0-or-later"
-depends="
-	mariadb
-	qt6-qtbase-mysql
-	qt6-qtbase-sqlite
-	"
+depends="qt6-qtbase-sqlite"
 depends_dev="
 	boost-dev
 	kcompletion-dev
@@ -48,7 +44,13 @@ checkdepends="
 	cmd:dbus-run-session
 	xwayland-run
 	"
-subpackages="$pkgname-dbg $pkgname-dev $pkgname-lang"
+subpackages="
+	$pkgname-dbg
+	$pkgname-dev
+	$pkgname-lang
+	py3-$pkgname:_py3
+	$pkgname-systemd
+	"
 _repo_url="https://invent.kde.org/pim/akonadi.git"
 source="https://download.kde.org/stable/release-service/$pkgver/src/akonadi-$pkgver.tar.xz"
 
@@ -100,6 +102,12 @@ check() {
 package() {
 	DESTDIR="$pkgdir" cmake --install build
 }
+
+_py3() {
+	amove usr/lib/python*
+	amove usr/share/PySide6
+}
+
 sha512sums="
 0e0d63162625639919f3c0727db25253e1cdee8f8ea309dc61b5e4b1691b2a497541c60860e2c516bed471a00860864ce8d2fb13e0df385d1c32de404611d502  akonadi-26.08.1.tar.xz
 "
