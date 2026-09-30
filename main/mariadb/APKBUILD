@@ -8,7 +8,7 @@
 # Maintainer: Natanael Copa <ncopa@alpinelinux.org>
 pkgname=mariadb
 pkgver=11.8.8
-pkgrel=0
+pkgrel=1
 pkgdesc="A fast SQL database server"
 url="https://www.mariadb.org/"
 pkgusers="mysql"
@@ -80,7 +80,8 @@ case "$CARCH" in
 		;;
 esac
 
-source="https://mirror.mariadb.org/mariadb-$pkgver/source/mariadb-$pkgver.tar.gz
+# source="https://mirror.mariadb.org/mariadb-$pkgver/source/mariadb-$pkgver.tar.gz
+source="https://distfiles.alpinelinux.org/distfiles/edge/mariadb-11.8.8.tar.gz
 	$pkgname.initd
 	gcc13.patch
 	lfs64.patch
