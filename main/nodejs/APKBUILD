@@ -41,7 +41,6 @@ provider_priority=100  # highest priority (other provider is nodejs-current)
 provides="nodejs-lts=$pkgver-r$pkgrel"  # for backward compatibility
 replaces="nodejs-current nodejs-lts"  # nodejs-lts for backward compatibility
 source="https://nodejs.org/dist/v$pkgver/node-v$pkgver.tar.gz
-	ncrypto-include-openssl-rand.h.patch
 	remove-unused-openssl-config.patch
 	v8-ppc64le-compat.patch
 	v8-riscv-trap-handler.patch
