@@ -305,7 +305,6 @@ _build() {
 		--openssl-use-def-ca-store \
 		--with-icu-default-data-dir="$(icu-config --icudatadir)" \
 		--with-intl=system-icu \
-		--without-corepack \
 		--without-npm \
 		"$@"
 
