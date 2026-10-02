@@ -46,7 +46,6 @@ source="https://nodejs.org/dist/v$pkgver/node-v$pkgver.tar.gz
 	v8-riscv-trap-handler.patch
 	v8-no-static-zlib.patch
 	v8-disable-trap-handler-on-riscv-sv39.patch
-	v8-int64-lowering-reducer.patch
 	v8-ppc_vsx-inl.patch
 	$pkgname.pc.in
 	node_sea.patch
