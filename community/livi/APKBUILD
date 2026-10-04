@@ -1,12 +1,15 @@
 # Contributor: Krassy Boykinov <kboykinov@teamcentrixx.com>
 maintainer="team/phosh <achill@achill.org>"
 pkgname=livi
-pkgver=0.5.0
+pkgver=0.6.0
 pkgrel=0
 pkgdesc="Small video player targeting mobile devices"
 url="https://gitlab.gnome.org/guidog/livi"
 arch="all"
 license="LGPL-2.1-or-later"
+depends="
+	gst-plugins-rs-gtk4
+	"
 makedepends="
 	desktop-file-utils
 	gst-plugins-bad-dev
@@ -35,5 +38,5 @@ package() {
 }
 
 sha512sums="
-e1f293c422279306c25ff89954880fc7f9fdc692e9c985efb0c87ef488263e3d0a67177d7e3cf2aa251542437bae74dc4d431686b7dbd1c04531e1959efc28fd  livi-0.5.0.tar.xz
+59796d068d3e97d376da3c27721f99ab12431dc38b5ff48e3866be419747a25f6a75be29adc8b2619225d1f96a04d0b162eca7c33ffde74518260f59bf8581d1  livi-0.6.0.tar.xz
 "
