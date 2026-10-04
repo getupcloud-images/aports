@@ -21,12 +21,13 @@ source="https://github.com/astral-sh/ruff/archive/$pkgver/ruff-$pkgver.tar.gz
 options="net"
 case "$CARCH" in
 # No file descriptors available (os error 24) on build-edge-{aarch64,arm*,riscv64}
-aarch64|arm*|riscv64) options="$options !check" ;;
+# x86: OOM
+aarch64|arm*|riscv64|x86) options="$options !check" ;;
 esac
 
 case "$CARCH" in
 # Avoid OOM
-arm*) export CARGO_PROFILE_RELEASE_LTO="thin" ;;
+arm*|x86) export CARGO_PROFILE_RELEASE_LTO="thin" ;;
 esac
 export CARGO_PROFILE_RELEASE_OPT_LEVEL=2
 
