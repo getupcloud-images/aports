@@ -1,9 +1,9 @@
 maintainer="Achill Gilgenast <achill@achill.org>"
 _flavor=stable
 pkgname=linux-$_flavor
-pkgver=7.1.5
+pkgver=7.2.9
 _kernver=${pkgver%.*}
-pkgrel=0
+pkgrel=2
 pkgdesc="Linux stable kernel"
 url="https://www.kernel.org"
 depends="initramfs-generator"
@@ -28,15 +28,17 @@ makedepends="$_depends_dev
 	"
 provides="linux-edge=$pkgver-r$pkgrel"
 options="!strip !check"
-_config=${config:-config-stable.${CARCH}}
 source="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x/linux-$_kernver.tar.xz
-	0001-powerpc-boot-wrapper-Add-z-notext-flag-for-ppc64le.patch
 	0002-x86-Compress-vmlinux-with-zstd-19-instead-of-22.patch
 	0003-kexec-add-kexec_load_disabled-boot-option.patch
 	0004-objtool-respect-AWK-setting.patch
 	0005-powerpc-config-defang-gcc-check-for-stack-protector-.patch
+	0001-x86-CPU-AMD-avoid-printing-reset-reasons-on-Xen-domU.patch
 	0006-FROMLIST-x86-tools-Scope-uapi-include-dirs-to-vdso2c.patch
 	0007-FROMLIST-resolve_btfids-preserve-tag-and-parameter-n.patch
+
+	spacemit-k1-bpi-f3-usb-power.patch
+	spacemit-k1-thermal-cleanup.patch
 
 	stable.aarch64.config
 	stable.armv7.config
@@ -67,6 +69,9 @@ if [ "${pkgver%.0}" = "$pkgver" ]; then
 fi
 arch="all !armhf"
 license="GPL-2.0-only"
+
+# secfixes are not tracked
+# https://gitlab.alpinelinux.org/alpine/aports/-/work_items/18194
 
 prepare() {
 	default_prepare
@@ -244,6 +249,9 @@ _package() {
 
 	install -D -m644 include/config/kernel.release \
 		"$_outdir"/usr/share/kernel/$_buildflavor/kernel.release
+
+	ln -sf /boot/vmlinuz-"$_buildflavor" \
+		"$_outdir"/lib/modules/"$_abi_release"/vmlinuz
 }
 
 # main flavor installs in $pkgdir
@@ -335,21 +343,23 @@ _dev() {
 }
 
 sha512sums="
-fc3cc487e2a633b9c2f0122a2dcdc3e515b4ad433c72372d7cf489b2c60ac186bc6b5ba9a1a7ea40683a5387c0300349ca6873d2938dc4ed2292e77f1743e01f  patch-7.1.5.patch.xz
-d4d9c45261813559341c67ea53d4a47f5a04d1ad15e3c2b8222a09b5483380d2bfd31b8c675e144db2eb91f560d6cb28f66187a5ea4f24f6dfb82a4ad48064cc  linux-7.1.tar.xz
-306d6b0a4f08b03f9ec5da3c67c097f97beba29f3445f4103d484ba183913c6030c5ea0e05af053cbcf63a68ab9b26ff3c62e434ede2223784189adf6040f14c  0001-powerpc-boot-wrapper-Add-z-notext-flag-for-ppc64le.patch
+7f53f7fb4d7208dabaf257a1f031d188de262897c5a136d332b8fb53903122ad2a599531a679ee365bedac7bbc06f341fa3a4410da9245e8d529ce70fb827d85  patch-7.2.9.patch.xz
+47e63679363261a864d271277340a6f2d45f544e1a056be4159df081f4f6537d0efa865c4af26611ab33a3079ee65db88ec2f6bc0e5fff43e0c043cde0cd91e1  linux-7.2.tar.xz
 13de75abaf01ff80be191f80af647f55af6056068aa8e9557de4a3b45d2c6669d7c9c8d3bf5ee67254839988ddf8674a203555fd4d41f56eb3bfabb1a230b8f5  0002-x86-Compress-vmlinux-with-zstd-19-instead-of-22.patch
 72a61f9d24d61948e040b7ff3982e9895d6b3cff92bd8c67bfef74507f8178b863365f6dcdad4e083ca6aae173f02da4df75857269c01ecb7724390e081222cd  0003-kexec-add-kexec_load_disabled-boot-option.patch
 38f1947531389a83fd41d7827c10b1bc563f219331f3dd65df8df1ad5f7323f79415bba481e5a2bbd80ff0edb4699c6cfc612f6447061801c5a0993a74167875  0004-objtool-respect-AWK-setting.patch
 bdde4341c92d24419136c7acfaf5d88672b38d19ca910a8db6deb816fd61a24efddc4109425c7766b6b5b0c49c78cd47d8e3ac7eef2e5d140fff5739bf1c75d2  0005-powerpc-config-defang-gcc-check-for-stack-protector-.patch
+4e72af8e77a555d2a850837b64a525a51d5d118048584dc3ea0d0e8620bb56bf56b69a94aa67dac879b841c9ba033e33d94610da0028fde7b6602ad2fe63f02f  0001-x86-CPU-AMD-avoid-printing-reset-reasons-on-Xen-domU.patch
 55f0045f3dfb3ea71c32cde95e219ae41674219dee677d19841a509ace5337919b974feb2ae47c89b4f3de769bf35eef3a7c13364ecf37c693db8d0702259312  0006-FROMLIST-x86-tools-Scope-uapi-include-dirs-to-vdso2c.patch
 84df2d6df9524925a973f401e2a27faf23533bf9f99445570d925936bbbc3d54cf7f5673724a1c7e19b4e89ba765dd1bf06e0a972f1b7032c2f37a846ca598da  0007-FROMLIST-resolve_btfids-preserve-tag-and-parameter-n.patch
-228f056ed3551bc457e45fe795b21e9ad80dce2a5bc0ab2d52cd2b29bee27b95d177aed1ee361697eeecb6946a114cc2dd37f0f583b014d350e5d16e30b182a4  stable.aarch64.config
-968d8972e18fcb50f2c4365c2756aabb330f56d1b4de8a1b19b2e7ba2ceffefe3f6330d35886b4dbe1ac28220397be6cff52e7c3b51fb0ef68de3af02817cbcb  stable.armv7.config
-9eef04105c987dd47503e157921d27d6c9eee21fad531f8cfd4c85e9ff2d877b89d6b040489004bd4bca6f4989b78c7955915afbb75ad63d4ccb5c87045e8df0  stable.loongarch64.config
-1f0ab97e3c225d7156adaf62ba12884ad4971434206a7023f98182c745156de203d7c8effc9ebd41762c089d47217b1ef5c518dfec0af2f757dc847e37c46250  stable.ppc64le.config
-6e9e355f902a85286130031d20f4d895d43f4f623b33029fa1d18ce39a60c3adf095237319133fe5538cb2680d046a122049f2314e62f3f2ed5136089521764f  stable.riscv64.config
-5c57a53a3c9bdf340e0daf09405bf4f06a1d259c4454f7d5f21ba98e4e522f606a826e371a2b34613483f608816a6c7819cab87c63139b230a2e1f0432ba1fbb  stable.s390x.config
-45a8645a20349093ae64a3d3f92d62f303b0b297369a19dd5cb850064485ea53a8a9bcf89c812ab04b1a0ae79d3c18217b30b18efb456a5ac094f23c7f604d99  stable.x86.config
-8e288847124672ce8040ecbcc13e0cdf48e394a06f96e7aa8790419e80ff063d14fc8b0e12bbaa9705a1534f2b8f2893fb821819da3d4235e40a11d0213d8d79  stable.x86_64.config
+bb0a76d15311762a414e48740c43a003a074bead1b26161ffac2e45cfa947465e2430e3adf2201aef78dd31daef3a9d2b21a1534be664a064d79d01bb8d86197  spacemit-k1-bpi-f3-usb-power.patch
+19a7589c53672543769432c032647bead499ee2b40b176f329c4b83c97d3566bb428bb45bcd5091c7f30fcb4a339bd28c89822e95d2ce08a365c8e39254d7618  spacemit-k1-thermal-cleanup.patch
+43411646cd9bf1069dd766b9c2a86c32493ef6e321d58353d0c616129a570c35e99931bab6750cf172d339d95ddc869d07760cab6e19ed8920d1de8609e67eaf  stable.aarch64.config
+e78ff7c49e2329887ace925cbc7028b6fd0b86263d338790c93b77110f2a376b6983ca1d7c3fb168ab833a998ee4266a29e9444470b78b136f0ad38b184e5664  stable.armv7.config
+9312940107e8ad99bdd34e176d553cfd0654eceff4c939d5ac0c630ad5022ff662d63fb9b315327378292017daac01c43f0920e0b6c27332f62b5c467531f087  stable.loongarch64.config
+42bfe0de6e362c82667b7806674061e9a22793fe0842124e26d6dc152c7c29572f338e68bc00b36c74194fc5f00f28d03ec1a724bdab961b71e3aee9d904f5fa  stable.ppc64le.config
+0c4a965186781a806d49df818d8ec9d48134fa3e53cae29c199389345413a1dddd9ae668b49817dd8acc57a3e085a1a52cbb26fbc17d64819d8210525d9a64a8  stable.riscv64.config
+4df521bbf5cc65e74fb85af52cb0fd4533c50f31ecd2ce9d30be98234ec606d1902ad0d3ce9dbfcac601bf24f470916cab61263207fb9a0bd663ba97bf420153  stable.s390x.config
+dbc344c2b3e5099cad974c22d5b8d302c32427c3598963ae9644b6c74805a0d6433fb3350dc29ed3b6ddb5e76b71896e68e74dacdb5816efbe301aea981645b0  stable.x86.config
+d1e2bf2dc643f8fb3383b5635fb8360c6f44a29d44584e5d7cf3072b2c1e38dffc8ef98d17f017b8f3709864532e5bb55bb3bc839b47dda263098863cb8f1b5a  stable.x86_64.config
 "
