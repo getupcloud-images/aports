@@ -1,7 +1,7 @@
 # Contributor: Luca Weiss <luca@lucaweiss.eu>
 # Maintainer: Luca Weiss <luca@lucaweiss.eu>
 pkgname=fluster
-pkgver=0.7.1
+pkgver=0.8.0
 pkgrel=0
 pkgdesc="Testing framework for decoders conformance"
 url="https://github.com/fluendo/fluster"
@@ -14,7 +14,7 @@ license="LGPL-3.0-or-later"
 # * gstreamer-tools
 # * libvpx-utils
 makedepends="py3-gpep517 py3-setuptools py3-wheel"
-subpackages="$pkgname-pyc"
+subpackages="$pkgname-doc $pkgname-pyc"
 source="https://github.com/fluendo/fluster/archive/v$pkgver/fluster-v$pkgver.tar.gz"
 options="!check" # no test suite
 
@@ -32,5 +32,5 @@ package() {
 }
 
 sha512sums="
-ab02aacab705fb05c1692679bbcbb41600300a4849dc2a45ac689cf2479cf1fd70539e8b7f8a86a68c811495e114e7d1912492a6871287e7f3cbe74cbfc2550d  fluster-v0.7.1.tar.gz
+769ff4d1d62fb62bbbd9b6652dcd1358475c4ec168858030085230b20953ed423847823abe4d757e5b19f3a55eef8c00ef93b81cd967a75f0d693616aa603340  fluster-v0.8.0.tar.gz
 "
