@@ -2,7 +2,7 @@ maintainer="Maarten van Gompel <proycon@anaproy.nl>"
 pkgname=rivercarro
 pkgver=0.6.0
 _commit=793aa4cc890b96529ad3373dbe9d9d124b6f79f4
-pkgrel=0
+pkgrel=1
 pkgdesc="A layout generator for river Wayland compositor, fork of rivertile"
 url="https://git.sr.ht/~novakane/rivercarro"
 arch="x86_64 aarch64" # limited by zig aport
@@ -14,7 +14,6 @@ makedepends="
 	scdoc
 	wayland-dev
 	wayland-protocols
-	wlroots0.19-dev
 	zig
 	"
 options="!check net"
@@ -23,6 +22,7 @@ subpackages="
 "
 source="
 	$pkgname-$_commit.tar.gz::https://git.sr.ht/~novakane/rivercarro/archive/$_commit.tar.gz
+	zig-1.16.patch
 	"
 builddir="$srcdir/$pkgname-$_commit"
 
@@ -48,4 +48,5 @@ package() {
 
 sha512sums="
 b0d9c807816d6a9c0d91f11ab6aee51b6717040a98fd82139b7fe6e3985be65743a5a2de410fcfb8120c983aa24334732bdee7c72bcbc340d02f72f0a2552f3e  rivercarro-793aa4cc890b96529ad3373dbe9d9d124b6f79f4.tar.gz
+acbb3336c7c6a3ac59c35271590aa3b95a6f564e6a5ebe8cfe61eb7f3a1322cca1e569b8a5f86bfed94946db400be842c3f64cffddac9631f320d6591a0a6646  zig-1.16.patch
 "
