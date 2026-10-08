@@ -2,7 +2,7 @@
 # Maintainer: Sean McAvoy <seanmcavoy@gmail.com>
 pkgname=greetd
 pkgver=0.10.3
-pkgrel=11
+pkgrel=12
 pkgdesc="Minimal and flexible login manager daemon"
 url="https://git.sr.ht/~kennylevinsen/greetd"
 arch="all"
@@ -60,7 +60,7 @@ package() {
 	install -Dm755 target/release/fakegreet -t "$pkgdir"/usr/bin/
 
 	install -Dm644 config.toml -t "$pkgdir"/etc/greetd/
-	install -Dm644 "$srcdir"/$pkgname.pam "$pkgdir"/etc/pam.d/$pkgname
+	install -Dm644 "$srcdir"/$pkgname.pam "$pkgdir"/usr/lib/pam.d/$pkgname
 
 	install -Dm755 "$srcdir"/$pkgname.initd "$pkgdir"/etc/init.d/$pkgname
 	install -Dm644 "$srcdir"/$pkgname.confd "$pkgdir"/etc/conf.d/$pkgname
