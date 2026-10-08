@@ -2,7 +2,7 @@
 # Contributor: Jakub Jirutka <jakub@jirutka.cz>
 # Maintainer: wener <wenermail@gmail.com>
 pkgname=postgresql-timescaledb
-pkgver=2.29.2
+pkgver=2.30.2
 pkgrel=0
 pkgdesc="PostgreSQL extension for time‑series data"
 url="https://github.com/timescale/timescaledb"
@@ -61,6 +61,6 @@ package() {
 }
 
 sha512sums="
-e304a595a977fb012eec3d55c26f8b685f3add4507c1b55bf91520200a0d621cd143d8528ca9f5b8681e4372fa7b7daa69dc7f953b83becde599c29c9364fce1  postgresql-timescaledb-2.29.2.tar.gz
+c765338af6166994c24b19052eb36663a4369b1882fe66d32c59a1b80a7444cea51144810bb1c4ec0e3618258fdbc6c1dc73e0d2e0f6bb37536e056cdfaa9602  postgresql-timescaledb-2.30.2.tar.gz
 d4b9fd1526c10172cc250c4b17a40995ed92bc1c4a81738b5a01a7587efcfee5f00b54eed7306766faa5ba73113ac361d37cc855b5ed1e17c4eaa0834cc70d75  fix-build.patch
 "
