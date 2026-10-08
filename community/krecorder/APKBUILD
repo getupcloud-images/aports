@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=krecorder
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 pkgdesc="Audio recorder for Plasma Mobile (and other platforms)"
 url="https://invent.kde.org/utilities/krecorder"
@@ -41,5 +41,5 @@ package() {
 }
 
 sha512sums="
-83e33de1842fa78372b7617bc886764fc42fc11a2725ac655e1fe00bba2bdf904aff21a4a3121291392cec57dd08d67428100fb0af1bd78213fd6cc13bf1635f  krecorder-26.08.1.tar.xz
+e7c8e57aa0308c563ecec7ac7496325efe4d9f8a12b10054f8e767f978a258b0e75487deaefbb33d61251edf8668137011bda760291b87656c5caef3bd45563b  krecorder-26.08.2.tar.xz
 "

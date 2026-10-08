@@ -4,7 +4,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=knetwalk
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 pkgdesc="Connect all the terminals to the server, in as few turns as possible"
 # armhf blocked by extra-cmake-modules
@@ -49,5 +49,5 @@ package() {
 }
 
 sha512sums="
-43b098a42950c294d24ff021ac5b3274242bdbfbfc4c5ff8b4ac1b0ff38247262a87790ae18244115370ea400c244b129bc7ee90f7c827c4cd60dd2bf59a11a5  knetwalk-26.08.1.tar.xz
+3506bd1c1a953ad758c39b29edf7a9ae5b863e9b36b30811bcacb305373e90f8810f83cfb9eb7f1cc5011ce0f6ae994c5915356e213b89d2c32010e41b858b16  knetwalk-26.08.2.tar.xz
 "

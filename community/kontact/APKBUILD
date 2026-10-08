@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kontact
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by extra-cmake-modules
 # x86, armv7, s390x and riscv64 blocked by qt6-qtwebengine -> akonadi
@@ -46,5 +46,5 @@ package() {
 }
 
 sha512sums="
-19a782a2d78760190edb6613d050790a0019518e669c01fa6f8e181262f2d3d7f6e4b7663633418c30272d9355fab4fd217cfc114112d58662b31df303913ec3  kontact-26.08.1.tar.xz
+bbbdc07dddfb8de2ea8905b442500b3cb93e282b8548c2252612a814b491069c5cb7f8c3d5e5dd0701ac84b950d734742052572567ceeb8b5effb3ff208cdeb9  kontact-26.08.2.tar.xz
 "

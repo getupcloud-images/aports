@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kopeninghours
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 pkgdesc="Library for parsing and evaluating OSM opening hours expressions"
 url="https://invent.kde.org/libraries/kopeninghours"
@@ -49,5 +49,5 @@ package() {
 }
 
 sha512sums="
-a83e776111cfe9f7e066829f72e06a1046af3d24bb68c7a52f1bc74a35c5dd0fba2192853b8463a7deb3751b8594808c8a678a0173b7daa9b9b58a84064edb3c  kopeninghours-26.08.1.tar.xz
+64c4cd742c84de5031ed360073b78ea2d7091fc935b473cbe425dab45e67a461446d35f28e2ba2c16c051d1fd232ed3fe61fd88e6d3cd4b9cdbb534dffde6c73  kopeninghours-26.08.2.tar.xz
 "

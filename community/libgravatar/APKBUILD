@@ -4,7 +4,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=libgravatar
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 pkgdesc="KDE PIM library providing Gravatar support"
 # armhf blocked by extra-cmake-modules
@@ -47,5 +47,5 @@ package() {
 	DESTDIR="$pkgdir" cmake --install build
 }
 sha512sums="
-0690df8dfe7fb271082b72e5797807840b4b83cc679889eb95d0b405b54737db03c569084208a9bae2e3fdf80df6ebb24a5c912dd8e5e50d1a3f95c513640366  libgravatar-26.08.1.tar.xz
+117f1f5d23d83113059b4353c4e78ea9474d42b0480880642a38ffd790aed55965f827074140fb0b691b6e590db0dc523962e851e2c435cf5bf57406c6b1e8e1  libgravatar-26.08.2.tar.xz
 "

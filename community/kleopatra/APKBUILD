@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kleopatra
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by qt6-qtdeclarative -> ki18n
 # riscv64 s390x, armv7 and x86 blocked by qt6-qtwebengine -> kmailtransport
@@ -72,5 +72,5 @@ package() {
 }
 
 sha512sums="
-00c96c96a5563f1427666c3cea4bc0bcfca6a7d9bda14d3657e1448329a2ee7b1318536f441858c328bd82bba5f54871441484edbbd917ccab2f5463eff46536  kleopatra-26.08.1.tar.xz
+2351e7d99284659bf1ab7bdf744a2db0c56e69ff38b788ca53df1be583f906f15e82ea048cb37e778b6a34fe0bb5828c5bd7bd87edf7e9ff54da0b48a7d65eb5  kleopatra-26.08.2.tar.xz
 "

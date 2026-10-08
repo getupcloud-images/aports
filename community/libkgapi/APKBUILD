@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=libkgapi
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 pkgdesc="LibKGAPI is a KDE-based library for accessing various Google services via their public API"
 # armhf blocked by qt6-qtdeclarative -> kio
@@ -52,5 +52,5 @@ package() {
 }
 
 sha512sums="
-9e942491daa3b749c6f850db2468e5119941d8170ff56d38dddf25fbaa2b921e090c0de2a070de669f5e4b0200f8bd0ada148b2e48485d584f22ac3efb94191d  libkgapi-26.08.1.tar.xz
+7de40ca44de224d61fd37d8c52a8677d72573e03bb804b11f941182e5183f41cbb3c148618c4b7d8d7c883727647a966baa3fd23eaf71e75afe2c86ec6cb7a77  libkgapi-26.08.2.tar.xz
 "

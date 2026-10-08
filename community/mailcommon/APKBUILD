@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=mailcommon
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 pkgdesc="KDE PIM library providing support for mail applications"
 # riscv64 disabled due to missing rust in recursive dependency
@@ -84,5 +84,5 @@ package() {
 }
 
 sha512sums="
-bf500c6ed376cc80171e5f6941fa0c8c76edf3124c33a87620a778bec940e48beaa60274f2d687c2dc6138db9d8053a1718078c2826ed6f2f10423d059079a2c  mailcommon-26.08.1.tar.xz
+95f70fb25a1845b229be861b587c344dbefbc61d96c9c4ffeb1fddc6db7d609f63d579bb802617fdc0b68a5132758a2814fabcfc22254a0770de914ed99e995a  mailcommon-26.08.2.tar.xz
 "

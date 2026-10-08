@@ -4,7 +4,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=klettres
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by extra-cmake-modules
 arch="all !armhf"
@@ -46,5 +46,5 @@ package() {
 }
 
 sha512sums="
-9c0cab27bc50ffdcd96c670371387e6d075e4606f67b1c46ddf252e705e8b59b9430abe1e906b639111fc8866422376ac9b722526551a2553d82956ead924736  klettres-26.08.1.tar.xz
+b70937fa8bd05588eb6a2e82a3dd476a3f4ecd19defab2afa4f0dc1387b02b3d7f4bc4b3714fca41907fc4ec0a2f880609a93a37c72ef676600655b44172ac1f  klettres-26.08.2.tar.xz
 "

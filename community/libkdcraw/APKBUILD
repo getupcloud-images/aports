@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=libkdcraw
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 arch="all"
 url="https://kde.org"
@@ -39,5 +39,5 @@ package() {
 }
 
 sha512sums="
-2c33b0df16fe85148765c8c7e18e975dee3aacee7e35369c68bcc6e6895030e1a474c46ee99595fd130424201daad9fed51b437e25cc1ed57b84654d94f48e7f  libkdcraw-26.08.1.tar.xz
+4875861ef3fcc56cfb77d6a8bdaadd5990922e1150d7efdc3c39012d94d0fdfeb61847af2693669458dd53b4fb88f27a54f7f6f1e6564c6d295be7fec7fef885  libkdcraw-26.08.2.tar.xz
 "

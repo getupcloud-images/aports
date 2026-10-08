@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=dolphin
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by qt6-qtdeclarative -> plasma-activities
 arch="all !armhf"
@@ -88,5 +88,5 @@ package() {
 }
 
 sha512sums="
-04baaea8fb3227a999361a57fbec018f28ee31675acb25bd3543468bf15917f6b5b897b3267059b426f9df3b1596e1ea0197ddeeca6fd722fc56240ca92effb8  dolphin-26.08.1.tar.xz
+2401606add9becb20a10b95e05cfaffce3e274f15be56fab6ea24edf0c622f64b8c77d3442a1d630a3cf5e9a35b4fc2474e69d8fbdfcfe0875848b93305c341d  dolphin-26.08.2.tar.xz
 "

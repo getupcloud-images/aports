@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kdepim-runtime
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 pkgdesc="Extends the functionality of kdepim"
 url="https://kontact.kde.org/"
@@ -96,5 +96,5 @@ package() {
 }
 
 sha512sums="
-3aec7e5fd2b8c862051af814885ec167c1f21457889c6bf80c4b1afc1f441586f86adff49ed02d9020784c428122d2926d01829d7a2931976bf4ea17a4d8166c  kdepim-runtime-26.08.1.tar.xz
+6144a20e6ecde5a917b272f0f8689b5823219d1120ff77d6c51b98f20aedc8138bd506084daf7e3edb446dfc5edb8ab0010fe59154b61861e64858fae02f7a45  kdepim-runtime-26.08.2.tar.xz
 "

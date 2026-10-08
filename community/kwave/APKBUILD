@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kwave
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 pkgdesc="A sound editor by KDE"
 # armhf blocked by qt6-qtmultimedia
@@ -60,5 +60,5 @@ package() {
 }
 
 sha512sums="
-d9aaf86c61ec525e1f58340ea9aa83bdc7de9b3bc42537f78ab25b3e233b9320f6432d6be9a20c101a24993a6976fc873dcf94fc98a190a46f25f66bc6c26184  kwave-26.08.1.tar.xz
+4cb154712651cca224af91c87ab4a191276c99b275df81b4221ee06c3e2d98577c8639738d1a4b2a9cf56329629099e7c654d29c0ba16c26c35e2389ac7793b9  kwave-26.08.2.tar.xz
 "

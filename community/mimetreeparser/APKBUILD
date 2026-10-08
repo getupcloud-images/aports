@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=mimetreeparser
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 pkgdesc="Parser for MIME trees"
 # armhf blocked by qt6-qtdeclarative
@@ -69,5 +69,5 @@ package() {
 	#DESTDIR="$pkgdir" cmake --build build --target install_qch_docs
 }
 sha512sums="
-45561e4366e8de0b7ea1dc7474c254ab8d8c7835da9870ba906466f4bf1ff47abfc49a5de4b8efecbdeb9353324f15339f714d30b81ceaa0039c8e56c6c36864  mimetreeparser-26.08.1.tar.xz
+9cc0eae0dd9a422fec105b70bc11a3cc7fc1cef68e5f9d39071bc2568875540dcf34e6d45c730d8b60385ed8add179c7042489c721d71c6b087119d938a774f1  mimetreeparser-26.08.2.tar.xz
 "

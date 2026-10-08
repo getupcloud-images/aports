@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=itinerary
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf and s390x blocked by qt6-qtdeclarative
 arch="all !armhf !s390x"
@@ -75,5 +75,5 @@ package() {
 }
 
 sha512sums="
-6ec3da0d8c7271aae25e3c47755b062c45ed5dd8e72b6ef1119cb6fbadaf9faf0439b33c555d0bc846cb035983c4fd8e811b3da360a32616b043d09f362bb6cc  itinerary-26.08.1.tar.xz
+4e0c8ad4d84f70eb7534317220000b6c5e3050bd2643f76e25aab3513fd76f66be201265ab48ea00fd53a97f563554cf0a0316e49f8bb6cf734bd6ff0a6e90fd  itinerary-26.08.2.tar.xz
 "

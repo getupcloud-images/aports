@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kmail
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by qt6-qtdeclarative -> ki18n
 # x86, s390x, riscv64 and armv7 blocked by qt6-qtwebengine
@@ -111,5 +111,5 @@ package() {
 }
 
 sha512sums="
-8c8c80f07af8ba5772277da393f8d94026027e4d47b3cc0fc8de67f61e76f78e4a3ed5a0c1dec719956b48ee6e590144a691fc09fdbaa745d7fcac6f61bf2754  kmail-26.08.1.tar.xz
+0f64b77de6111a999536e09be0ed656642cf70fd2d7ec682114ba0ffd54ad87cc427970cfbb24059ff9d702c7446c00b7a1008c95e05fa3c774d650807d04528  kmail-26.08.2.tar.xz
 "

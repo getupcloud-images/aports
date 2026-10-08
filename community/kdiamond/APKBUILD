@@ -4,7 +4,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kdiamond
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 pkgdesc="A single player puzzle game"
 # armhf blocked by extra-cmake-modules
@@ -47,5 +47,5 @@ package() {
 }
 
 sha512sums="
-24e9dd9c56619ce9b8b135ac7f265bf6f62259e98026ddaea5a5d83205a1914dff22397146943be3cf37aa040fa65724d24558e5f2696d7355ac66bdbe2f7e4f  kdiamond-26.08.1.tar.xz
+5118e475ad7db5356015008dd9c628f4c2f22bbf63c76393292a71ce1ef2332efeac381ff155843d559794cd0c4e231704abcd1a912e385eceab248e6a43cfdc  kdiamond-26.08.2.tar.xz
 "

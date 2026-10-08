@@ -2,8 +2,8 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kitinerary
-pkgver=26.08.1
-pkgrel=1
+pkgver=26.08.2
+pkgrel=0
 # armhf blocked by qt6-qtdeclarative
 arch="all !armhf"
 url="https://kontact.kde.org/"
@@ -60,5 +60,5 @@ package() {
 }
 
 sha512sums="
-220984fdf8aa2baada5fc6b6fa2e9b50bfec8ac7b8867d87c6e563f261f7fca39ba2b4eb117235ed136c1a1394192191e51ffdb60c5064bed01c472986fa08a2  kitinerary-26.08.1.tar.xz
+cf3212247cbbfe4a1bee52e6d207e5a27f03c562bbc183fb00981d4db6637578a364d3b0e5c7609f813c14f1be6da80371b05f44af858170ac72afb59a171896  kitinerary-26.08.2.tar.xz
 "

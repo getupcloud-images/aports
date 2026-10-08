@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kmailtransport
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 pkgdesc="Manage mail transport"
 # armhf blocked by qt6-qtdeclarative -> ki18n
@@ -53,5 +53,5 @@ package() {
 }
 
 sha512sums="
-dee8c77ed742f63cc3faaacd802ab5f1956a5ff108cad86fcc61309df94eaf6dafb9a98c33b5d3baf057754a17ddc2e674adcbacd8ee8415d91f700f8cf0a81f  kmailtransport-26.08.1.tar.xz
+f60276343cbdb617e4dcd69472110d4e229fa7bef74831666a4d92b04e80121f3a6914d66b62d0bf84d3d41d57ccdb5bd685d20b4defcdfda324dc732cbe5c86  kmailtransport-26.08.2.tar.xz
 "

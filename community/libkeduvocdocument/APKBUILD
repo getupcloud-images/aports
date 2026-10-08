@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=libkeduvocdocument
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by qt6-qtdeclarative -> ki18n
 arch="all !armhf"
@@ -38,5 +38,5 @@ package() {
 }
 
 sha512sums="
-9fbec251a302026efe946aae0fadc3c04d4f7fa0414a4bb7ed3ed8db14be02b44c39524ae9d23058967c02708d369007fc051c787594e0f9b7b0c59239e37f07  libkeduvocdocument-26.08.1.tar.xz
+3c8ae6a374a255810c2501583f61b8024cdeabc4989d07ab6480de7c5cd9ff6ab6e5f46955bef39ca72365f946cbfce784a3e468e1ada51c132a7aac97e28a53  libkeduvocdocument-26.08.2.tar.xz
 "

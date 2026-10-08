@@ -4,7 +4,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=krfb
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 arch="all !armhf"
 url="https://kde.org/applications/internet/org.kde.krfb"
@@ -57,5 +57,5 @@ package() {
 }
 
 sha512sums="
-d268da72edcdfe1005b71b81be5fa61d5aa98081e08be8ef99c2886abde8666dccd18886b4ce9f5077e2a25ddb4493b3a087e7d6bbfd7aee6088c654892e1b72  krfb-26.08.1.tar.xz
+3c28f58cff753a7fc45b243253bf2c722e74d16425d57e6d201a53ff85660777a7a86828f066948410d29567b4184b386550d5409d9f5ae0bf0d74fa82578c35  krfb-26.08.2.tar.xz
 "

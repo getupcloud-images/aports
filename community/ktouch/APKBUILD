@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=ktouch
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by qt6-qtdeclarative
 arch="all !armhf"
@@ -50,5 +50,5 @@ package() {
 }
 
 sha512sums="
-913e0e6fac4da7c5fa16fc2b5bda804db268b6c3c786fed4ae792797601744de768cef59bcc1b68d7e401bbe760ca3e653f0280b1b8858f7db070374cfcae096  ktouch-26.08.1.tar.xz
+34811b3767ebbd005fff3667c755ad4ef5c671aecb9fec178890c395d8fb08c1c2b60aa5b61f6986bbd91960a3b7e58f29ce64a262a68d92892c6da1cdd82d1c  ktouch-26.08.2.tar.xz
 "

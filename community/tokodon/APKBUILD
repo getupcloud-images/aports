@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=tokodon
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 pkgdesc="A Mastodon client for Plasma and Plasma Mobile"
 url="https://invent.kde.org/network/tokodon/"
@@ -62,5 +62,5 @@ package() {
 }
 
 sha512sums="
-6e7c58046d90cdc903fea087a8f6b3f41141a71e011ffe1e719e197648aa93aaeabd9d4ff64ca3f57f542cf1fd9335a7c33fe223428fa2069d8b163314c9783e  tokodon-26.08.1.tar.xz
+4bd84ea357e1ac41e698809c69aeb3815bbcaf006e7343f3d905112af7a88744b1ce73db389495a5a0488fcfe07cf7d505c36e30abd2a6073c898b1b3ee79d87  tokodon-26.08.2.tar.xz
 "

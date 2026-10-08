@@ -4,7 +4,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kio-admin
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 pkgdesc="Manage files as administrator using the admin:// KIO protocol"
 url="https://invent.kde.org/system/kio-admin"
@@ -39,5 +39,5 @@ package() {
 }
 
 sha512sums="
-803310c9a479e398a41bf499ad22a5e44fdd477d77d85b37264a7e06d0af8a7477fb56549709d89dd482c0746314b1ef03a2fba76f311d0a21fb17ee7ac99a98  kio-admin-26.08.1.tar.xz
+8a2e4cb7af7c53310d06e7ec9015bfa5b85c3074421b0a4fe0abf3dda4673a20eea2d1ac2c0008b4950a9e653b8880dfd2fb3a0679e7ddf8cec0b42de6ffb406  kio-admin-26.08.2.tar.xz
 "

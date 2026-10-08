@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=ffmpegthumbs
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by qt6-qtdeclarative -> ki18n
 arch="all !armhf"
@@ -40,5 +40,5 @@ package() {
 }
 
 sha512sums="
-a1b7bc7ccc42e505ac1c882b3ec5ba599d4b5dd32750094c824fbd0736707287207caaf7ce7459c6dfcf16f9e0ec2641a2fb2a5f649a74f40a2c11ec8840a368  ffmpegthumbs-26.08.1.tar.xz
+3a336bfee60888fa94c12fd1754cc14beaf46668b91b4b7457372ef77077833d8f561e1e2b0e3a5bd1790abdee299858dda4fe7bb35e187586dc9dcec613766f  ffmpegthumbs-26.08.2.tar.xz
 "

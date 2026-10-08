@@ -4,7 +4,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=dolphin-plugins
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 pkgdesc="Extra Dolphin plugins"
 url="https://www.kde.org/applications/system/dolphin/"
@@ -41,5 +41,5 @@ package() {
 }
 
 sha512sums="
-66747e13e14a5f77db57b0bc2c32850ee7a252a9f9007c4f0a0b51cbfba0ffd6eddbf80a57af13021c6b4a29fb31895b9d9902ef9f1e727da312d4402efe82e4  dolphin-plugins-26.08.1.tar.xz
+7665a17ae3a527b9930168deb6cb2fbc5a68456b8bc280ba8d2e181222144ad1dbcb4f10fcc80b784b0e0a59a4bf42fde8ce7e12fc39efc126f4b3caa4e720da  dolphin-plugins-26.08.2.tar.xz
 "

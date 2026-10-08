@@ -4,7 +4,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kapman
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by extra-cmake-modules
 arch="all !armhf"
@@ -45,5 +45,5 @@ package() {
 }
 
 sha512sums="
-2beb8206fc47546c839e8646af986e3d626b77eaa9b7f38d4febb4efe5803087033b517fbbc6b7e563a1bb011b076c72b2e2117252bead4f7bcd0a25b2068478  kapman-26.08.1.tar.xz
+e5b99d103933eb68f0fa504af5ca78ad8f3ebf0eb92e02f9398ae30702878cfac6c7783fa0fa1c6b0bb698c38a29f5af9535d5e93df09d69943011f4c6e600d0  kapman-26.08.2.tar.xz
 "

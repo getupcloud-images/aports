@@ -4,7 +4,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=killbots
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 pkgdesc="A simple game of evading killer robots"
 # armhf blocked by extra-cmake-modules
@@ -46,5 +46,5 @@ package() {
 }
 
 sha512sums="
-d5ae8a0d5b7b8e216dd344097ee01f61e9ec307248c0660560ca3bc0c56b8e2901148e6318df9c3145f17c8e0476f0f50efdbc6381cb9fe65d2a493d83f276ad  killbots-26.08.1.tar.xz
+394a20da3d70361c36d29e64b7718d3a0e07bd9ea8a531da927f7524281d25d35f48c832e18dfdf6c842dc648967c8105d7f165f8a859a7df5862af4fe61025b  killbots-26.08.2.tar.xz
 "

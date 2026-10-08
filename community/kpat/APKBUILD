@@ -4,7 +4,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kpat
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 pkgdesc="KPatience offers a selection of solitaire card games"
 # armhf blocked by extra-cmake-modules
@@ -56,5 +56,5 @@ package() {
 }
 
 sha512sums="
-0ef4d1b225b782bd6685c51039181c438d1b6a193e7b44678b9c6388fe42782fe691cb4d4ed974a4cdb5c12576287d396f0312ec5ea292cb09e22686628c1039  kpat-26.08.1.tar.xz
+3ad43e84b156d937686cddf6a4022297415baef12e09b267bdf13a0afe93b27bfe303496a158cba3ff06b9cf4ce03bd00f71f34e634ce8f7a196caaf9c0023a9  kpat-26.08.2.tar.xz
 "

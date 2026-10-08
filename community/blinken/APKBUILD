@@ -4,7 +4,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=blinken
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by extra-cmake-modules
 arch="all !armhf"
@@ -42,5 +42,5 @@ package() {
 }
 
 sha512sums="
-15d62d0631ed284544d3933541c5b0f167afd77cb1f8a411cbc95595afa4b8ba63a60d7cd436350102d41e390a9293c58c030eea7767c719ee2a28bb4655220a  blinken-26.08.1.tar.xz
+383f82ed2f3aed3f9beb26974e976cba938e84e87b4ac4aaca3b4d55adf79ff714cf36f585b8c22a6a4c19646147bae10d81cc36129288f27871bd9eb038ed57  blinken-26.08.2.tar.xz
 "

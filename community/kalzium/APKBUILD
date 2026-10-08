@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kalzium
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by qt6-qtdeclarative -> ki18n
 arch="all !armhf"
@@ -46,5 +46,5 @@ package() {
 }
 
 sha512sums="
-9d64a748d76680d01b77b9f64be7fbbf877e9cce7e8455f858442bdbe409c2ceb721f54fe9abf45c5f27ea5f27b8854d28cbee350059c7b2c731818e29cb6aa4  kalzium-26.08.1.tar.xz
+4c3a66129275bd8825cda20d4965f9b36f5a1a119fe79ef6c2a33451f688d7d6dae2f2c67a7909832ae330d2a8e8cef78e175a31f9d8f744397f1e635728d753  kalzium-26.08.2.tar.xz
 "

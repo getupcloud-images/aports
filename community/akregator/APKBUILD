@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=akregator
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by qt6-qtdeclarative
 # x86, armv7, s390x and riscv64 blocked by qt6-qtwebengine
@@ -59,5 +59,5 @@ package() {
 }
 
 sha512sums="
-2e60e16837fd61c92c4b2a6895ea5a4ebf7893a992931efad8022a3a4f31dcf1d130d8e6e7323a245fec27622ae17a8aaac269db2e2cebd2eca46c1802656bcd  akregator-26.08.1.tar.xz
+9b44bb11048255ac174e8a32936287b9053c6c106d47f90deca90acd0db63522203b90dc1faeab48f844afc76cd521e45f31dc10f097a742946dcdf3c2cddf0c  akregator-26.08.2.tar.xz
 "

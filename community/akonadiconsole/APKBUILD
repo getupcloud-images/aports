@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=akonadiconsole
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # s390x, ppc64le, armhf and riscv64 blocked by akonadi
 # ppc64le, armv7 and loongarch64 blocked by calendarsupport
@@ -61,5 +61,5 @@ package() {
 }
 
 sha512sums="
-fb2a9d9dfed1861ee383a5f7fba0255a5146b7db11002e2057bcf44aa7a17bedbe1dd084e1b69062202cf6d421b32976b24b59cf8607ab4d6491c96f74dcd21c  akonadiconsole-26.08.1.tar.xz
+3e5380640a2ea78b7e309345567eeea5df2484c0cdbff6522d7111963fba43741dd6ea88ab1c81e6aa8d27ce3b2cad5b3a59e2d503cd1dd75973105223e9bab7  akonadiconsole-26.08.2.tar.xz
 "

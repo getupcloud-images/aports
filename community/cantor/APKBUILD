@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=cantor
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by qt6-qtdeclarative
 # x86, armv7, s390x, riscv64 blocked by qt6-qtwebengine
@@ -62,5 +62,5 @@ package() {
 }
 
 sha512sums="
-80e76741b0d764d7c79ad1323a0b00cd22b3c4b510a9747ebc0abd8407f04253f083b305619a65dcc11a6bd31a15f130c497f9371d9ee270c096845fc795169f  cantor-26.08.1.tar.xz
+3b7a8479fc371d4f1ed36922d6b1b087c1fc53663b1372433fba569cfcda5f4ea9a62b6c49ba6f256723536faa474d8d21aee3655cb072b3746a68ab8dc20198  cantor-26.08.2.tar.xz
 "

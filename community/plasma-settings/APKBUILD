@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=plasma-settings
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 pkgdesc="Settings application for Plasma Mobile"
 # armhf blocked by qt6-qtdeclarative
@@ -54,5 +54,5 @@ package() {
 }
 
 sha512sums="
-617324c2a4bc8ff204d961d5ddf9b6ec717ced532b81fd94021743f7e44279115422ca53eaa184b66e4109235c2a7f1dd729ddf3630f6c1d92889cafef06b33e  plasma-settings-26.08.1.tar.xz
+d5b5d945998b9d928cd215426a05e528cda94938faeb0ba193bae479f41c155de1bceb8eb4596a32b4e40cb3d1c3808dd37f926dfe7d235b42e112a4a97c693a  plasma-settings-26.08.2.tar.xz
 "

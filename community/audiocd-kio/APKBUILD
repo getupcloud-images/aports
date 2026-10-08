@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=audiocd-kio
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by qt6-qtdeclarative -> ki18n
 arch="all !armhf"
@@ -41,5 +41,5 @@ package() {
 }
 
 sha512sums="
-f06ca7362c92d0ddd5146a0fc5a2bc787e6b31812b22a09ca81fad0f11ed4b21b4b491f2a739e292ecdd0efa6fca0f50d242c287179f38b3b332c0ec44d5672a  audiocd-kio-26.08.1.tar.xz
+7b834018070992664897e2e4873ab581d35c5f593e3c56a6f3107b7302c7065900fadf95c57b20621a1a37ffd133b6fa9cf3ed584e1895ec21bc73317655734e  audiocd-kio-26.08.2.tar.xz
 "

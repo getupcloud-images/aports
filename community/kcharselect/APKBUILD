@@ -4,7 +4,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kcharselect
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by extra-cmake-modules
 arch="all !armhf"
@@ -40,5 +40,5 @@ package() {
 }
 
 sha512sums="
-8214e2dd9cc4b61fe685d433c93fc0d2a125bf869a4e5fcf83fa80a249aa0a24d87e1289b7ecd178d7b275b1437fb653dafc93552f0d38c331bd3887056265b1  kcharselect-26.08.1.tar.xz
+7031a1a6cff4e4eee82b73317487cdf5b338ea94c68ab458c301dbb0d34cba9b9562e9f90edf88f67f571501c07557ae837216e9f38f59b36739ff4fcf80a078  kcharselect-26.08.2.tar.xz
 "

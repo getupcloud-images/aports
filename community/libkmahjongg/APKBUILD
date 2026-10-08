@@ -4,7 +4,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=libkmahjongg
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by extra-cmake-modules
 arch="all !armhf"
@@ -41,5 +41,5 @@ package() {
 }
 
 sha512sums="
-af8c861a737e1ab200737152fe785331825e1209ccb240600118d9e049ce8316dc89971b543d8fa18dea04ecc88f4b3b19c3fbf4881245a7bd5bf72aef89984d  libkmahjongg-26.08.1.tar.xz
+8dd053d0e3e66c87854cfc1ce8d2e691982f6159fd7b17b8fc575660e8d1adb9c6299cb1fee720cca6336f9fa2ff6d3dd2b20bcb34c3fe8a50cce3a71a8b5ca1  libkmahjongg-26.08.2.tar.xz
 "

@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=step
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by qt6-qtdeclarative -> knewstuff
 arch="all !armhf"
@@ -45,5 +45,5 @@ package() {
 }
 
 sha512sums="
-a019732d288890888fe9ab25b01d7de5e34071c08eeb1f57347314725d9a7ef356db7eddefca883755b9308f999930d29d92cfc158371c0664e5369849395854  step-26.08.1.tar.xz
+a9b00d9d89d6b51927f6272c5b7d2fa9709bab201d485922df2e21b5ad74d32df47553090a7b80623a0037759a76713a72101f6c900aa4f58e7c2199c6eb4814  step-26.08.2.tar.xz
 "

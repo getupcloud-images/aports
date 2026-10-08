@@ -4,7 +4,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=klickety
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 pkgdesc="An adaptation of the Clickomania game"
 # armhf blocked by extra-cmake-modules
@@ -46,5 +46,5 @@ package() {
 }
 
 sha512sums="
-059d1fb36e319978095c623c799689a2a4392c5f953e034283b8c564fbe575be121d582fe669b24bb711943a165f220cf5cbf5bb016b596f7c868dcf7b142be9  klickety-26.08.1.tar.xz
+9823a0e94ebf4862c6d13f436004479730a2e9cf99a6b9aa10a467ccf9b7d297e8a64d00d645b4bd5298e2dc33291c1c20dce26ffdbd18d95a34720fdc5fcfa5  klickety-26.08.2.tar.xz
 "

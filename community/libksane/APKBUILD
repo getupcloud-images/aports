@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=libksane
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by qt6-qtdeclarative -> ki18n
 arch="all !armhf"
@@ -39,5 +39,5 @@ package() {
 }
 
 sha512sums="
-dbfd5d34996a8bf0abbd2cc449354939b5b48c6dcba79765eb68735bc408fb7155f64acc51bacf955ddb007fbb6a46f31809ccf7325f036349caf676a8cf6f5d  libksane-26.08.1.tar.xz
+5e7282e465d9bcdc7f7e13cb85e3d614b2a6abc4fc6e81bec49f2de3f595195c8218549daa0a3122160c094af451eee6d3b31332e0cbe06762706737732ccbfb  libksane-26.08.2.tar.xz
 "

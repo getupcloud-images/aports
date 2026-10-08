@@ -4,7 +4,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=katomic
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by extra-cmake-modules
 arch="all !armhf"
@@ -44,5 +44,5 @@ package() {
 }
 
 sha512sums="
-4dd14340e0262366b152912561ab14b197923c4f25813c417e37f789571ed4a143da404c7e7a4bc008815dd14d1fde6ac0a9a75e05b3d2adf201c994e082d171  katomic-26.08.1.tar.xz
+bfa220fe64aafab5e190af5a2bcb5c9426ae08c9c2ed2e94285bfb61043568f8bf8a83a7aa9c3e621395abbf4081326086312388b52be5163adb33fd0eb9c7b0  katomic-26.08.2.tar.xz
 "

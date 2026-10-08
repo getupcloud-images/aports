@@ -4,7 +4,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kblackbox
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by extra-cmake-modules
 arch="all !armhf"
@@ -45,5 +45,5 @@ package() {
 }
 
 sha512sums="
-8d573effd309b22227cf7d5222f76c5cf69608d1c541a6536e6188e2aea8134ce6ffc78f8e28b8ca1b516ba8b3702ee4ea46c2e96411560101c7037300ccdc1a  kblackbox-26.08.1.tar.xz
+ada9418a1e1e7eab096134b0a861dbebf4e12d4b752111968ac17347f2f07355f474b02ca81414f17a46cfe009904baaf3edbf1457b7727c5538d3da50f78293  kblackbox-26.08.2.tar.xz
 "

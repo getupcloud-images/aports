@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kdesdk-thumbnailers
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by qt6-qtdeclarative -> ki18n
 arch="all !armhf"
@@ -35,5 +35,5 @@ package() {
 }
 
 sha512sums="
-834e19a64ff688350ad99b979f4b5e4243619dda764357bdeb06c2d426f6aa57c5f245567ed31c4998e470289b85acc325321f3fb110d633f9098f5004eb6a93  kdesdk-thumbnailers-26.08.1.tar.xz
+0a35c462e1977e0761063badbf77eb70a8a530c285dfd422e01a88544d4539a3dfb0b3e2f45b4aa67861c21d3c8a7aa7ccc4c09bbf9d15eda0754e025ee778bc  kdesdk-thumbnailers-26.08.2.tar.xz
 "

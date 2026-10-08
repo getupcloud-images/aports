@@ -4,7 +4,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=konversation
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by extra-cmake-modules
 arch="all !armhf"
@@ -60,5 +60,5 @@ package() {
 }
 
 sha512sums="
-ba303fd67e834ba01cb08f355c203b11bb6e385ba496736a6e7cda87a2de837ea40dde00498e485217e2f83c1c60a3641ffd87adac98502f6958998a7023b07f  konversation-26.08.1.tar.xz
+aee4542c5f0d7f8e7c6b55c100bd17c1af2cc8a4325cb307c6862279cd09b2b82389762220f779fad8bbd370818c79ad478d64b9f2e79199a24805572bf129ac  konversation-26.08.2.tar.xz
 "

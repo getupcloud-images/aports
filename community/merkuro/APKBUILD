@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=merkuro
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 pkgdesc="A calendar application using Akonadi to sync with external services (NextCloud, GMail, ...)"
 # armhf blocked by qt6-qtdeclarative
@@ -67,5 +67,5 @@ package() {
 }
 
 sha512sums="
-023cc46464c00505e60ba9d92f8c4a7c8afbbb68d734937dedfbfe5a7b729d04594f1b49a3fbed88abe42e7a3588285c29831a6f9f9e98cc8bdb361735062c62  merkuro-26.08.1.tar.xz
+af2d90a5260cf07db7bafd18f5fc94834aa0b6146e8fab1168b6f3abb716ca2c743a22a2c1957654414d9b00b1ef77666226fe4f29e24e62449871b8788937a4  merkuro-26.08.2.tar.xz
 "

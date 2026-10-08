@@ -2,8 +2,8 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kdenlive
-pkgver=26.08.1
-pkgrel=1
+pkgver=26.08.2
+pkgrel=0
 arch="all !armhf !s390x !riscv64"
 url="https://kdenlive.org"
 pkgdesc="An intuitive and powerful multi-track video editor, including most recent video technologies"
@@ -61,5 +61,5 @@ package() {
 }
 
 sha512sums="
-d9b1f8025c8d2dea41370ccf2191dc55bd95083b6170fe68fd1d5b4a48825a08607d84ef07800ed12251a70bc2fd1ab5aa6348ce0745d0d0436c529863a5e130  kdenlive-26.08.1.tar.xz
+e49c9af0495a61bb8b2eff178f47b6874b6adee16ca436a6a5b9ef538c89c1dc9d0df23510124612b943ad78dc041e8b374614c6fc1696e0a214f70f35a35c14  kdenlive-26.08.2.tar.xz
 "

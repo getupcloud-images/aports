@@ -4,7 +4,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kmouth
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by extra-cmake-modules
 arch="all !armhf"
@@ -46,5 +46,5 @@ package() {
 }
 
 sha512sums="
-9db6d3d4820d496b7993d31128eb36aca4256fabeea62c05cf6bec89361b60e211b1b61c52135842d3a3f0263fa62b33007d30c0cc6b2d44c27e95ef2f414de8  kmouth-26.08.1.tar.xz
+580ef52ce88c6ffbfb34822e41f5ec05df6f7d14b3c74c2f8850fc497765b9c9226ed96d40eaedfa531fbcf1afb17e13fd8b9f83553a560a7a72a525989346af  kmouth-26.08.2.tar.xz
 "

@@ -4,7 +4,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=keditbookmarks
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by extra-cmake-modules
 arch="all !armhf"
@@ -45,5 +45,5 @@ package() {
 }
 
 sha512sums="
-8f1d200bb8b556e36b2f54e66b8a9d4e884f1b45cf5a550ba1d8625c98df43aba25effbdd3abfa869e5c5d40628cc0c21eabd8e0e36524f00d21771b2e67ae4e  keditbookmarks-26.08.1.tar.xz
+07da0a5ec9dc25e3b13dd30dd8241a7dd4638dfade9cc6a6e082748ef558b64e6a3592538473bb5873f9b066078f9810ae9745b5183fbaac0d6093591d1cd1ae  keditbookmarks-26.08.2.tar.xz
 "

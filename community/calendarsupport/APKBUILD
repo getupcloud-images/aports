@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=calendarsupport
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 pkgdesc="Library providing calendar support"
 # armhf blocked by qt6-qtdeclarative
@@ -52,5 +52,5 @@ package() {
 	DESTDIR="$pkgdir" cmake --install build
 }
 sha512sums="
-3b32f735e08ccd835c0c8d5c0a10d639cabab7ad3dfbb62d29a89cc9dc95f3cb514eea517e9ae91e36320e82d4f8e4f2127de66936ae6b61c0f9b523e0caa391  calendarsupport-26.08.1.tar.xz
+37893fc558c7715a0c55f4c3c988ae9d9dfc129f07b72d198bfa7c54f68a02318dd4b1d595bef24805bc384bd66bf7ba478d71c40ce4aa07d32d9a4efd39bd1f  calendarsupport-26.08.2.tar.xz
 "

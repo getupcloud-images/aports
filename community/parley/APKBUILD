@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=parley
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by qt6-qtdeclarative -> ki18n
 # x86, armv7, s390x and riscv64 blocked by qt6-qtwebengine
@@ -54,5 +54,5 @@ package() {
 }
 
 sha512sums="
-b03e287805477a63108490b7fbf48d97349f215d0a799f44823ee3a5a1666b372ad84143be3da52e8431abe4f44ec627488e246dfc7f8fbad64b83a3d6441422  parley-26.08.1.tar.xz
+ca17a4535b446aecdc6353791b408a1f20b9c75caba5300bd6de30afab7b1f9ceea23644b0cca3a163807f0ec9356dbdd46b3d9117af326c71330ca8f70bf7ff  parley-26.08.2.tar.xz
 "

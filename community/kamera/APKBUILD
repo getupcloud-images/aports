@@ -4,7 +4,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kamera
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by extra-cmake-modules
 arch="all !armhf"
@@ -42,5 +42,5 @@ package() {
 }
 
 sha512sums="
-40566f11f6dac3f46585ba7ad7ddb5a0a590ca6dc5ffc4d34f7e3769f3c5b8d8731be07b462f8f33168a1bcca5a8fe5518dad499174e1d573db46bd8e0fce797  kamera-26.08.1.tar.xz
+382c93b6ad9f4c96e6e05e5f480bf6d95496e6b5680d5054552fb216359d6f6ac882ffcd7fbd4c7fef0079e6a1a8637e8870f420e488efb7ba0f84e76b1775f4  kamera-26.08.2.tar.xz
 "

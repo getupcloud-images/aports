@@ -4,7 +4,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kcachegrind
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by extra-cmake-modules
 arch="all !armhf"
@@ -44,5 +44,5 @@ package() {
 }
 
 sha512sums="
-7eb592dc5078f09f6e9173c3330e15dde2f1f3bcd2d510e7bbcf314f5c6ac14a819ebb03867399be704949f9a52aae6377448c9e753fe54c9eb4e82b6ed61085  kcachegrind-26.08.1.tar.xz
+cd6e9b8d422485ccca40a3e3b33833fb0c4f5455e18466e853396ff1971bf8d9d1ccf0e6a171356515767dff2671c5e772ad59565d76982af40e72abab478fa2  kcachegrind-26.08.2.tar.xz
 "

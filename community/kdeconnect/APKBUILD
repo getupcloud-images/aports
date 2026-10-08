@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kdeconnect
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 pkgdesc="Adds communication between KDE and your smartphone"
 url="https://community.kde.org/KDEConnect"
@@ -80,6 +80,6 @@ package() {
 }
 
 sha512sums="
-7d345899ac2adf9cae209a2bfbef9f06b8965c14d5fd89b397c66d123029ed40d0687dc367bf7ce10512c18de8987982ac2ea6ac81c88a19ec62fbe7e379f2d4  kdeconnect-kde-26.08.1.tar.xz
+2fcc9b7b658b7331eae9290bfacbbceabf4afe527a483a1ef428cf2a3d59f3602083f6d3a8e016562418d83b4a3039c4c456b3bded5b79ee6d1ac6a0e5910146  kdeconnect-kde-26.08.2.tar.xz
 c09cefc5012ac7b1cae65fc16722cc08d9f0124dd69131e2910ac3e2a38c374e159b6ab73fd8b20221fbe039334ed2764e7ebc068eca5c7dd8d68dc565d3452d  60_kdeconnect.nft
 "

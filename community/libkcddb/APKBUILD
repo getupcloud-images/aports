@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=libkcddb
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by qt6-qtdeclarative -> ki18n
 arch="all !armhf"
@@ -53,5 +53,5 @@ package() {
 }
 
 sha512sums="
-1ce099ebb4ab76060f625075fbc6d030e4f8b6beaad96cd9b0111b4019f1a012e55756f369a2088c6ceef2190dee7d93af6bca12c24264599f4047ac90a6b65a  libkcddb-26.08.1.tar.xz
+20b6113e50b0d6f44a95ede2d6085810bd37580dda8aa09060267f773cd429e38911b1536c545c6f490672d12e95e3a499b2a0a971fa1e1606913cf7ed52f011  libkcddb-26.08.2.tar.xz
 "

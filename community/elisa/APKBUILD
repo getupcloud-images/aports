@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=elisa
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by extra-cmake-modules
 arch="all !armhf"
@@ -69,5 +69,5 @@ package() {
 }
 
 sha512sums="
-a19e1eff482fc609b7a592d80e1d9b631c820e8236c6332e547b1dc80bf1b9c7b4ac770626c29c7ff2769256c5a9a26c5415c9aa18cdd221571a710b8e76c262  elisa-26.08.1.tar.xz
+4b6b6698336538418a1b47a00083d9fffee7194532da7244844635974e32ed2185acb7bd9a19a8196df3b1bc281c5879dce2fa1d74244e163d43aca6cd32be3e  elisa-26.08.2.tar.xz
 "

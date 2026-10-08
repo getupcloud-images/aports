@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kpkpass
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by qt6-qtdeclarative
 arch="all !armhf"
@@ -40,5 +40,5 @@ package() {
 }
 
 sha512sums="
-5b1ea04d642225fbe902b74a045d1e5cb0a20b9aade5a7ef7e76443542e725565c7f19fad06480c77ce662a62b51675157f4c0ed7041dac73d2baa36335721bf  kpkpass-26.08.1.tar.xz
+e966d633db5f35099989085a71afda05413909b41217321ef54e6b88539bc18c550f3b3c654e32f38154aa5798467ddca14b24225eaab6af526ad1788246904d  kpkpass-26.08.2.tar.xz
 "

@@ -4,7 +4,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=knights
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 pkgdesc="Chess board by KDE with XBoard protocol support"
 # armhf blocked by extra-cmake-modules
@@ -46,5 +46,5 @@ package() {
 }
 
 sha512sums="
-c6fe4c6ec15c6cd5b758abd352538becba885a033468f40be3282c6bad9f405c2a9e05308a0c7f09edbc89004027309b1376149cacb3a9b721429b114be48a49  knights-26.08.1.tar.xz
+590587bc656afef2bef659d8c7143f6573351c6679e6306e6f26ac02152b099ac6981b786e614ce6f31809f1c0a296d626ba9735076b7ec75e2b35e31f8c750c  knights-26.08.2.tar.xz
 "

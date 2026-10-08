@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kaddressbook
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by extra-cmake-modules
 # x86, s390x, riscv64 and armv7 blocked by qt6-qtwebengine
@@ -50,5 +50,5 @@ package() {
 }
 
 sha512sums="
-04af6eb5465137197a6a3feba41c957014ce0786643c2222c6c4145dd5b54cab8d49ff3306f292a1c1f5013fb08199f3ebbd4adee085a7d087671f8ec3273788  kaddressbook-26.08.1.tar.xz
+840b61ed0ec91f59aeb8ec54f498c611fab44c8f83d88d0387d03bc6e61aea9ff504b7351850a1d1dbb009d58a0e3799d5dd26bf2a7f97393745f8572cb4ab83  kaddressbook-26.08.2.tar.xz
 "

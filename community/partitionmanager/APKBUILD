@@ -4,7 +4,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=partitionmanager
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 pkgdesc="A KDE utility that allows you to manage disks, partitions, and file systems"
 # armhf blocked by extra-cmake-modules
@@ -47,5 +47,5 @@ package() {
 }
 
 sha512sums="
-865603c5c36a4dc10baf09dd6108f3e09c69dc2de884e620ba4238430dc6d70023afcd6b717638635fca3b17512ca44404ce1c37afb871ec15a3cd8256c1181b  partitionmanager-26.08.1.tar.xz
+266228a2384c7d3b6be738f3fe053688ed18a936a38ad841b00b39c4fece6fe9efdf0b38c9be0015b4b0d538b68274981f830a280aa67f02b761558a896f9b50  partitionmanager-26.08.2.tar.xz
 "

@@ -4,7 +4,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kdeedu-data
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by extra-cmake-modules
 arch="noarch !armhf"
@@ -34,5 +34,5 @@ package() {
 }
 
 sha512sums="
-03a269d31eb73f8d10a10c871bc2a3b1641e37cd17808399dfdf132dc620524003186c74797a2cd054e86d162d80e3d3d49f7c65971428492446b14a7485d3e8  kdeedu-data-26.08.1.tar.xz
+d7501fe788a3aba166316693a57b94a54a5b394261cdec6ec358b804f19f31fa718bbf80dc221d8506b1eabd9613ffb112555960b8c52da7be75a33f3ebe74af  kdeedu-data-26.08.2.tar.xz
 "

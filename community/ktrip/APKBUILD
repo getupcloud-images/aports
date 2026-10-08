@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=ktrip
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 pkgdesc="A public transport assistant"
 # armhf blocked by qt6-qtdeclarative
@@ -48,5 +48,5 @@ package() {
 }
 
 sha512sums="
-e9a8a1247fa0007e82ec56ffb8e21a0215d9d8909990e1c35d07523aaa04c591c43c95c686a3caacbdc9d80ce9d788fdf943a8e155ae03e111055154790a5cd7  ktrip-26.08.1.tar.xz
+6c57ee15ca103f5fa62a3f9b91fec2315dbef27f65d1fd57af8f444701e6e04fbee37ae8f17c68e89400643de8683e424c0987bb709f6526989bba4e75e03d62  ktrip-26.08.2.tar.xz
 "

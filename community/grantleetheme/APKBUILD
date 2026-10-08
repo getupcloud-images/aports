@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=grantleetheme
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 pkgdesc="KDE PIM mail related libraries"
 # armhf blocked by qt6-qtdeclarative -> ki18n
@@ -52,5 +52,5 @@ package() {
 	DESTDIR="$pkgdir" cmake --build build --target install_qch_docs
 }
 sha512sums="
-79ca1d8a07e86865a492965d2ad332473320dd38a70b6655bb80a57646274c1fb51540e4f22370fcff0adbea00f7170e4e110a2f266fb1d50a3ba543c94ea76d  grantleetheme-26.08.1.tar.xz
+dab5fc5832fe0b264588fc7f860f33fba4a8b5f8bb5fcb0ea88ae9fdbb4bdc14b738bf1e8cb12383e4a693a05f7f3de81fcd27c178e1f7bf844d28db719cdf2f  grantleetheme-26.08.2.tar.xz
 "
