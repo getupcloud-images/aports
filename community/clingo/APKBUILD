@@ -2,8 +2,8 @@
 # Contributor: Celeste <cielesti@protonmail.com>
 # Maintainer:
 pkgname=clingo
-pkgver=5.8.0
-pkgrel=2
+pkgver=5.8.2
+pkgrel=0
 pkgdesc="Grounder and solver for logic programs"
 url="https://potassco.org/clingo/"
 arch="all"
@@ -36,5 +36,5 @@ py() {
 }
 
 sha512sums="
-00fa597c5519419fc84240007c2052556048ceb7a7dc289629e2575bcbe37ce8deaf631f5298306ca9fda6b17650d64fb2c9fe4e9a149aeebdddc38be95b6f10  clingo-5.8.0.tar.gz
+5b14487636198199b8db8621d3bd408ef7f9ee64c818568a3505aae56bb99a272ed2c1290c9bc59bfa3bfb43e0877cf968f4184e0d18abf86220627ce3d34099  clingo-5.8.2.tar.gz
 "
