@@ -1,7 +1,7 @@
 # Contributor: Jake Buchholz Göktürk <tomalok@gmail.com>
 # Maintainer: Jake Buchholz Göktürk <tomalok@gmail.com>
 pkgname=efs-utils
-pkgver=3.3.2
+pkgver=3.3.3
 pkgrel=0
 pkgdesc="Utilities for Amazon Elastic File System (EFS)"
 url="https://github.com/aws/efs-utils"
@@ -74,7 +74,7 @@ package() {
 }
 
 sha512sums="
-62a1aa8c28c3a8dd0617037bdcbdd0e91a3944a8887a7c90dedeb4c2ff9e56d7aa42468bf9fcd6a4a3f714a8f7aa9a502a19ba589d5b3b0d112f5106de679576  efs-utils-3.3.2.tar.gz
+eb812e7cdd08b271486c6d11062282e644767ef153719025e24d99137e870ac85a36f1ccee3bea3cbc05ce79f73795d9e04a92bf68ea1644e48620aacbc0cf88  efs-utils-3.3.3.tar.gz
 bb4f7fbcba623e998c4980d5172c7c6bd9134222824eae57fd8d63245a49e5ffbc5ae1eb4684f797eee45133be76ed6f37c4049bb99948ded83bf0917d1ae921  efs-utils_openrc.patch
 32e66dfcce4cd6c508d0b6fec5636a74cee31fa10227d92e53f135135d346178aac0a9ca44f5653054f5cec92f8ade9b95dd0838288304296ddf6941ff58292b  amazon-efs-mount-watchdog.initd
 "
