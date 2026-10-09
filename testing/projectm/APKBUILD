@@ -1,7 +1,7 @@
 # Contributor: knuxify <knuxify@gmail.com>
 maintainer="Leon White <badfunkstripe@gmail.com>"
 pkgname=projectm
-pkgver=4.1.7
+pkgver=4.1.8
 pkgrel=0
 _frontend_commit=86885bef2e2d7b7b0a6f13180309cf893b5bb5b0
 _imgui_commit=45acd5e0e82f4c954432533ae9985ff0e1aad6d5
@@ -78,7 +78,7 @@ sdl() {
 }
 
 sha512sums="
-94370ae9392f59b26388a10212f727644bc78bb37aea925a1d266f0d4d2069d3eb9c45a9f17bf84561327295837056a786ab0e01ad54f4b9acd5cbd38a482b02  libprojectM-4.1.7.tar.gz
+e29532ad40d956735fff823494969eb027da80b0881ba855a5dafe07203f37f5c725ef39031e5ab5076843da4b7e49041e7d116c8e2bcf225a9bd192e63ca40e  libprojectM-4.1.8.tar.gz
 0b311d1e43ef8c9330c78d500206a4070d2043d6755473b650f89efc6c78c49a7ce609d7b2ad19b9d8a11e4aecd1ccd13e3d9f0a4a6e5ad4c7e18ff8af53b0fa  frontend-sdl-cpp-86885bef2e2d7b7b0a6f13180309cf893b5bb5b0.tar.gz
 76fd04305cb48cf6bfa5c5dc884738137bd5c08f2ce12dfd77c1fc9b9294e6c592739d3ec4ceab7d65226775c3be5076710b58bcc40b8abed7da3620db3be511  imgui-45acd5e0e82f4c954432533ae9985ff0e1aad6d5.tar.gz
 "
