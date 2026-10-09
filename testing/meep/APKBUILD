@@ -1,8 +1,8 @@
 # Contributor: Isaac Dunham <ibid.ag@gmail.com>
 maintainer="Leon White <badfunkstripe@gmail.com>"
 pkgname=meep
-pkgver=1.34.0
-pkgrel=1
+pkgver=1.35.0
+pkgrel=0
 pkgdesc="FDTD finite-difference time-domain solver"
 url="https://meep.readthedocs.io/"
 arch="all"
@@ -47,5 +47,5 @@ package() {
 }
 
 sha512sums="
-33d0bffeaa6879d04e91d8225ecd34004dc42f7c9d918574b22d33c9305875748037287d7808fa587158e6ad9b7370f3a88f303d06fc0777dd5022c4cd0e68d2  meep-1.34.0.tar.gz
+1d0bd4f70a8c2c4f57c6527fe23361c4f1e3e40d9e90eaa89a7ad414c5385ec946f38cbfc8448f3ef606ae11e95b14b3c9b38391f16f2ee0ac23bee7def2ae2a  meep-1.35.0.tar.gz
 "
