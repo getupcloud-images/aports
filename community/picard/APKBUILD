@@ -1,6 +1,6 @@
 maintainer="Bart Ribbers <bribbers@disroot.org>"
 pkgname=picard
-pkgver=3.0
+pkgver=3.0.1
 pkgrel=0
 # armhf blocked by qt6-qtdeclarative -> py3-qt6
 arch="all !armhf"
@@ -54,5 +54,5 @@ lang() {
 }
 
 sha512sums="
-bd917eda24904b6ff63c77af78a8e4e85c358ace67ac37587bd2526b10edfe2ac308e17ca7562e266a95be5b5f19bcba5ef04a38c37da18a58008d374198ff6d  picard-3.0.tar.gz
+5c67e9cc95e5fac3263a0a8ea004022139368b9e3a3448d52528614b58ee9a2c26a375500730b520ae8acc93414df07062deeb7e25193fbfb3cd4f6595a55f07  picard-3.0.1.tar.gz
 "
