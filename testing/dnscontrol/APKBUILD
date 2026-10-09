@@ -1,7 +1,7 @@
 # Contributor: Nicolas Lorin <androw95220@gmail.com>
 # Maintainer: Nicolas Lorin <androw95220@gmail.com>
 pkgname=dnscontrol
-pkgver=5.3.1
+pkgver=5.4.0
 pkgrel=0
 pkgdesc="Synchronize your DNS to multiple providers from a simple DSL"
 url="https://dnscontrol.org/"
@@ -27,6 +27,6 @@ package() {
 }
 
 sha512sums="
-05aaf4b74282a8cb927e6588b9794da6e68ff7f35dd735bb0e9a940c598caf750a4d2c03508e74e0322ea0326d2b1098726ded5023d7ec2623e23c7d5d95877d  dnscontrol-5.3.1.tar.gz
+89dcd23305b07e98b89bebd25ef0b5fe43af439ec30b800cacc3bbcb3d536c6833ef9b51d84fcdbd952b647c20e7306b126134ae91fef457d271895c49ed8681  dnscontrol-5.4.0.tar.gz
 5503f149662dcf4d8548bc7e60bf566b2c4e7580593a15cca8f344f37103f413b860f4cb25ed38a620cf650528f133e4dc4d51824993b4e314acba5308a225d4  dnsconfig.js
 "
