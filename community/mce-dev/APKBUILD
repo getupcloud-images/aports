@@ -1,16 +1,12 @@
-# Contributor: Bart Ribbers <bribbers@disroot.org>
-# Maintainer: Bart Ribbers <bribbers@disroot.org>
+maintainer="Bart Ribbers <bribbers@disroot.org>"
 pkgname=mce-dev
-pkgver=1.32.0
+pkgver=1.33.0
 pkgrel=0
 pkgdesc="Mers mce-dev"
 url="https://github.com/sailfishos/mce-dev"
 arch="noarch"
 license="LGPL-2.1-or-later"
-makedepends="
-	doxygen
-	qt5-qtbase-dev
-	"
+makedepends="doxygen"
 subpackages="$pkgname-doc"
 source="https://github.com/sailfishos/mce-dev/archive/$pkgver/mce-dev-$pkgver.tar.gz"
 options="!check" # No test suite available
@@ -30,5 +26,5 @@ doc() {
 }
 
 sha512sums="
-400bce2c710f20e6f5ff21d8036bda44e2084bf4dd1fa538ee38cd23f8549648c82fe5a90c2cbbb5ffd9d03fc70789ed089528b5725d55b4f1c41eb47281636c  mce-dev-1.32.0.tar.gz
+2c41cf2f7e47ed97cab09ae88469cc667a681268f48cbec97ec3a07cda4e64e65b29abf10d7e2bc84c7aea5d48388e03875c75688ff01141ebbd798fdd4e365c  mce-dev-1.33.0.tar.gz
 "
