@@ -1,6 +1,6 @@
 maintainer="Bart Ribbers <bribbers@disroot.org>"
 pkgname=nemo-qml-plugin-calendar
-pkgver=0.7.11
+pkgver=0.7.12
 pkgrel=0
 pkgdesc="QML plugin for calendars"
 url="https://github.com/sailfishos/nemo-qml-plugin-calendar"
@@ -30,5 +30,5 @@ package() {
 }
 
 sha512sums="
-8d8dba7e9d0f5417d972148addac639bb545b534cea084aae9f9caef6538edc5afa22ce83978269e04aefa1870c547e47721d44c301f74cc8e7e61872e199f6e  nemo-qml-plugin-calendar-0.7.11.tar.gz
+c21e1eab6ec5cc79f46fb7097ca740c827700622098e7b197218df9551b8b9d0a336d12277b2c71155837b56adee143402e5ad94148a86568528ce6204d4a8b2  nemo-qml-plugin-calendar-0.7.12.tar.gz
 "
