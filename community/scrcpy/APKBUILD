@@ -1,7 +1,7 @@
 # Contributor: prspkt <prspkt@protonmail.com>
 # Maintainer: prspkt <prspkt@protonmail.com>
 pkgname=scrcpy
-pkgver=5.0
+pkgver=5.0.1
 pkgrel=0
 pkgdesc="Display and control your Android device"
 url="https://github.com/Genymobile/scrcpy"
@@ -31,6 +31,6 @@ package() {
 }
 
 sha512sums="
-6ad18ce9ab0ffd124f98a046eee50297c4f2c9c77faa6baaf98e53b091b3677d9b00c020f18c13d38e8d177507448c0882d7db427d9cac62b627333837be9f5a  scrcpy-5.0.tar.gz
-106402a6fc88da71d3ebce56b55c1eb5fa2689b7d92807e9a92e28f8806968d4ebd89ae980aa4e9355f535788f002bb2f542513878ade19f1a2e3960304ad47b  scrcpy-server-v5.0
+2389b0ba4ad3a556765f5b09758211df3fc230c95ddbf01926415da669e006f09c93816b8504992d715287f87e03c247cc6a7c9f513fff20106b112aff334c09  scrcpy-5.0.1.tar.gz
+b84ab39f0e2c8f49b5e305f175b082aa6cb18e1b20bededdaa2d8592c0e3c7251cdeabebad75473a12399dcbe409a516bf089b45c0d69386e1ec49b7e7821f7a  scrcpy-server-v5.0.1
 "
