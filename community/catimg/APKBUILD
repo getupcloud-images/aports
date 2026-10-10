@@ -1,9 +1,10 @@
 # Contributor: Galen Abell <galen@galenabell.com>
-# Maintainer: Galen Abell <galen@galenabell.com>
+# Maintainer: mio <miyopan@e.email>
+maintainer="mio <miyopan@e.email>"
 pkgname=catimg
 pkgver=2.8.0
-pkgrel=0
-pkgdesc="terminal image renderer"
+pkgrel=1
+pkgdesc="Terminal image renderer"
 url="https://github.com/posva/catimg"
 arch="all"
 license="MIT"
@@ -15,10 +16,11 @@ source="catimg-v$pkgver.tar.gz::https://github.com/posva/catimg/archive/v$pkgver
 	"
 
 build() {
+	local cmake_crossopts=
 	if [ "$CBUILD" != "$CHOST" ]; then
 		cmake_crossopts="-DCMAKE_SYSTEM_NAME=Linux -DCMAKE_HOST_SYSTEM_NAME=Linux"
 	fi
-	cmake3.5 -B build -G Ninja \
+	cmake -B build -G Ninja \
 		-DCMAKE_INSTALL_PREFIX=/usr \
 		-DCMAKE_BUILD_TYPE=None \
 		$cmake_crossopts
@@ -27,6 +29,7 @@ build() {
 
 package() {
 	DESTDIR="$pkgdir" cmake --install build
+	install -Dm644 LICENSE -t "$pkgdir"/usr/share/licenses/$pkgname
 }
 
 sha512sums="
