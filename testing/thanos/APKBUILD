@@ -1,8 +1,8 @@
 # Contributor: wener <wenermail@gmail.com>
 # Maintainer: wener <wenermail@gmail.com>
 pkgname=thanos
-pkgver=0.42.0
-pkgrel=1
+pkgver=0.42.4
+pkgrel=0
 pkgdesc="Highly available Prometheus setup with long term storage capabilities. CNCF Sandbox project."
 url="https://github.com/thanos-io/thanos"
 license="Apache-2.0"
@@ -20,7 +20,7 @@ source="
 	"
 
 build() {
-	GOLDFLAGS="
+	local goldflags="
 		-X github.com/prometheus/common/version.Version=$pkgver
 		-X github.com/prometheus/common/version.Revision=AlpineLinux
 		-X github.com/prometheus/common/version.Branch=master
@@ -29,7 +29,7 @@ build() {
 	"
 
 	go build \
-		-ldflags "$GOLDFLAGS" \
+		-ldflags "$goldflags" \
 		./cmd/thanos
 }
 
@@ -73,7 +73,7 @@ package() {
 }
 
 sha512sums="
-ba15bb52866748c0e2741097767e7e0f8a2f1a95c08d620252297811960f242f54202c6c3230eb5700b0db551dabbb5e6d78ee518235ec5374b344ed8655ca81  thanos-0.42.0.tar.gz
+5e55f2b1d802934cd4e230b1ffe3ee98f854dfa6462f1f30fedb88dd9428c5e115bf8ed30735eec4660a5e74b5104b1848965597818c7ed820ab89e44bc6f417  thanos-0.42.4.tar.gz
 8407adbc29d90d36550ad16555d0b881d1d1745fba7bf5f4bd4a66bdf4abe196321106881dbba569c7e123d6abfbe78714b6e108b1e3c69b051270c3a46ba5c8  thanos.initd
 c1bc9d71828b176eed964d5f673ea5e5d368f25ca21a3b12dcb8f8987f8bf12f35c06849d7fc4e6ffae52d98a5e636bdb63333930fe640c48e4d02a0b8db620a  thanos.confd
 "

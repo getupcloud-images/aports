@@ -3,7 +3,7 @@
 # Maintainer: Natanael Copa <ncopa@alpinelinux.org>
 pkgname=util-linux
 pkgver=2.42.4
-pkgrel=2
+pkgrel=3
 pkgdesc="Random collection of Linux utilities"
 url="https://git.kernel.org/cgit/utils/util-linux/util-linux.git"
 arch="all"
@@ -17,6 +17,7 @@ makedepends_host="
 	linux-headers
 	ncurses-dev
 	sqlite-dev
+	utmps-dev
 	zlib-dev
 	"
 subpackages="
@@ -59,7 +60,6 @@ if [ -z "$BOOTSTRAP" ] && [ -z "$APORTS_BOOTSTRAP" ]; then
 		linux-pam-dev
 		python3-dev
 		libeconf-dev
-		utmps-dev
 		utmps-static
 		"
 	subpackages="$subpackages

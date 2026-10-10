@@ -1,8 +1,8 @@
 # Contributor: wener <wenermail@gmail.com>
 # Maintainer: wener <wenermail@gmail.com>
 pkgname=seaweedfs
-pkgver=4.39
-pkgrel=1
+pkgver=4.48
+pkgrel=0
 pkgdesc="SeaweedFS is a simple and highly scalable distributed file system to store and serve billions of files fast"
 url="https://github.com/seaweedfs/seaweedfs"
 license="Apache-2.0"
@@ -24,12 +24,12 @@ options="net"
 export CGO_ENABLED=1
 
 build() {
-	GO_LDFLAGS="
+	local go_ldflags="
 		-extldflags \"$LDFLAGS\"
 		-X github.com/chrislusf/seaweedfs/weed/util.COMMIT=AlpineLinux
 	"
 	# build for large disk support
-	go build -tags 5BytesOffset -ldflags "$GO_LDFLAGS" -o weed/weed ./weed
+	go build -tags 5BytesOffset -ldflags "$go_ldflags" -o weed/weed ./weed
 	# generate master conf
 	./weed/weed scaffold -config master -output ./
 }
@@ -67,7 +67,7 @@ package() {
 }
 
 sha512sums="
-c305fd447eb9c191ff9c6309bc069e77ba90acf826bba4e6b6527aa08a9d73fe871e62db7bf3612665affb874d183e1f88bfb7828572eeb89a1e166b93cb1106  seaweedfs-4.39.tar.gz
+91a34fec9bb78832f421b54dd823adb1c1690b746083d947c5f72e4ad7670362512bbb920432f42342482774fd8be2b396645ff3bc764b10f328432601733fe3  seaweedfs-4.48.tar.gz
 54a1bb3d77e20e54dc38b08124665fc0f0bc510e9ca044a0d77d43ca45500572b9eae591ac1e55f7d54f95bb16055909534f9a8111ee33662d6a3f2789244adc  seaweedfs.initd
 31c4f65425836fc53e6b2e3f93333afb2804d4655aa2903eee10b12a5f337518dae5b3e26510bc76f61e8c917a3e130decdac7ec1faeb9dab143a8aefb3951df  seaweedfs.confd
 "

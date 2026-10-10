@@ -1,0 +1,231 @@
+diff --git a/build.zig b/build.zig
+index d4dbd2a..0f6ea9b 100644
+--- a/build.zig
++++ b/build.zig
+@@ -25,7 +25,7 @@ pub fn build(b: *std.Build) !void {
+             const git_describe_long = b.runAllowFail(
+                 &[_][]const u8{ "git", "-C", b.build_root.path orelse ".", "describe", "--long" },
+                 &ret,
+-                .Inherit,
++                .inherit,
+             ) catch break :blk version;
+ 
+             var it = mem.splitSequence(u8, mem.trim(u8, git_describe_long, &std.ascii.whitespace), "-");
+@@ -69,10 +69,8 @@ pub fn build(b: *std.Build) !void {
+ 
+     rivercarro.root_module.addOptions("build_options", options);
+ 
+-    rivercarro.linkLibC();
+-
+     rivercarro.root_module.addImport("wayland", wayland);
+-    rivercarro.linkSystemLibrary("wayland-client");
++    rivercarro.root_module.linkSystemLibrary("wayland-client", .{});
+ 
+     rivercarro.root_module.addImport("flags", flags);
+ 
+diff --git a/build.zig.zon b/build.zig.zon
+index 4483559..02b09b9 100644
+--- a/build.zig.zon
++++ b/build.zig.zon
+@@ -3,8 +3,8 @@
+     .version = "0.6.0",
+     .dependencies = .{
+         .wayland = .{
+-            .url = "https://codeberg.org/ifreund/zig-wayland/archive/v0.4.0.tar.gz",
+-            .hash = "wayland-0.4.0-lQa1khbMAQAsLS2eBR7M5lofyEGPIbu2iFDmoz8lPC27",
++            .url = "https://codeberg.org/ifreund/zig-wayland/archive/4a150a04f76f7329e80280661355c04328369d1f.tar.gz",
++            .hash = "wayland-0.6.0-dev-lQa1krD8AQBlMqwuhAMJjPQKXvpRByZBxxqMVAZ7yzbG",
+         },
+     },
+     .paths = .{""},
+diff --git a/common/flags.zig b/common/flags.zig
+index 79adde9..a1e5be8 100644
+--- a/common/flags.zig
++++ b/common/flags.zig
+@@ -36,32 +36,35 @@ pub fn parser(comptime Arg: type, comptime flags: []const Flag) type {
+             flags: Flags,
+ 
+             pub const Flags = flags_type: {
+-                var fields: []const std.builtin.Type.StructField = &.{};
+-                for (flags) |flag| {
+-                    const field: std.builtin.Type.StructField = switch (flag.kind) {
+-                        .boolean => .{
+-                            .name = flag.name,
+-                            .type = bool,
+-                            .default_value_ptr = &false,
+-                            .is_comptime = false,
+-                            .alignment = @alignOf(bool),
++                var field_names: [flags.len][]const u8 = undefined;
++                var field_types: [flags.len]type = undefined;
++                var field_attrs: [flags.len]std.builtin.Type.StructField.Attributes = undefined;
++                for (flags, 0..) |flag, i| {
++                    field_names[i] = flag.name;
++                    switch (flag.kind) {
++                        .boolean => {
++                            field_types[i] = bool;
++                            field_attrs[i] = .{
++                                .@"align" = @alignOf(bool),
++                                .default_value_ptr = &false,
++                            };
+                         },
+-                        .arg => .{
+-                            .name = flag.name,
+-                            .type = ?[:0]const u8,
+-                            .default_value_ptr = &@as(?[:0]const u8, null),
+-                            .is_comptime = false,
+-                            .alignment = @alignOf(?[:0]const u8),
++                        .arg => {
++                            field_types[i] = ?[:0]const u8;
++                            field_attrs[i] = .{
++                                .@"align" = @alignOf(?[:0]const u8),
++                                .default_value_ptr = &@as(?[:0]const u8, null),
++                            };
+                         },
+-                    };
+-                    fields = fields ++ [_]std.builtin.Type.StructField{field};
++                    }
+                 }
+-                break :flags_type @Type(.{ .@"struct" = .{
+-                    .layout = .auto,
+-                    .fields = fields,
+-                    .decls = &.{},
+-                    .is_tuple = false,
+-                } });
++                break :flags_type @Struct(
++                    .auto,
++                    null,
++                    &field_names,
++                    &field_types,
++                    &field_attrs,
++                );
+             };
+         };
+ 
+diff --git a/src/main.zig b/src/main.zig
+index e366a29..08c544c 100644
+--- a/src/main.zig
++++ b/src/main.zig
+@@ -20,10 +20,9 @@ const build_options = @import("build_options");
+ const std = @import("std");
+ const assert = std.debug.assert;
+ const fmt = std.fmt;
+-const io = std.io;
+ const mem = std.mem;
+ const math = std.math;
+-const posix = std.posix;
++const linux = std.os.linux;
+ 
+ const flags = @import("flags");
+ const wayland = @import("wayland");
+@@ -426,11 +425,13 @@ const Output = struct {
+     }
+ };
+ 
+-pub fn main() !void {
++pub fn main(init: std.process.Init) !void {
++    const io = init.io;
++    const argv = try init.minimal.args.toSlice(init.arena.allocator());
+     var err_buffer: [1024]u8 = undefined;
+-    var err_writer = std.fs.File.stderr().writer(&err_buffer);
++    var err_writer = std.Io.File.stderr().writer(io, &err_buffer);
+ 
+-    const res = flags.parser([*:0]const u8, &.{
++    const res = flags.parser([:0]const u8, &.{
+         .{ .name = "h", .kind = .boolean },
+         .{ .name = "version", .kind = .boolean },
+         .{ .name = "no-smart-gaps", .kind = .boolean },
+@@ -442,60 +443,60 @@ pub fn main() !void {
+         .{ .name = "width-ratio", .kind = .arg },
+         .{ .name = "width-ratio-centered", .kind = .boolean },
+         .{ .name = "per-tag", .kind = .boolean },
+-    }).parse(std.os.argv[1..]) catch {
++    }).parse(argv[1..]) catch {
+         try err_writer.interface.writeAll(usage);
+         try err_writer.end();
+-        posix.exit(1);
++        linux.exit(1);
+     };
+-    if (res.args.len != 0) fatal_usage("Unknown option '{s}'", .{res.args[0]});
++    if (res.args.len != 0) fatal_usage(io, "Unknown option '{s}'", .{res.args[0]});
+ 
+     if (res.flags.h) {
+         var buffer: [1024]u8 = undefined;
+-        var writer = std.fs.File.stdout().writer(&buffer);
++        var writer = std.Io.File.stdout().writer(io, &buffer);
+         try writer.interface.writeAll(usage);
+         try writer.end();
+-        posix.exit(0);
++        linux.exit(0);
+     }
+     if (res.flags.version) {
+         var buffer: [1024]u8 = undefined;
+-        var writer = std.fs.File.stdout().writer(&buffer);
++        var writer = std.Io.File.stdout().writer(io, &buffer);
+         try writer.interface.writeAll(build_options.version ++ "\n");
+         try writer.end();
+-        posix.exit(0);
++        linux.exit(0);
+     }
+     if (res.flags.@"no-smart-gaps") {
+         cfg.smart_gaps = false;
+     }
+     if (res.flags.@"inner-gaps") |raw| {
+         cfg.inner_gaps = fmt.parseUnsigned(u31, raw, 10) catch
+-            fatal_usage("Invalid value '{s}' provided to -inner-gaps", .{raw});
++            fatal_usage(io, "Invalid value '{s}' provided to -inner-gaps", .{raw});
+     }
+     if (res.flags.@"outer-gaps") |raw| {
+         cfg.outer_gaps = fmt.parseUnsigned(u31, raw, 10) catch
+-            fatal_usage("Invalid value '{s}' provided to -outer-gaps", .{raw});
++            fatal_usage(io, "Invalid value '{s}' provided to -outer-gaps", .{raw});
+     }
+     if (res.flags.@"main-location") |raw| {
+         cfg.main_location = std.meta.stringToEnum(Location, raw) orelse
+-            fatal_usage("Invalid value '{s}' provided to -main-location", .{raw});
++            fatal_usage(io, "Invalid value '{s}' provided to -main-location", .{raw});
+     }
+     if (res.flags.@"main-count") |raw| {
+         cfg.main_count = fmt.parseUnsigned(u31, raw, 10) catch
+-            fatal_usage("Invalid value '{s}' provided to -main-count", .{raw});
++            fatal_usage(io, "Invalid value '{s}' provided to -main-count", .{raw});
+     }
+     if (res.flags.@"main-ratio") |raw| {
+         cfg.main_ratio = fmt.parseFloat(f64, raw) catch {
+-            fatal_usage("Invalid value '{s}' provided to -main-ratio", .{raw});
++            fatal_usage(io, "Invalid value '{s}' provided to -main-ratio", .{raw});
+         };
+         if (cfg.main_ratio < 0.1 or cfg.main_ratio > 0.9) {
+-            fatal_usage("Invalid value '{s}' provided to -main-ratio", .{raw});
++            fatal_usage(io, "Invalid value '{s}' provided to -main-ratio", .{raw});
+         }
+     }
+     if (res.flags.@"width-ratio") |raw| {
+         cfg.width_ratio = fmt.parseFloat(f64, raw) catch {
+-            fatal_usage("Invalid value '{s}' provided to -width-ratio", .{raw});
++            fatal_usage(io, "Invalid value '{s}' provided to -width-ratio", .{raw});
+         };
+         if (cfg.width_ratio < 0.1 or cfg.width_ratio > 1.0) {
+-            fatal_usage("Invalid value '{s}' provided to -width-ratio", .{raw});
++            fatal_usage(io, "Invalid value '{s}' provided to -width-ratio", .{raw});
+         }
+     }
+     if (res.flags.@"width-ratio-centered") cfg.width_ratio_centered = true;
+@@ -586,14 +587,14 @@ fn registry_event(context: *Context, registry: *wl.Registry, event: wl.Registry.
+ 
+ fn fatal(comptime format: []const u8, args: anytype) noreturn {
+     log.err(format, args);
+-    posix.exit(1);
++    linux.exit(1);
+ }
+ 
+-fn fatal_usage(comptime format: []const u8, args: anytype) noreturn {
++fn fatal_usage(io: std.Io, comptime format: []const u8, args: anytype) noreturn {
+     log.err(format, args);
+     var buffer: [1024]u8 = undefined;
+-    var writer = std.fs.File.stdout().writer(&buffer);
++    var writer = std.Io.File.stdout().writer(io, &buffer);
+     writer.interface.writeAll(usage) catch {};
+     writer.end() catch {};
+-    posix.exit(1);
++    linux.exit(1);
+ }
