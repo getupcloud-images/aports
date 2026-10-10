@@ -1,0 +1,152 @@
+From 1bc46908dea2730f592afc991f5a9f05c211b22c Mon Sep 17 00:00:00 2001
+From: Wouter Geraedts <git@woutergeraedts.nl>
+Date: Tue, 8 Sep 2026 14:59:20 +0200
+Subject: [PATCH] Added strict systemd service files
+
+---
+ docs/examples/conf/ntpd-rs-metrics.service    |  1 -
+ .../conf/ntpd-rs-metrics.strict.service       | 43 +++++++++++
+ docs/examples/conf/ntpd-rs.strict.service     | 72 +++++++++++++++++++
+ 3 files changed, 115 insertions(+), 1 deletion(-)
+ create mode 100644 docs/examples/conf/ntpd-rs-metrics.strict.service
+ create mode 100644 docs/examples/conf/ntpd-rs.strict.service
+
+diff --git a/docs/examples/conf/ntpd-rs-metrics.service b/docs/examples/conf/ntpd-rs-metrics.service
+index 2c38f0192..49244a5b5 100644
+--- a/docs/examples/conf/ntpd-rs-metrics.service
++++ b/docs/examples/conf/ntpd-rs-metrics.service
+@@ -7,7 +7,6 @@ Type=notify
+ Restart=always
+ ExecStart=/usr/bin/ntp-metrics-exporter
+ Environment="RUST_LOG=info"
+-RuntimeDirectory=ntpd-rs-observe
+ User=ntpd-rs-observe
+ Group=ntpd-rs-observe
+ 
+diff --git a/docs/examples/conf/ntpd-rs-metrics.strict.service b/docs/examples/conf/ntpd-rs-metrics.strict.service
+new file mode 100644
+index 000000000..e8762c807
+--- /dev/null
++++ b/docs/examples/conf/ntpd-rs-metrics.strict.service
+@@ -0,0 +1,43 @@
++[Unit]
++Description=Network Time Service (ntpd-rs) metrics exporter
++Documentation=https://github.com/pendulum-project/ntpd-rs
++
++[Service]
++Type=notify
++Restart=always
++ExecStart=/usr/bin/ntp-metrics-exporter
++Environment="RUST_LOG=info"
++User=ntpd-rs-observe
++Group=ntpd-rs-observe
++
++NoNewPrivileges=yes
++AmbientCapabilities=
++CapabilityBoundingSet=
++
++## No access to any /dev
++DevicePolicy=closed
++PrivateDevices=yes
++
++## Standard minimal systemd lockdown
++LockPersonality=yes
++MemoryDenyWriteExecute=yes
++PrivateTmp=yes
++ProtectControlGroups=yes
++ProtectHome=yes
++ProtectHostname=yes
++ProtectKernelLogs=yes
++ProtectKernelModules=yes
++ProtectKernelTunables=yes
++ProtectProc=invisible
++ProtectSystem=strict
++RestrictAddressFamilies=AF_UNIX AF_NETLINK AF_INET AF_INET6
++RemoveIPC=yes
++RestrictNamespaces=yes
++RestrictRealtime=yes
++RestrictSUIDSGID=yes
++SystemCallArchitectures=native
++SystemCallFilter=@basic-io @file-system @io-event @network-io @signal ioctl
++UMask=0000
++
++[Install]
++WantedBy=multi-user.target
+diff --git a/docs/examples/conf/ntpd-rs.strict.service b/docs/examples/conf/ntpd-rs.strict.service
+new file mode 100644
+index 000000000..eea286dca
+--- /dev/null
++++ b/docs/examples/conf/ntpd-rs.strict.service
+@@ -0,0 +1,72 @@
++[Unit]
++Description=Network Time Service (ntpd-rs)
++Documentation=https://github.com/pendulum-project/ntpd-rs
++After=network-online.target
++Wants=network-online.target
++Conflicts=systemd-timesyncd.service ntp.service chrony.service
++
++[Service]
++Type=notify
++Restart=no
++ExecStart=/usr/bin/ntp-daemon
++Environment="RUST_LOG=info"
++User=ntpd-rs
++Group=ntpd-rs
++
++NoNewPrivileges=yes
++AmbientCapabilities=CAP_SYS_TIME
++CapabilityBoundingSet=CAP_SYS_TIME
++
++## Sockets live in the runtime directory
++RuntimeDirectory=ntpd-rs
++RuntimeDirectoryMode=0755
++
++## Configuration directory is read by both ntpd-rs and ntpd-rs-metrics
++## No keys should be stored here
++ConfigurationDirectory=ntpd-rs
++ConfigurationDirectoryMode=0555
++
++## (optional) When running as server
++AmbientCapabilities=CAP_NET_BIND_SERVICE
++CapabilityBoundingSet=CAP_NET_BIND_SERVICE
++
++## (optional) When preserving NTS key materials storage
++## Requires setting state in /var/lib/ntpd-rs subfolder
++StateDirectory=ntpd-rs
++StateDirectoryMode=0700
++
++## Device management
++### (optional) When using PPS
++# DevicePolicy=closed
++# DeviceAllow=/dev/pps
++
++### (default) No access to any /dev
++DevicePolicy=closed
++PrivateDevices=yes
++
++## Standard minimal systemd lockdown
++LockPersonality=yes
++MemoryDenyWriteExecute=yes
++PrivateTmp=yes
++ProtectControlGroups=yes
++ProtectHome=yes
++ProtectHostname=yes
++ProtectKernelLogs=yes
++ProtectKernelModules=yes
++ProtectKernelTunables=yes
++ProtectProc=invisible
++ProtectSystem=strict
++RestrictAddressFamilies=AF_UNIX AF_NETLINK AF_INET AF_INET6
++RemoveIPC=yes
++RestrictNamespaces=yes
++RestrictRealtime=yes
++RestrictSUIDSGID=yes
++SystemCallArchitectures=native
++SystemCallFilter=@basic-io @clock @file-system @io-event @network-io @process @signal ioctl madvise
++UMask=0077
++
++## (do not use) This breaks setting the time.
++# PrivateUsers=yes
++
++[Install]
++WantedBy=multi-user.target
