@@ -1,0 +1,58 @@
+# Maintainer: Milan P. Stanić <mps@arvanta.net>
+pkgname=wallet-engine
+pkgver=0.0.7
+pkgrel=0
+pkgdesc="Rust library for Telegram's wallet"
+url="https://github.com/i582/wallet-engine"
+arch="all !s390x" # s390x: unnecessary
+license="MIT OR Apache-2.0"
+options="!check net" # tests need network and cargo fetch
+makedepends="cargo cargo-auditable"
+subpackages="$pkgname-dev"
+_commit=e59e0d89d7ee90c388bf36e3334c5b276f396697
+_patches_commit=aec474953ff7ee9b6e4cd9b8658288ea86d124f3
+source="$pkgname-$pkgver.tar.gz::https://github.com/i582/wallet-engine/archive/$_commit.tar.gz
+	wallet-engine.patch::https://raw.githubusercontent.com/desktop-app/patches/$_patches_commit/wallet-engine.patch
+	0001-Upgrade-Rustix-to-1.1.5.patch
+	"
+builddir="$srcdir/wallet-engine-$_commit"
+
+prepare() {
+	default_prepare
+
+	cargo fetch --target="$CHOST" --locked
+	cargo fetch --manifest-path bindgen/cpp/Cargo.toml --locked
+}
+
+build() {
+	cargo auditable build --frozen --release --lib
+
+	cargo run --frozen --release \
+		--manifest-path bindgen/cpp/bindgen/Cargo.toml -- \
+		--library target/release/libwallet_engine.so \
+		--out-dir "$builddir"/target/bindings
+}
+
+package() {
+	install -vDm755 target/release/libwallet_engine.so \
+		"$pkgdir"/usr/lib/libwallet_engine.so
+}
+
+dev() {
+	default_dev
+
+	depends="$pkgname=$pkgver-r$pkgrel"
+
+	install -vDm644 "$builddir"/target/bindings/wallet_engine.hpp \
+		"$subpkgdir"/usr/include/wallet_engine/wallet_engine.hpp
+	install -vDm644 "$builddir"/target/bindings/wallet_engine.cpp \
+		"$subpkgdir"/usr/include/wallet_engine/wallet_engine.cpp
+	install -vDm644 "$builddir"/target/bindings/wallet_engine_scaffolding.hpp \
+		"$subpkgdir"/usr/include/wallet_engine/wallet_engine_scaffolding.hpp
+}
+
+sha512sums="
+750a03d429e838b80068c8f608cf7ce3d6550a914b33fd4e1300b6d3eb1e4be7dbcc798b1a998f41930c45efbab147938eb9e257694b19e495f9642838151686  wallet-engine-0.0.7.tar.gz
+79460145f706d3eb244335700a30be2e6862db2bcda042244cf45ec5227956130a366c54a4240167327e33fde4c9fa671305a7f942acedd17e994d24e0612a2b  wallet-engine.patch
+b8b6e61ca2b349e529f6254b1fa9d9d4c82298dc9770431f6f05b39c37524a984d95851cb5cf821e0eb6c95ee18915bd496cddb6802f7624c7fde17580f0395a  0001-Upgrade-Rustix-to-1.1.5.patch
+"
