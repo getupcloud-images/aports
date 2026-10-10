@@ -2,7 +2,7 @@
 # Maintainer: Duncan Bellamy <dunk@denkimushi.com>
 pkgname=py3-asyncssh
 _relname=${pkgname#"py3-"}
-pkgver=2.23.0
+pkgver=2.24.1
 pkgrel=0
 pkgdesc="provides an asynchronous client and server implementation of the SSHv2 protocol on top of the Python 3.6+ asyncio framework"
 url="https://asyncssh.readthedocs.io/en/latest/"
@@ -16,6 +16,9 @@ source="https://files.pythonhosted.org/packages/source/a/asyncssh/asyncssh-$pkgv
 builddir="$srcdir/$_relname-$pkgver"
 
 # secfixes:
+#   2.24.1-r0:
+#     - CVE-2026-54591
+#     - CVE-2026-62949
 #   2.14.2-r0:
 #     - CVE-2023-48795
 
@@ -39,5 +42,5 @@ package() {
 }
 
 sha512sums="
-473404e08a4f77a35ce7cd5722d046f0e6b06f87a77a44050b1abfa0a971360c9775d9ec44493de1a4b4ad4bc729d59ffb2bdf6e17390620ad9e121317c2ca2a  asyncssh-2.23.0.tar.gz
+54b8e6a9519781f5e5d5c394b2b5780d7d88880c3c17ccdd30edf856d21c9201d6a390dcfb348f736ecc4158e8e3b053ceb48ba5e6f285598b8fed12b056d0e1  asyncssh-2.24.1.tar.gz
 "
