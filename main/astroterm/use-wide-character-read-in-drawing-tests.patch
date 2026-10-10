@@ -1,0 +1,65 @@
+Patch-Source: https://github.com/da-luce/astroterm/commit/8ccf9c70a4ece48fa8255b7eefd419ce2490cebc
+Upstream-Issue: https://github.com/da-luce/astroterm/issues/115
+---
+From 8ccf9c70a4ece48fa8255b7eefd419ce2490cebc Mon Sep 17 00:00:00 2001
+From: Dalton Luce <daltonluce42@gmail.com>
+Date: Thu, 10 Sep 2026 16:15:18 -0400
+Subject: [PATCH] fix: use wide character read in drawing tests
+
+---
+ .gitignore          |  3 +++
+ meson.build         | 19 +++++++++++++++++--
+ test/drawing_test.c |  8 ++------
+ 3 files changed, 22 insertions(+), 8 deletions(-)
+
+diff --git a/meson.build b/meson.build
+index f1005bb..88b5989 100644
+--- a/meson.build
++++ b/meson.build
+@@ -57,8 +57,23 @@ if cc.get_id() == 'msvc'
+     # Needed for unicode on Windows
+     add_project_arguments('/utf-8', language: 'c')
+ else
+-    # Needed to make GCC happy with `strptime` on certain systems
+-    add_project_arguments('-D_XOPEN_SOURCE', '-D_USE_XOPEN', '-D_GNU_SOURCE', language : 'c')
++    # -D_XOPEN_SOURCE=700
++    #   Exposes strptime() and needed for ncurses wide char support (needs >=
++    #   500).
++    #
++    # -D_GNU_SOURCE
++    #   Needed for for strptime() on glibc. Side effect: glibc forces
++    #   _XOPEN_SOURCE back up to 700 whenever _GNU_SOURCE is set.
++    #
++    # -D__USE_XOPEN
++    #   Extra fallback for strptime() on glibc setups where _XOPEN_SOURCE
++    #   alone hasn't been enough: https://stackoverflow.com/questions/15334558
++    #
++    # -D_DARWIN_C_SOURCE
++    #   Without this, _XOPEN_SOURCE=700 hides BSD-only symbols on macOS,
++    #   e.g. SIGWINCH. No-op on non-Darwin platforms.
++    add_project_arguments('-D_XOPEN_SOURCE=700', '-D_GNU_SOURCE', '-D__USE_XOPEN', '-D_DARWIN_C_SOURCE',
++                           language : 'c')
+ endif
+ 
+ build_defines = []
+diff --git a/test/drawing_test.c b/test/drawing_test.c
+index 763ad2c..1b8b2d2 100644
+--- a/test/drawing_test.c
++++ b/test/drawing_test.c
+@@ -209,14 +209,10 @@ void test_horizontal_ascii_11x11(void)
+ 
+ void read_window_to_wide_array(WINDOW *win, wchar_t array[MAX_WINDOW_HEIGHT][MAX_WINDOW_WIDTH], int height, int width)
+ {
+-    chtype wc;
+-
+     for (int y = 0; y < height; y++)
+     {
+-        for (int x = 0; x < width; x++)
+-        {
+-            array[y][x] = mvwinch(win, y, x);
+-        }
++        // Make sure to use wide-character read API
++        mvwinnwstr(win, y, 0, array[y], width);
+         array[y][width] = L'\0'; // Null-terminate the line
+     }
+ }
