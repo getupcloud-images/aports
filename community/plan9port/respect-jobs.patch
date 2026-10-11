@@ -1,0 +1,13 @@
+Respect the $JOBS environment variable set by abuild.
+
+--- a/INSTALL
++++ b/INSTALL
+@@ -67,7 +67,7 @@
+ 	echo "CFLAGS='-pthread'" >> $PLAN9/config
+ 	;;
+ *Linux*)
+-	export NPROC="$(nproc)"
++	export NPROC="${JOBS:-$(nproc)}"
+ 	egrep='grep -E'
+ 	;;
+ esac
