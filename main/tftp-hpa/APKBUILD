@@ -7,7 +7,7 @@ url="https://www.kernel.org/pub/software/network/tftp/"
 arch="all"
 license="BSD-4-Clause"
 subpackages="$pkgname-openrc $pkgname-doc"
-source="https://www.kernel.org/pub/software/network/tftp/tftp-hpa/tftp-hpa-$pkgver.tar.xz
+source="https://www.kernel.org/pub/software/network/tftp/tftp-hpa-$pkgver.tar.xz
 	in.tftpd.initd
 	in.tftpd.confd
 	fix-common.patch
