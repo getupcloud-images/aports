@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kdegraphics-mobipocket
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 pkgdesc="A collection of plugins to handle mobipocket files"
 # armhf blocked by qt6-qtdeclarative -> kio
@@ -35,5 +35,5 @@ package() {
 }
 
 sha512sums="
-7b324c27ec412d1ea9549580eff9df0029d44ae2aa047e0eaa9c1fd164c23b47d46bbabb57dbdb08455ae89124d32be5ff790c73abdb4cd5b2161efcbb94ddff  kdegraphics-mobipocket-26.08.1.tar.xz
+fc9726900ff8391ec9c6c1f094a7691a459033f85f74b8d0dede2cec1d2efbd8739044da30f99f1887d9fe65b31e543c5a918aab696910f1e4f384c147bc311d  kdegraphics-mobipocket-26.08.2.tar.xz
 "

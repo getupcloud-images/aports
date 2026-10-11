@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kaccounts-integration
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by qt6-qtdeclarative
 # x86, s390x, riscv64 blocked by qt6-qtwebengine -> signon-ui
@@ -50,5 +50,5 @@ package() {
 }
 
 sha512sums="
-473a21a705365d0789d6b186951fae7eb219bafe08635cad89ae2b1436d9015b83a87cc278ef3948b062f4d466f82ecfce389f22533b73df65ba34abd14bd7fe  kaccounts-integration-26.08.1.tar.xz
+d4c9d607f13f28e6652396709ef513e46b15ec1036f4267b603449ea59cdc3cb8ffae4a0a049c8eb7a456e7d4e5fd3e0962c086487ceb97729008c01d5acbabb  kaccounts-integration-26.08.2.tar.xz
 "

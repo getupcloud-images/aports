@@ -2,7 +2,7 @@
 # Contributor: Robert Sacks <robert@sacks.email>
 maintainer="Hoang Nguyen <folliekazetani@protonmail.com>"
 pkgname=streamlink
-pkgver=8.6.1
+pkgver=8.6.2
 pkgrel=0
 pkgdesc="CLI for extracting streams from various websites to a video player of your choosing"
 url="https://streamlink.github.io/"
@@ -45,6 +45,8 @@ subpackages="
 source="https://github.com/streamlink/streamlink/releases/download/$pkgver/streamlink-$pkgver.tar.gz"
 
 # secfixes:
+#   8.6.2-r0:
+#     - GHSA-j7pf-m7gx-jr33
 #   8.6.1-r0:
 #     - CVE-2026-92164
 #   8.4.0-r0:
@@ -77,5 +79,5 @@ package() {
 }
 
 sha512sums="
-7966be094ec9b29319a144130cd5e4cb0c89d076f490549528c4f1c452d5b4c39930b76d4f768c6e5b802b3e6d4d8c34bf336e3d1f32441bb8eb6038ca97bae6  streamlink-8.6.1.tar.gz
+30914b84713c1a2ed1e34188fdc313583b27013e0c208920d6dcc8f6bdea07f7c8be86f20acd84a08da8094f69d12db6cfcb79bbd2c4239df5c36eb1b92271a0  streamlink-8.6.2.tar.gz
 "

@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=okular
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by qt6-qtdeclarative
 # s390x and riscv64 blocked by qt6-qtwebengine -> purpose
@@ -118,5 +118,5 @@ mobile() {
 }
 
 sha512sums="
-8e1d14240b90492bb4a2ca9fd15be02eaf35e12763673612ec246865038ff2d394c3502729a688cf656fde351b80d10c224933302108a9e6866db536e2006e52  okular-26.08.1.tar.xz
+5bb65f7d00ca8f0e0ae30eed79b0f4b326e07afaf3266d826d44f13fea26beafe290d7f1b06274fbb17b702e7399ca83dddd0a119abdbaeb1c4bccc264f05929  okular-26.08.2.tar.xz
 "

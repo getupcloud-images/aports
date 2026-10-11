@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=arianna
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 pkgdesc="EPub Reader for mobile devices"
 url="https://invent.kde.org/graphics/arianna/"
@@ -56,5 +56,5 @@ package() {
 }
 
 sha512sums="
-c3e16b07a697ac86e08889878918c6acb23249d5e11b01800d00f1a9575ef02cfa46b71ff0cfa76e3baea2917a357c9f67c51cd53925682b6a41b846aa8d1cf7  arianna-26.08.1.tar.xz
+b3e9c59ae80a987279ec94e6b1089b7fadad6999d37ad7d186113fa9bebdcf7422bd6f4dfa149f6b168dba165622f1fa21c1051767d86b2dc10ed09e9136792e  arianna-26.08.2.tar.xz
 "

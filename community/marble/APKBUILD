@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=marble
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 pkgdesc="A Virtual Globe and World Atlas that you can use to learn more about Earth"
 # armhf blocked by qt6-qtdeclarative
@@ -64,5 +64,5 @@ package() {
 }
 
 sha512sums="
-0e6f56f24ca82df691e19a243520f7e03f7d4cb71559fc331601bec4a0d0bfbbe2bebbf596ee25cb9aa10fb8bfe02c5149211898c7b1f44ba456d6836936ec49  marble-26.08.1.tar.xz
+b2b301bed489478955e0a774a45b0f10082f2473f43631b16cd79e9d5dd36a5550ab27ea8cc7f6a8bddffb2a3689887442b2b5dec3e7392ece1cab2aaffeb86b  marble-26.08.2.tar.xz
 "

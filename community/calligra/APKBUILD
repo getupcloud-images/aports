@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=calligra
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 pkgdesc="Office and graphic art suite by KDE"
 # armhf blocked by extra-cmake-modules
@@ -84,5 +84,5 @@ package() {
 }
 
 sha512sums="
-7e30672ff84e29aa18ebf0e7b65815b102fea3b97ff2b38affcbffb0c8ed7a7268203b6527625c66d008a95863ebc2ebbe24b0231db6f7e83111e6be9c056324  calligra-26.08.1.tar.xz
+89342649efdfa071411d92a5a79b4395025005f70e3295d5611917eba317470f799965ff19d092930f593450f2a9a69e9850ceaac8f0e6c15731c7641b493319  calligra-26.08.2.tar.xz
 "

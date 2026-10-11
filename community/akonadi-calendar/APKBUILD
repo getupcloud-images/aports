@@ -2,8 +2,8 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=akonadi-calendar
-pkgver=26.08.1
-pkgrel=1
+pkgver=26.08.2
+pkgrel=0
 pkgdesc="Akonadi calendar integration"
 # armhf, x86, armv7, s390x and riscv64 blocked by kmailtransport -> qt6-qtwebengine
 arch="all !armhf !x86 !armv7 !s390x !riscv64"
@@ -67,5 +67,5 @@ _py3() {
 }
 
 sha512sums="
-73e5e557b639430e768bf9adec48bf9eb56128674b18ced4b4644184fb339295f8c5fb52a3aa284b6ef9a99a4ecb29494df16c6ffae4f58779393dc736047d59  akonadi-calendar-26.08.1.tar.xz
+89c2f3bebdc2412d52547f550cfcb345b11d6d964c8ba7df1d1b80d62f68b7096c2c5c6d300c62db9d9ae032f30a8a2888f5c5ab392033a8792c2a929b9d54a9  akonadi-calendar-26.08.2.tar.xz
 "

@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kde-dev-scripts
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by extra-cmake-modules
 arch="all !armhf"
@@ -33,5 +33,5 @@ package() {
 }
 
 sha512sums="
-015908968ed0c4bc07460aff1e4920aedbaee751df9cfcc61985d407f05a784ee9caea763b60dbf40bacaf2a4869517e786999ac5dca1d6cb8f0cec5f1d2fb54  kde-dev-scripts-26.08.1.tar.xz
+957118d2d5cc727454f1dcfc8b1423fc4a77659e485e16ed4765e5a85e223562524c135237b9784ca3e741e3df9a190f18e9494117a8d78bcbd5944c54015a0a  kde-dev-scripts-26.08.2.tar.xz
 "

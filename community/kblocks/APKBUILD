@@ -4,7 +4,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kblocks
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 pkgdesc="The classic falling blocks game"
 url="https://kde.org/applications/games/kblocks/"
@@ -49,5 +49,5 @@ package() {
 }
 
 sha512sums="
-94010ea2ff15970596f4c0fe03b3a5c677e9cdf73886f1d369fd879b82b294d952490c2fa3f936a6b80ef1af15f9e949b2d9048683f6ee724b2b2d0fd641c82b  kblocks-26.08.1.tar.xz
+e690d16492ecd09f9915d50055cf4a709e7295c005a19f398a4097da493dcb441661f43c8b4027f3b47151194dc98649f1cfc2be0ff3bee9815a9bbba3f10e6a  kblocks-26.08.2.tar.xz
 "

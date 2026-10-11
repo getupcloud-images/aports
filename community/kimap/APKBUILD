@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kimap
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 pkgdesc="Job-based API for interacting with IMAP servers"
 # armhf blocked by extra-cmake-modules
@@ -43,5 +43,5 @@ package() {
 }
 
 sha512sums="
-09476927770d960ca8a64e8aa7568499999961ed64f46bc372099fff59209bf7dd8eaadb6de73d8b4a2ecbd964c18b9628aa362dd2e576f347fdd4c455a84778  kimap-26.08.1.tar.xz
+c03b7055f68c7aa32c1d2bd061bab205feda9304206542d4e9571b6be2fccdbeda318003bec9e1c27fea08c2ea94a87e8a07ff5a84a69ff2d4f875827ec65dfe  kimap-26.08.2.tar.xz
 "

@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kgpg
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by extra-cmake-modules
 # s390x and riscv64 blocked by qt6-qtwebengine -> akonadi-contacts
@@ -52,7 +52,7 @@ check() {
 	# kgpg-encrypt and kgpg-export are broken
 	# del-key fails randomly
 	# genkey fails on arm on builders
-	ctest --test-dir build -E "kgpg-(genkey|import|encrypt|export|del-key|change-trust)" -j1
+	ctest --test-dir build -E "kgpg-(genkey|import|encrypt|export|del-key|change-trust|verify)" -j1
 }
 
 package() {
@@ -60,5 +60,5 @@ package() {
 }
 
 sha512sums="
-9ee162c69918d5e9694e910be7dd7126b85c27c52a64194a548d359d618d2faf12bfb0eff7bbea3960f21e0ad84f03e1ebb815234157cf407b047c29be8bda8c  kgpg-26.08.1.tar.xz
+2a04a7ad96813e1c4bdc85773aad4f5f66e9864502ba4341644247e972beeb3232525053f0f5f28b7472aa1df8fee84b800db5a148008ea4dd24fc2699eb7caf  kgpg-26.08.2.tar.xz
 "

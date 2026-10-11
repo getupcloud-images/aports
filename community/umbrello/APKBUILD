@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=umbrello
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by qt6-qtdeclarative -> ki18n
 arch="all !armhf"
@@ -51,5 +51,5 @@ package() {
 }
 
 sha512sums="
-58f33f97f2c068d92f8a0bb56cb0257592105277deb75f98c7f60c3645961da8427dcaa02af5b741a07f9f8e97ebf4f6f358b3d788c5f19b3978886dd13db1db  umbrello-26.08.1.tar.xz
+d569ee1350ade70cfe8389e441dfbcc292dddfbbe2ae7fdf05cc4b9ae83a18eb5f875509623dedc80b7db95912cd2a48e5a4ba60d1554eb283f3658bd7490bec  umbrello-26.08.2.tar.xz
 "

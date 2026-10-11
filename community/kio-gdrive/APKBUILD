@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kio-gdrive
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by qt6-qtdeclarative -> ki18n
 # x86, armv7, s390x and riscv64 blocked by qt6-qtwebengine -> libkgapi
@@ -48,5 +48,5 @@ package() {
 }
 
 sha512sums="
-a0ad9540e50e124ada225739ea4afaba3159f250011ec78a715a91fe476756b946f8bb6db2b52270865756a2cf907073546834a8d7e5603640f553cefef5f6a4  kio-gdrive-26.08.1.tar.xz
+ca11b7bbbebb606a897c34b8060dc819b4e97c96b8e4b8b9a1901b73221035814e8d5a587bd9cb7209e6096bb41de14ee74bf2dfd402a8ae6c9a9286cc4d062c  kio-gdrive-26.08.2.tar.xz
 "

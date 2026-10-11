@@ -4,7 +4,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kalgebra
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by qt6-qtdeclarative
 arch="all !armhf"
@@ -46,5 +46,5 @@ package() {
 }
 
 sha512sums="
-a221c2dd542c8b7b205bbf53ce4c759ac31467cd3fb0c10d1d6d6b4b140fc8f6d3fbe79432f5511d245ec0f3c8065349b1541c9b9dc2cdeb5507717ce2252254  kalgebra-26.08.1.tar.xz
+177989ac404c48a3722d9f801430752f37d630f779a80ccdd52f03e8c7b54ce766ce683dcfb16bf89b9f0bfdf964847551f2364bf00f14e68e74bd47e1120107  kalgebra-26.08.2.tar.xz
 "

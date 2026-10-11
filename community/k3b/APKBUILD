@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=k3b
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by qt6-qtdeclarative -> ki18n
 arch="all !armhf"
@@ -69,5 +69,5 @@ package() {
 }
 
 sha512sums="
-0ee261ce7b92aea01ecfe18cd152791337ee7ec03abee97539a76d52e2465d7bfb873fc8a67d3aa30dd1b61a9584e0c07b2dc070dbda859a8880deee0871b286  k3b-26.08.1.tar.xz
+a4b95b03ecc31767eb1f9ac2dc9f221b8f9bfbcb2de899697e1f1643fa792f7380a49dc0cc67df4f9d64a6ea4545b762233397aeb740d1906658435934ab286c  k3b-26.08.2.tar.xz
 "

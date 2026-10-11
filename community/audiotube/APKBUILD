@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=audiotube
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 pkgdesc="Client for YouTube Music"
 url="https://invent.kde.org/plasma-mobile/audiotube"
@@ -57,5 +57,5 @@ package() {
 }
 
 sha512sums="
-87234ae9837113136619626250e89447184a365b7f2b8a34263d8cf01de1d3556414519089a02fd2eaf97becd1f08f8a6d5c94308faa729589e44504d02de3af  audiotube-26.08.1.tar.xz
+41694c2c71616fa9f6ac83d5c54a7b1a2b92ddc0fcd990e736099318f2491fbdd26582b59496a8088cb608ee410b8dcf86811aacd0ccf875d93db7eb1204c062  audiotube-26.08.2.tar.xz
 "

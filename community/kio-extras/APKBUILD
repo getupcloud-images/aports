@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kio-extras
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by syntax-highlighting
 arch="all !armhf"
@@ -74,5 +74,5 @@ package() {
 }
 
 sha512sums="
-4d0b5a6c42159a8bdc4b2798663500f46c70b845beab1c3e4cf708961ac834fd2e53fc8a1c7b9c2fb8423d5a0d409583d79926e7570e7f8f1c001007fabe0c26  kio-extras-26.08.1.tar.xz
+038702539fcd13f7d55525949c2e000304e21cb38d5d021525bf660a82f84902a2f1520b50838bfa34351afb8f0e470d923d44a83d3504e215c3bec2cd57804d  kio-extras-26.08.2.tar.xz
 "

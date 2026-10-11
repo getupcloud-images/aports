@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=artikulate
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by qt6-qtdeclarative
 arch="all !armhf"
@@ -48,5 +48,5 @@ package() {
 }
 
 sha512sums="
-dca498b8c50d44150c72f1253059a959f1e29142e405c9afbbf7c3d17383e774e86b6725a02a6595644eb4b7e6ea013dd8b4aaea0da3fb53ad05057ee6febbf4  artikulate-26.08.1.tar.xz
+df470ca2db351171a312f27f3efc162b26a06b8a5645364a85ed0a74118ac5773560cdf2942bef402882332a8b1783e33770ebca3d2b215d13a5e507f1aa58fe  artikulate-26.08.2.tar.xz
 "

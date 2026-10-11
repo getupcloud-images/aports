@@ -1,9 +1,10 @@
 # Contributor: Galen Abell <galen@galenabell.com>
-# Maintainer: Galen Abell <galen@galenabell.com>
+# Maintainer: mio <miyopan@e.email>
+maintainer="mio <miyopan@e.email>"
 pkgname=mdp
 pkgver=1.0.19
 pkgrel=0
-pkgdesc="command line based markdown presentation tool"
+pkgdesc="Command-line based markdown presentation tool"
 url="https://github.com/visit1985/mdp"
 arch="all"
 license="GPL-3.0-only"

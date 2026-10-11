@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=grantlee-editor
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 pkgdesc="Utilities and tools to manage themes in KDE PIM applications "
 # armhf blocked by extra-cmake-modules
@@ -54,5 +54,5 @@ package() {
 }
 
 sha512sums="
-3002bbf825f7e95ac921e0ee70e8fbd30cd1e6902f0581bad5ac58caef21b4c567a0daa74b787b1a869c6f27bbdbbd788f647cde557e996662c169f1c6e36c47  grantlee-editor-26.08.1.tar.xz
+35432d30fae88534e892502272aa9309f176a5106c989944f5a2d75fda829c31eb6b57a005058977c8a178de648570a7868d3c97772e38e39312856885719d7b  grantlee-editor-26.08.2.tar.xz
 "

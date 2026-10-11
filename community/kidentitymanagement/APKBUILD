@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kidentitymanagement
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 pkgdesc="KDE PIM libraries"
 # armhf blocked by qt6-qtdeclarative
@@ -51,5 +51,5 @@ package() {
 }
 
 sha512sums="
-5ae4a7ee3a726733efcae91d48b2f8a8a4858667cb03919793642a5fd0d60b4848192f13c49a7fe78cbb7767a32d91416126d8b5ef7c64be29043ecaa68dc1ce  kidentitymanagement-26.08.1.tar.xz
+bdfe0642e88b2ec6d5200705aede5953ce2426ade67696288acb17486c3a3b716a0e1c6ce4b1abf34ea5d52ea25f4ac26493e5b9370b2ac14811156ba2870c29  kidentitymanagement-26.08.2.tar.xz
 "

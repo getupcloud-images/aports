@@ -4,7 +4,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kgeography
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by extra-cmake-modules
 arch="all !armhf"
@@ -43,5 +43,5 @@ package() {
 }
 
 sha512sums="
-df05da578a6973702bc01cf3afdfa8756adc73d627078e89aac7334fb804b790153cb9c79589608c10c33288fdd8eaa128aa09c6bf6bf92f764546286c5800eb  kgeography-26.08.1.tar.xz
+249fd2f18cd87d5afa19947b0af47fd58c19613a7ae5dbdb9b2a772148001023fc79fd079c248d8be9eefab371a0ed71be0e6444ba9cd15301dc9c42c2765115  kgeography-26.08.2.tar.xz
 "

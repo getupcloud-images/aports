@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=ksmtp
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 pkgdesc="Job-based library to send email through an SMTP server"
 # armhf blocked by qt6-qtdeclarative -> ki18n
@@ -55,5 +55,5 @@ package() {
 }
 
 sha512sums="
-90ad37ebc743374c7b073a80ceecdbe9a7b624751e3916b85beecfb71f9bba38135d8366e67ed33c42c139048ae638a5b8dddd0c056d71f439a6fc2efd620b95  ksmtp-26.08.1.tar.xz
+e4bc996306c184a942b16491a7faa8666305d0c6ce08d45e44bc229f5ffedfad9c1f136c459035e87cc5c59e3f9701ea765a5714a5da0af7c6c6e7425361878a  ksmtp-26.08.2.tar.xz
 "

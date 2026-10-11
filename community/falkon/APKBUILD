@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=falkon
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 pkgdesc="Cross-platform Qt Web Browser"
 url="https://github.com/KDE/falkon"
@@ -99,5 +99,5 @@ bashcomp() {
 }
 
 sha512sums="
-1320c2fb3e3c52a6ed2563a405e15e7420b1260f6c0b083f3983bac0765c3f58756d4e6b9b3f5c171074e9313deabd2e20533a0f9a73a3afc2a3e08c152125f7  falkon-26.08.1.tar.xz
+25727950ff9b08f8566d371e2af053771e43d6f9fd41c808a0fbdcafa045f5cf79775adf1e9612a77c13b64a535d04e232315100877ca565cede66949264f231  falkon-26.08.2.tar.xz
 "

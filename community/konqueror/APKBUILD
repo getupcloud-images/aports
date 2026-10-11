@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=konqueror
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 pkgdesc="KDE File Manager & Web Browser"
 # armhf blocked by qt6-qtdeclarative -> kwindowsystem
@@ -52,5 +52,5 @@ package() {
 }
 
 sha512sums="
-483dcb1eee5d165ed4d612702652268245fce578c73f4ffdf8fa8a5fe13a24b5543ff802a88ef06e41157024f2975f31f30fecdab971a488863ca64e7d17cf5b  konqueror-26.08.1.tar.xz
+1e5cc7f40f99e44916ad88b8f4816667ba4cdadc98d14de52e6aaa5b31748347a0438aabebf5ea332075410ead53aa3677b542f932b154589ba6c4e9dea58b12  konqueror-26.08.2.tar.xz
 "

@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kweather
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 pkgdesc="Weather application for Plasma Mobile"
 url="https://invent.kde.org/plasma-mobile/kweather"
@@ -52,5 +52,5 @@ package() {
 }
 
 sha512sums="
-6c5e0d1a0920264ae5875fab153153c19a8607096df9b5f2451ef6812b0260a289edb52f0b0996052f6795469aae57564c3a9aad75032d09690f7283b2961f7b  kweather-26.08.1.tar.xz
+21d07ee66bb9d5aed44aa17549324c32ce03f555916c300dbf9736e9fd2ae3b6d901ad8b333ac29c39f0979b28af857b3bda9999f75057127a35027c4d0c18d7  kweather-26.08.2.tar.xz
 "

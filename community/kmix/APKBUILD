@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kmix
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by qt6-qtdeclarative
 arch="all !armhf"
@@ -54,5 +54,5 @@ package() {
 }
 
 sha512sums="
-5e2412ea5d105e33b43fd5c8b4633717019d3fe9fe8ea69458dd35219d4b1aa15a50d0501a3d73191053464c093ce16fcf7b3edbc5178252235cfba88d3206a4  kmix-26.08.1.tar.xz
+f74c777a7e22c6b1bdabba1803c7c83dabce799839bf517d4279bd357985d8399f415f660ec7dc640ad3874f213017f8d4288530d8547588d0d2b83c05decc42  kmix-26.08.2.tar.xz
 "

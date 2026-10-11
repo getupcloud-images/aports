@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kdevelop
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf, x86, armv7, s390x and riscv64 blocked by qt6-qtwebengine
 arch="all !armhf !x86 !armv7 !riscv64 !s390x"
@@ -82,5 +82,5 @@ _gdb() {
 }
 
 sha512sums="
-ac2ffbcb7413536ce3e5224c0ffa5bcc693e6e80051c00e349fb3c60eea8f2abb01f77fb77377afe0ab6907549d6978d04c5ea4006ea9ffc599b80f0a94934cf  kdevelop-26.08.1.tar.xz
+d8955df392e75d087b02e203d60977790f1d91c0aabd3160d339eee8b062f0100b16474417330870d243ac42566f692b4930b663e80905eddc75051175977530  kdevelop-26.08.2.tar.xz
 "

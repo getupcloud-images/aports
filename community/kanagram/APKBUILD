@@ -4,7 +4,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kanagram
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by qt6-qtdeclarative
 arch="all !armhf"
@@ -46,5 +46,5 @@ package() {
 }
 
 sha512sums="
-044a78bb461b5140a53196e02e75f06c842973a14f0c9e59e425918291397f94860e331566f252750ed9077e7bc1b05870d9d7b2209745a00a522304b0fc6b55  kanagram-26.08.1.tar.xz
+bcfe09efeddfd56c8e14c8cd55938f1e62d60b642053f738a992d10381778c7c6d364632ebd17db7785a90a7720f3cda08d7dc9605a7a7641224fb7bc4963b0e  kanagram-26.08.2.tar.xz
 "

@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kteatime
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by qt6-qtdeclarative -> ki18n
 arch="all !armhf"
@@ -44,5 +44,5 @@ package() {
 }
 
 sha512sums="
-25a156a1dc94a09b343b9b565d1949e3767a9aa93f92a4366cc51cf8b24d6d52a58ef085ef41cffb17412ecbf1ec9964192e56c97a141479536cb25053397434  kteatime-26.08.1.tar.xz
+4593484a93266ff3419f7ca4fdc098f4ea6113cc2d8aabe78c495dc049ea185630d61c370dcf1f5b4640f1d70dac5bb225d4514df8da1487b9359bb72951dbd2  kteatime-26.08.2.tar.xz
 "

@@ -4,7 +4,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kajongg
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by extra-cmake-modules
 arch="noarch !armhf"
@@ -48,5 +48,5 @@ pyc() {
 }
 
 sha512sums="
-b90f16ce976498a4e568addd90fd0b8ecff0ebb559a1abeab3cf132bf0a6b2d69812105bfd042e57355dbd1ee9805f5c640bdb369125d7f45e2b8347205abcc7  kajongg-26.08.1.tar.xz
+18cf09936e0c51da1173cce8b731d5497223f214649e08427953515169665c759449f6bca85299160312066ec468ea59439c959097f36e07107454b300440aab  kajongg-26.08.2.tar.xz
 "

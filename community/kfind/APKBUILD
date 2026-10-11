@@ -4,7 +4,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kfind
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by extra-cmake-modules
 arch="all !armhf"
@@ -41,5 +41,5 @@ package() {
 }
 
 sha512sums="
-30da5d256eb6ef1d5a8714d11f119bb5694f93b8d51ca787c06c7fc450b4e132bd94a5b74aff7f7e593bf741215c5d1314b5f489d6942a4c4f35de254f086c2c  kfind-26.08.1.tar.xz
+5efce5c9ba8cf872d8183e1500caa2ea661138ee5c1d7877c791d64f7f421895bd48b15d9a2ad3318842988d1353adae01833d02b0e001b525331cbbce281a67  kfind-26.08.2.tar.xz
 "

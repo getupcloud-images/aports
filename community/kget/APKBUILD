@@ -4,7 +4,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kget
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by extra-cmake-modules
 arch="all !armhf"
@@ -66,5 +66,5 @@ package() {
 }
 
 sha512sums="
-3acedec2aca77616297e4a7fad865fcfbbd3b8e7662d84881472e957af6da6fdf029953ee2b686731ce446b750007d616d1bda2b6b439763e0b3d522035a83c1  kget-26.08.1.tar.xz
+0352ff1c5d89d1a1ec10776f1c76957ba1ec9f5445c7116b9745d7cacbca2479a2547df11a92d91a5a33366d54c7dcee29cb7c9c86fa87f1ba6ac9afb3372079  kget-26.08.2.tar.xz
 "

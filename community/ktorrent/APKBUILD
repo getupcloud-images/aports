@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=ktorrent
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf, x86, armv7, s390x and riscv64 blocked by qt6-qtwebengine
 arch="all !armhf !x86 !armv7 !s390x !riscv64"
@@ -70,5 +70,5 @@ package() {
 }
 
 sha512sums="
-ebd14698cfbd28661f34d94a14d4708a5cdfbfd103a513ce543af7193d7f40d2a1c5c1ffeae6ec2fd2217290837758ff1c67d71ff87e57094484d8ea747aad06  ktorrent-26.08.1.tar.xz
+b3a6dbb53d71d15d782764211d3feaba2a3443bfad94a8bc525a1bf46e897b17cde5109e56386919ae4fa785d983468e963840f63c8197749d62e718c5de5b2f  ktorrent-26.08.2.tar.xz
 "

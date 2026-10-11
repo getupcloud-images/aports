@@ -4,7 +4,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=ark
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 pkgdesc="Graphical file compression/decompression utility with support for multiple formats"
 # armhf blocked by extra-cmake-modules
@@ -68,5 +68,5 @@ package() {
 	DESTDIR="$pkgdir" cmake --install build
 }
 sha512sums="
-5fb021ec2962094b5bc7dd1423101df8c9d0603a469a54a2d7f94e71e5dfd87981e6b8dd61998dbc58cadcc1695c390a3891872a68c255b006490960c8dca229  ark-26.08.1.tar.xz
+1ca73074a3163149d28434f7dc3b8f12fbc6e74b8a8add7dbde1518b91ad48f22e9f7a4f83a7a21b8e7cc4ee4f33d1a8fbbceb1e6e5b6fb157a28b0ce1699025  ark-26.08.2.tar.xz
 "

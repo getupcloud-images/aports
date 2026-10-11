@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kate
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by qt6-qtdeclarative -> ki18n
 arch="all !armhf"
@@ -130,5 +130,5 @@ kwrite_lang() {
 }
 
 sha512sums="
-36689d20f8b487d689e8a00415afd8bb48d75d7f987cda12c7fc2a943ad2ff09e693b98ca13d90ada306a83776f5abcbef3c73c989bc6816412b35cf17f2220d  kate-26.08.1.tar.xz
+344ec343f66d4e9eb19c00e3e753489b805dcbf4888a604719977f564ea4441b16797a14f19d0b19b63ee28bcccc1e2cb46280588caad381f5f5f072e99549bc  kate-26.08.2.tar.xz
 "

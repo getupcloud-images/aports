@@ -10,7 +10,8 @@ arch="all"
 license="BSD-3-Clause"
 makedepends="libpcap-dev ncurses-dev"
 subpackages="$pkgname-doc"
-source="http://dns.measurement-factory.com/tools/dnstop/src/dnstop-$pkgver.tar.gz
+# source="http://dns.measurement-factory.com/tools/dnstop/src/dnstop-$pkgver.tar.gz
+source="https://dev.alpinelinux.org/archive/dnstop/dnstop-$pkgver.tar.gz
 	musl-fix.patch
 	"
 options="!check"

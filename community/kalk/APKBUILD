@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kalk
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 pkgdesc="A powerful cross-platfrom calculator application"
 # Blocked by qt6-qtdeclarative
@@ -47,5 +47,5 @@ package() {
 }
 
 sha512sums="
-9b35dcb8c3b47a784f55772c5393689695a276b82bfa6b167e083908b1fa6545f3769205a1066692eda492f59e99a08cb7187c174e66ebee3e1dcc88d287523b  kalk-26.08.1.tar.xz
+5f3da632fc8d6fc42919c62aebf1fdd07fcaa366ad032ad6acb549281ee729115f8f32fbcbb286cee3ebe82d92441a094bce0f88b0387e947ebab2832ee192ee  kalk-26.08.2.tar.xz
 "

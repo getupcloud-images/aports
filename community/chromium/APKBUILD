@@ -2,15 +2,14 @@
 # Contributor: Elly Fong-Jones <elly@elly.town>
 # Maintainer: lauren n. liberda <lauren@selfisekai.rocks>
 pkgname=chromium
-pkgver=154.0.8037.97
+pkgver=155.0.8059.39
 pkgrel=0
-_copium_tag=154.2
+_copium_tag=155.2
 # What upstream uses: tools/rust/update_rust.py -> CRUBIT_REVISION
-_crubit=69b85cba43f85a6439dc0be86a6fe424bb07a100
+_crubit=40fbac34597084a0863256d633889eac2c23b91b
 # DEPS file -> deps['src/third_party/test_fonts']['objects'][0]['object_name']
 # (for the given version, when it changes)
 _testfonts=a28b222b79851716f8358d2800157d9ffe117b3545031ae51f69b7e1e1b9a969
-_rollup=4.22.4
 pkgdesc="Chromium web browser"
 url="https://www.chromium.org/Home"
 arch="aarch64 armv7 x86_64"
@@ -141,7 +140,6 @@ source="
 	https://github.com/chromium-linux-tarballs/chromium-tarballs/releases/download/$pkgver/chromium-$pkgver-linux.tar.xz
 	test_fonts-$_testfonts.tar.gz::https://chromium-fonts.storage.googleapis.com/$_testfonts
 	copium-$_copium_tag.tar.gz::https://codeberg.org/selfisekai/copium/archive/$_copium_tag.tar.gz
-	rollup-wasm-$_rollup.tgz.noauto::https://registry.npmjs.org/@rollup/wasm-node/-/wasm-node-4.22.4.tgz
 	crubit-$_crubit.tar.gz::https://github.com/google/crubit/archive/$_crubit/crubit-$_crubit.tar.gz
 	chromium-launcher.sh
 	chromium.conf
@@ -155,6 +153,7 @@ source="
 	fstatat-32bit.patch
 	gdbinit.patch
 	headless-shell-no-license.patch
+	musl-conditional-tkill.patch
 	musl-sandbox.patch
 	musl-tid-caching.patch
 	net-test-no-vpython.patch
@@ -165,7 +164,6 @@ source="
 	no-sandbox-settls.patch
 	partalloc-no-tagging-arm64.patch
 	pvalloc.patch
-	rust-cbor.patch
 	temp-failure-retry.patch
 	"
 _copium_patches="
@@ -187,12 +185,11 @@ _copium_patches="
 	cr152-ffmpeg-no-agtm.patch
 	cr152-unbundle-minizip-undo-unicode.patch
 	cr152-unbundle-opus-devtools.patch
-	cr153-no-python-vendoring.patch
 	cr153-typescript-break-definitions.patch
 	cr153-unbundle-opus-iamf.patch
 	cr154-dawn-armv7-is-real.patch
-	cr154-devtools-fe-ai-assistance-skills.patch
-	cr154-devtools-no-typecheck.patch
+	cr155-devtools-typescript-6.x-isolated-declarations.patch
+	cr155-no-python-vendoring.patch
 	"
 # chrome-sandbox can use suid when user namespaces aren't available, but uses only userns and drops privileges normally
 options="suid"
@@ -609,10 +606,6 @@ _prepare() {
 	mkdir -p third_party/node/linux/node-linux-x64/bin
 	ln -sv /usr/bin/node third_party/node/linux/node-linux-x64/bin/
 
-	rm -rv third_party/devtools-frontend/src/node_modules/rollup
-	mkdir third_party/devtools-frontend/src/node_modules/rollup
-	tar xf "$srcdir"/rollup-wasm-$_rollup.tgz.noauto --strip-components=1 -C third_party/devtools-frontend/src/node_modules/rollup
-
 	rm -vf third_party/devtools-frontend/src/third_party/esbuild/esbuild
 	ln -sv /usr/bin/esbuild third_party/devtools-frontend/src/third_party/esbuild/esbuild
 	rm -rv third_party/devtools-frontend/src/node_modules/esbuild
@@ -802,7 +795,6 @@ _configure() {
 		clang_use_chrome_plugins=false
 		clang_version=\"$_llvmver\"
 		custom_toolchain=\"//build/toolchain/linux/unbundle:default\"
-		devtools_skip_typecheck=true
 		disable_fieldtrial_testing_config=true
 		enable_hangout_services_extension=true
 		enable_nocompile_tests=false
@@ -843,6 +835,7 @@ _configure() {
 		use_sysroot=false
 		use_thin_lto=false
 		use_vaapi=$vaapi
+		v8_use_metagen_instance_types=false
 		"
 
 	# shellcheck disable=2090,2116
@@ -868,6 +861,7 @@ build() {
 			gfx_unittests \
 			net_unittests \
 			ozone_unittests \
+			wtf_unittests \
 		)
 
 }
@@ -935,6 +929,10 @@ check_ozone_unittests() {
 	./out/bld/ozone_unittests --test-launcher-bot-mode #--gtest_filter="-$broken"
 }
 
+check_wtf_unittests() {
+	./out/bld/wtf_unittests --test-launcher-bot-mode #--gtest_filter="-$broken"
+}
+
 check() {
 	# vpython3 execs system python3 with this set
 	export VPYTHON_BYPASS="manually managed python not supported by chrome operations"
@@ -946,7 +944,7 @@ check() {
 	check_gfx_unittests
 	check_net_unittests
 	check_ozone_unittests
-
+	check_wtf_unittests
 }
 
 package() {
@@ -1117,11 +1115,10 @@ swiftshader() {
 }
 
 sha512sums="
-a2d441e02e31629b70d8cb2c6e4cb6bae9fbcaf19483469c7e320d6fdfb5e3da57e7dbee396cf0bf5b36db78d422b0ac019d4570cd39050d4d68d7c584786f83  chromium-154.0.8037.97-linux.tar.xz
+15ef9d9f874ba3e2796731c0ace09d74fc80a7b14bfa4251cf81864087422a40eb87991b2ea8696b87f86b55753d5a918dae8c04511b99909ff02384afd60095  chromium-155.0.8059.39-linux.tar.xz
 ca4f98300f2037a40e02f6c2ffa04427fdf08cdce8de34cc944a5ccb69d4279090d2b8476d5e77bd610db6542696eb3ed4d135c3462fc0375cbf9277bf2fa670  test_fonts-a28b222b79851716f8358d2800157d9ffe117b3545031ae51f69b7e1e1b9a969.tar.gz
-4d8cf4d31d2f22b54ab6c55e72629119f06b7809f465c899abd15313301aa2911e00cca7e5c4b88150345d2e349c8670ce1c11d52c2fce53e0865b165462e78c  copium-154.2.tar.gz
-d805e9353da0b52c866a7812593c26b293a7bb4c153012c2e94ff027c7ece7c261b65032f81de334eb9a37eef1f5b962940a22c0193dd7cef26e1aecee4682a6  rollup-wasm-4.22.4.tgz.noauto
-0beb4cffbea3b79e05e4baf6eba2e8b0619045108247bf105f2f123fefe786ce263163837d1a2014a968c1195901474a49d89dc5ac76ec26305501e7e3a3126d  crubit-69b85cba43f85a6439dc0be86a6fe424bb07a100.tar.gz
+b3cb8b3294cdf068fa21f6b5b5e356b2153b68d8956703dacce85a6afa68f2af2761ccab512095034c221765f52f1d51c61c6142eb1e70cf820a7b382ee3619f  copium-155.2.tar.gz
+866c246cb0bcde71509e088ad77c400b9791f63d343dca13df45d034b8276f318a758ab040fbddb496a2869d3a128569fee48f682da2425237b60babbe2f7151  crubit-40fbac34597084a0863256d633889eac2c23b91b.tar.gz
 1b16564f85a03f3eb934ec51289dc6159e2454202d40f48354f947d6ceffac8889e9eb4c0f4dfaafb3a15101566d54039f832bc9a8433c3c463e2d1dac2d2acc  chromium-launcher.sh
 9cfcb41d69c5a515b6f9fe2a629579fa499e1f48eb58a0ce4ec8e5029d450bcafb6d963019aaac9a6838244bee9f9ba7fe5ef6146a0ca6b20fcda4ab7f059476  chromium.conf
 2d8237a940ea691bd10b08315429677a587f7ef9692a0cca53bfd066eae82998a6c71f402a8669e9de39f94d7f3280745d1628ea6eac5d76ca7116844d4e0dac  google-api.keys
@@ -1133,6 +1130,7 @@ d805e9353da0b52c866a7812593c26b293a7bb4c153012c2e94ff027c7ece7c261b65032f81de334
 c63dee5044353eb306a39ca1526158c0f003ab310ecb03d1c368dc2a979454590c84b8d3c15484517d5e66bb8add9b231da9abbadf2e50850abd72ac1345c4ab  fstatat-32bit.patch
 33ee60863cc438ef57ffef92ba4cf67a856a5ffc16138bce241bcf87e47b15154aa86918e793c26f7ec4dc62a445257ad5673ed7001daf22c4043cf6cc57da7f  gdbinit.patch
 a94cf7a0670abf5178abba33c619cc6d41d73f2e16c7a1fd5b152152f5077df103e049d166e3b8627797c38113821d2f2e6b64cd48d132c1e90ad32d63a349f5  headless-shell-no-license.patch
+0e4c257456db52935ab88cd6ced10c2c3818a5c08a504df575e83ad6c82e23afa541073f87c59feae19978b1bf83b9432cf3ce2c295f499d0df1737a051bccf7  musl-conditional-tkill.patch
 eceada6c3a91b56a65679c5c62a5075c9643654cdc0240f78fdb5e21ae887c25c191984179bef425d2d721ce50e0d47133c623ea010346db904c1ef067e8dd92  musl-sandbox.patch
 e7163ac5810ac85366cef2447412287c856e3d67c6b77f219a6e5a418b1965b98e449c409424ad0704a5bded9355dd0aec3dc4585918ce5a2ab36c079707afe2  musl-tid-caching.patch
 3b7420d58d13dfc4baab5065e3017f666f51fed6de087af42a660a839d7b4444b50d1a93204322d213df36c6722eaf6b08d46d50dc374198a342da2675fafff5  net-test-no-vpython.patch
@@ -1143,6 +1141,5 @@ e4c4e5bc6f828f9c883dd418c0ba01887949c29c311f76206a1ec29f620b0c0ba0452949dc2778a9
 6dc4d8dc92e685dace62265a1ddb3aebc558aed54d20ff6d36b030be0c48d7e84662326c31363612492574d9a03c62653cdc21a60995b97dee1d75cae86a9f9b  no-sandbox-settls.patch
 b75908a45ee2f4f806eec8d86fca2f51fda3531b88de48ef4539c364a40d7e2897cdaf38b715682d712648e3f43aac983055e688385f85fa7b7204ffb6d617e1  partalloc-no-tagging-arm64.patch
 03f829a2da633533ef3fd0f287f5ec602d936a97a98b53cd2415553c2537ae9d571f35397ca7c9fb3f4b0806c300e3b189569f8d979ca132e1a2a4dae7206396  pvalloc.patch
-76a44fc0351fffb4bc9af9f7f5e39d610877e7777534e9660dc9b98f730a97d286f420f31c4321e40a6c381894d5de1b1d3948d4af412852beac57b8a4ad143a  rust-cbor.patch
 e48693e6b7aeebf69a5acbf80d9a35defe4c23835121dfeb58b051ac7c527e758a41004f4d193274fe1b01c0bfb1dbc77b09cb6a404a3fdee507a2918afb0edb  temp-failure-retry.patch
 "

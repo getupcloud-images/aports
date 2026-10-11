@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kontactinterface
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by qt6-qtdeclarative -> ki18n
 arch="all !armhf"
@@ -53,5 +53,5 @@ package() {
 }
 
 sha512sums="
-2eebb9bff8a7fcd1aa3a66ad7eb1fceb9b6caa7ff62b324b8f09925b5c77ce8f280bb041adbeaa84fa04406bbbe602f9b7e039b0089b6ae71052f40166ddd826  kontactinterface-26.08.1.tar.xz
+38c8ec672753c21ead48d575ce2ab4ee0631520697622baf80874e25aee3565d4e555248889f2cce5c7f2b818fa0d3e6ae4f1bedc2680599edc896e4f6506905  kontactinterface-26.08.2.tar.xz
 "

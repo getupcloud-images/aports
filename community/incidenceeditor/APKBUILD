@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=incidenceeditor
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 pkgdesc="KDE PIM incidence editor"
 # armhf blocked by qt6-qtdeclarative -> ki18n
@@ -60,5 +60,5 @@ package() {
 	DESTDIR="$pkgdir" cmake --install build
 }
 sha512sums="
-098f65b7f79f3769410c787e2064f4fb60d11acf7e9588bd966072f9225895b2df25d07dbc5dea04c65d258dbefeb97c648d9a1ba884c0ec3d92855fb7240839  incidenceeditor-26.08.1.tar.xz
+379e78c30224b1a82e2a57fe7717cc7989654f0a620ffed155ea310a693fe3db7b64a1d3569f5a89f352e4ea4f073d30c62531230659d761eb02f36e9a901a46  incidenceeditor-26.08.2.tar.xz
 "

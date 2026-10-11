@@ -2,7 +2,7 @@
 # group=kde-applications
 maintainer="team/kde <bribbers@disroot.org>"
 pkgname=kmplot
-pkgver=26.08.1
+pkgver=26.08.2
 pkgrel=0
 # armhf blocked by qt6-qtdeclarative -> ki18n
 arch="all !armhf"
@@ -40,5 +40,5 @@ package() {
 }
 
 sha512sums="
-4341d28b6b4d98df7296fb9feaee52bf498510ccedb0c124cfa601da91a6205d43df4ed0bde1e78d8ca296a3f69582b8fdfe3bfc768ce284e80cf2151a14aea9  kmplot-26.08.1.tar.xz
+aaffc46d7ae3b0e583c102a7efd05d77ad848bbfd7818ae5440fc975c1183a38dfcc18f2e256be73c83667297bd47c47d438b511f8b1f9e05f35eaf0efe52ba1  kmplot-26.08.2.tar.xz
 "

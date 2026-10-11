@@ -1,20 +1,24 @@
 maintainer="Hugo Osvaldo Barrera <hugo@whynothugo.nl>"
 pkgname=darkreader
 pkgver=4.9.133
-pkgrel=0
+pkgrel=1
 pkgdesc="Dark Reader Firefox extension"
 url="https://darkreader.org/"
-# loongarch64: build produces no output file
-# s390x, x86, ppc64le: no rollup binaries on npm
-arch="noarch !x86 !s390x !loongarch64 !ppc64le"
+arch="noarch"
 license="MIT"
-makedepends="git npm"
+makedepends="git npm rollup"
 source="dark-reader-$pkgver.tar.gz::https://github.com/darkreader/darkreader/archive/refs/tags/v$pkgver.tar.gz"
 options="net" # fetch dependencies
+
+case "$CARCH" in
+ppc64le | s390x | x86) options="$options !check" ;; # missing unrs-resolver on npm.
+esac
 
 prepare() {
 	default_prepare
 	npm ci
+	rm -rf node_modules/rollup node_modules/@rollup/rollup-*
+	ln -s /usr/share/node_modules/rollup node_modules/rollup
 }
 
 build() {
