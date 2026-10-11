@@ -10,7 +10,7 @@ install="tinydns.pre-install dnscache.pre-install"
 subpackages="djbdns-common tinydns tinydns-openrc:tinydns_openrc dnscache
 	dnscache-openrc:dnscache_openrc $pkgname-doc"
 source="https://cr.yp.to/djbdns/djbdns-$pkgver.tar.gz
-	http://www.fefe.de/dns/djbdns-1.05-test25.diff.bz2
+	https://dev.alpinelinux.org/archive/djbdns/djbdns-1.05-test25.diff.bz2
 	headtail.patch
 	dnsroots.patch
 	dnstracesort.patch
@@ -45,8 +45,8 @@ build() {
 
 package() {
 	install -Dm644 dnsroots.global -t "$pkgdir"/etc/
-	install -Dm755 *-conf dnscache tinydns walldns rbldns pickdns axfrdns \
-		*-get *-data *-edit dnsip dnsipq dnsname dnstxt dnsmx \
+	install -Dm755 ./*-conf dnscache tinydns walldns rbldns pickdns axfrdns \
+		./*-get ./*-data ./*-edit dnsip dnsipq dnsname dnstxt dnsmx \
 		dnsfilter random-ip dnsqr dnsq dnstrace dnstracesort \
 		-t "$pkgdir"/usr/bin/
 	mkdir -p "$pkgdir"/usr/share/doc/djbdns
