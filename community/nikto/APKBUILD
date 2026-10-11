@@ -1,7 +1,7 @@
 # Contributor: Fabio Aires <fabioaires.web@gmail.com>
 # Maintainer: Fabio Aires <fabioaires.web@gmail.com>
 pkgname=nikto
-pkgver=2.6.0
+pkgver=2.6.1
 pkgrel=0
 pkgdesc="A web application security scanner"
 url="https://www.cirt.net/Nikto2"
@@ -28,6 +28,6 @@ package() {
 }
 
 sha512sums="
-3b026b01893f33b239c36c8f8da4bea5c100d3e1b4ad3c850d5bcfb2b9c8c5459d1385a80cd7db2e10fe7d12afcbd2dfd512a2057c43d8ad94d9d4fb3df5e5ab  nikto-2.6.0.tar.gz
+d15c09c117e7d2dbf2b82d63aed7a4efcfd3c2827f020e212fb9a283c87f68d6a71ad93ab391e41f7023fef4f324b3569effbc696277b7be4cb05379b747c938  nikto-2.6.1.tar.gz
 d6e349bd20428e45d6ef49db91630e1c6d65d4cf2107a1f4c58e697d8fceeb428fb90c247fbbf8a8ad6f9d27672790d07040079b94c2480dd77dc445fccd6f69  nikto.conf.base
 "
