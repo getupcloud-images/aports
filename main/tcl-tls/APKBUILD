@@ -12,7 +12,7 @@ makedepends="
 	openssl-dev
 	tcl-dev
 	"
-source="https://core.tcl.tk/tcltls/uv/tcltls-$pkgver.tar.gz"
+source="https://core.tcl-lang.org/tcltls/uv/tcltls-$pkgver.tar.gz"
 builddir="$srcdir/tcltls-$pkgver"
 options="!check"
 
