@@ -10,7 +10,7 @@ license="GPL-2.0-only"
 makedepends="bison flex linux-headers libnetfilter_conntrack-dev"
 install="$pkgname.pre-install"
 subpackages="$pkgname-dbg $pkgname-doc $pkgname-openrc"
-source="https://files.janikrabe.com/pub/oidentd/releases/$pkgver/oidentd-$pkgver.tar.xz
+source="https://sourceforge.net/projects/oidentd/files/$pkgver/oidentd-$pkgver.tar.xz
 	$pkgname.initd
 	$pkgname.confd
 	"
