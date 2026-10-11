@@ -1,12 +1,12 @@
 # Contributor: Milan P. Stanić <mps@arvanta.net>
 # Maintainer: Milan P. Stanić <mps@arvanta.net>
 pkgname=asahi-audio
-pkgver=4.2
+pkgver=5.0
 pkgrel=0
 pkgdesc="userspace audio configuration for Apple Silicon Macs"
 url="https://github.com/AsahiLinux/asahi-audio"
 arch="aarch64" # only needed for asahi/aarch64 on apple silicon
-license="MIT"
+license="GPL-2.0-or-later"
 options="!check"
 depends="
 	bankstown-lv2
@@ -32,5 +32,5 @@ package() {
 }
 
 sha512sums="
-25ba12528a689b325ea04936a154aec4a1e0a13db0826a6ef89f295fe4e9df9d4689e79f20dc2720eadd0bd8f3b2ffa0718617850e3de095ccb150d3d5ca2480  asahi-audio-4.2.tar.gz
+b46ecc5985fcb2ebf52de5b78027204b3899777db698e3e822dbe4b1af20a40d18cac775fff0743cb931ed54e49f4a447a0baf916388d5863eefa494c522216f  asahi-audio-5.0.tar.gz
 "
