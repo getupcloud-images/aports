@@ -2,8 +2,8 @@
 # Contributor: Will Sinatra <wpsinatra@gmail.com>
 # Maintainer: Erwan Rouchet <lucidiot@brainshit.fr>
 pkgname=zola
-pkgver=0.23.4
-pkgrel=1
+pkgver=0.23.6
+pkgrel=0
 pkgdesc="Opionated static site generator"
 url="https://github.com/getzola/zola"
 arch="all"
@@ -58,7 +58,7 @@ package() {
 }
 
 sha512sums="
-22806cbc58bea0c35f4505bc0732466fa1dc54fade2e950fabef9ea30eb10436daa2a72fb6f0de9108c93d8028e34ec44445bf3563cfedc4ca3dd12b4b01950f  zola-0.23.4.tar.gz
+eb50568ca734b956623d1587f86ee385ea959f537a6fce87c4a06deafca5fd8ec7fe97fa10d8a433643ba99f7c243f7d93cf8f90ac252ae699526d7e680e2f8e  zola-0.23.6.tar.gz
 35ff6626a0c495fd908a3a7f4ec3b95293b4553f195d3cec3627aa279f26920cf2212fce04ff2834a1fe3eaa64e794cc804118c39a0fdfdd571cf62fbe3bbe2e  minimize-size.patch
-8873a1e5c4dd4876a30aa23fd9bb1b799683eb75d5f9bc733703eb8d1f0430a6f35504f39f9dbd1798a33b29de1f3da5c45726fa7e856de8474dbc3477ffd268  rustix-1.1.5.patch
+65325018dd4ac75297636314736067299a4913d803d1c255c86e09742c1928a6f093a85638206f51ced5d129347148ae54907af187ffa9041496c6c983993f60  rustix-1.1.5.patch
 "

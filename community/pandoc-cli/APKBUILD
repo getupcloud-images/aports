@@ -3,7 +3,7 @@
 # Maintainer: John Vogel <jvogel@stygian.me>
 maintainer="John Vogel <jvogel@stygian.me>"
 pkgname=pandoc-cli
-pkgver=3.12
+pkgver=3.12.1
 pkgrel=0
 pkgdesc="Universal markup converter"
 url="https://pandoc.org/"
@@ -88,6 +88,6 @@ package() {
 }
 
 sha512sums="
-84d15525f88e1dffa7994f88c211e4668ffa01872eb49643e529665356da176b36be725b38347a2235efe1b8c7bcf7a1a81794f66b6266b6b2a24a570b5057e2  pandoc-cli-3.12.tar.gz
-efc5e06de810250751a32a30ce62cb73232bc2ff81902ced5c2ce6e1d8bc4a68ec521ffe73f7a21e5557406ab09f24221045ff03b3431eca3196b046a358d2a8  cabal.project.freeze
+65c3f4bc91fc6b6a9ed9b2a1aeafca2df04513c6eae625cf9fc3f1dd4e0177f7f3eb4cb0980b96d07b227ba4dc8ef23cd18ad90a24d50dce2c3a0f51c99a9d65  pandoc-cli-3.12.1.tar.gz
+de5e6804319e255d48559e773980cb4b99d77bacb4c7ed9398c2c9eae0362cc3287335e36f431b5e985c6d906f33675631e375dab8288cd88b41c1bb95a248e2  cabal.project.freeze
 "

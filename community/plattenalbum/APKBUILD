@@ -1,6 +1,6 @@
 maintainer="Achill Gilgenast <achill@achill.org>"
 pkgname=plattenalbum
-pkgver=2.7.0
+pkgver=2.8.0
 pkgrel=0
 pkgdesc="Browse music with MPD"
 url="https://github.com/SoongNoonien/plattenalbum"
@@ -35,5 +35,5 @@ package() {
 }
 
 sha512sums="
-704349573c98fe31ddb27b4fb9ce3650f546871c7473ca947b29b3f1ced84c6d82b242c893ace261c20ae0669c388f58270e516cff456673192453c01571a435  plattenalbum-2.7.0.tar.gz
+1808d72adb080415de69941cbe81d188194a3698ede1265fbc9e1b3f136318c9aea64e74443d4949ad25b186c011996c45b6a3d6128fc607419199b3b563fc41  plattenalbum-2.8.0.tar.gz
 "

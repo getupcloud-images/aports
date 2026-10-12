@@ -1,7 +1,7 @@
 # Contributor: Sören Tempel <soeren+alpine@soeren-tempel.net>
 # Maintainer: Sören Tempel <soeren+alpine@soeren-tempel.net>
 pkgname=guile-lzlib
-pkgver=0.4.0
+pkgver=0.4.1
 pkgrel=0
 pkgdesc="Guile bindings for lzlib"
 url="https://codeberg.org/guile-compression/guile-lzlib"
@@ -37,5 +37,5 @@ package() {
 }
 
 sha512sums="
-815e9ca31d925645a5f76af9c6eec01ad3503f4e01e9bc6ec11dfc1642db435d08e71945d6ee5be2d3f5d849397d470d0a6342e625aea1bb297f65f12499066b  guile-lzlib-0.4.0-1.tar.gz
+41d77f41299cccb4070485141aa6d49db40b6813818984c7c9c92d634cf063807aff5db902f0960cff71b5397990d0adf59acbf3865f5fc73e1429c589b12e11  guile-lzlib-0.4.1-1.tar.gz
 "

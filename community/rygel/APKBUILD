@@ -1,6 +1,6 @@
 maintainer="Achill Gilgenast <achill@achill.org>"
 pkgname=rygel
-pkgver=46.0
+pkgver=46.1
 pkgrel=0
 pkgdesc="UPnP AV MediaServer and MediaRenderer"
 url="https://gnome.pages.gitlab.gnome.org/rygel/"
@@ -39,5 +39,5 @@ package() {
 }
 
 sha512sums="
-93078b3ed6853bd1b19e6d61caccaf05e7604ed3388885b71bc4fae4d58a59059ffc1647421950a2f20e8f82a193e1b83d6ddf8d737090b8fad84d41d57c690f  rygel-46.0.tar.xz
+186db4a17dfbeb5ba67300265c7d33e9afb9f6d5658969c6fa611da6e23c34fd6a3f0d7600ba468f63649a05ca462883018f43478d181d9008d58821e2e726a7  rygel-46.1.tar.xz
 "

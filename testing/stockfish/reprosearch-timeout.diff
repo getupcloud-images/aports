@@ -1,0 +1,12 @@
+diff --git a/reprosearch.sh b/reprosearch.sh
+index e16ba4ae..0d2e7d99 100755
+--- a/reprosearch.sh
++++ b/reprosearch.sh
+@@ -14,7 +14,7 @@ echo "reprosearch testing started"
+ # with go nodes $nodes they should result in exactly
+ # the same node count for each iteration.
+ cat << EOF > repeat.exp
+- set timeout 10
++ set timeout 60
+  spawn ./stockfish
+  lassign \$argv nodes

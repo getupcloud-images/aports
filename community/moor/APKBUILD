@@ -1,8 +1,8 @@
 # Maintainer: DWwanghao <wanghao03@loongson.cn>
 maintainer="DWwanghao <wanghao03@loongson.cn>"
 pkgname=moor
-pkgver=2.10.2
-pkgrel=5
+pkgver=2.19.4
+pkgrel=0
 pkgdesc="Pager designed to do the right thing without any configuration"
 url="https://github.com/walles/moor"
 arch="all"
@@ -32,6 +32,6 @@ package() {
 }
 
 sha512sums="
-a81a8c3888b1c2cd163f51e325ebd9fee2a4c275e188d95598d690cebae0bfb2d4241394287dba9e94eada718789ccb4e09fbf0698df2fe82dd77839907a6d4a  moor-2.10.2.tar.gz
+cedddb9d34618efece1a9a6f438941f4f37edd27d0aaf360b90632b43da12ba515d09b6120d5f0fe8d16090d90365dde40c488beb706486d0c523b45870566fa  moor-2.19.4.tar.gz
 dcc1802281b9cb61cde63b9e9bf743cabd619d8a24933e67fcb062657c18400426aeabfd5dd7a97a64e5bf6cf9482daecf2f0d128234182d06ffaf28d6686735  fix-test.patch
 "

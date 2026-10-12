@@ -1,8 +1,8 @@
 # Contributor: TBK <alpine@jjtc.eu>
 # Maintainer: TBK <alpine@jjtc.eu>
 pkgname=ijq
-pkgver=1.2.0
-pkgrel=8
+pkgver=1.4.0
+pkgrel=0
 pkgdesc="Interactive jq tool"
 url="https://codeberg.org/gpanders/ijq"
 license="GPL-3.0-or-later"
@@ -25,5 +25,5 @@ package() {
 }
 
 sha512sums="
-c5e244af9cb1ff61b381a7dcfcfeb670d16dff8f06931e62f7bc954f59b679e44694fd1922e3e3f22dbb74d1584f4354286dfbbe4f1af097583ce82980ae1765  ijq-1.2.0.tar.gz
+80d738792facb18368c9843406e0fefca5ea3abfec222ef27d1aca838842dc356806ab44c25f95532c24faf5aa6339fd690333c94cd1cb1bace6df4a68397895  ijq-1.4.0.tar.gz
 "

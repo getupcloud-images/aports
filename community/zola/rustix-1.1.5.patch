@@ -12,7 +12,7 @@ index d585a63..4bdfabe 100644
 -checksum = "b6fe4565b9518b83ef4f91bb47ce29620ca828bd32cb7e408f0062e9930ba190"
 +checksum = "891efababe418670775f199f0d233d84843c227a0949a883ce15b37c78d6629d"
  dependencies = [
-  "bitflags 2.13.1",
+  "bitflags 2.13.2",
   "errno",
   "libc",
   "linux-raw-sys",

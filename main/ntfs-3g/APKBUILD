@@ -17,7 +17,7 @@ subpackages="
 	$pkgname-libs
 	$pkgname-progs
 	"
-source="https://download.tuxera.com/opensource/ntfs-3g_ntfsprogs-$pkgver.tgz"
+source="http://tuxera.com/opensource/ntfs-3g_ntfsprogs-$pkgver.tgz"
 
 # secfixes:
 #   2026.7.7-r0:
