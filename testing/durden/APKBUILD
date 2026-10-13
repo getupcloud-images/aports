@@ -1,0 +1,33 @@
+# Maintainer: omni <omni+alpine@hack.org>
+maintainer="omni <omni+alpine@hack.org>"
+pkgname=durden
+pkgver=0.6.3_git20261012
+pkgrel=0
+_durdenrev=5e8b51a4959ab0fc10ceded111fd62cba6369622
+pkgdesc="Reference Desktop Environment for Arcan"
+arch="all"
+url="http://durden.arcan-fe.com/"
+license="BSD-3-Clause"
+depends="arcan arcan-afsrv-net arcan-afsrv-terminal"
+subpackages="$pkgname-doc"
+source="$pkgname-$_durdenrev.tar.gz::https://codeberg.org/letoram/durden/archive/$_durdenrev.tar.gz"
+builddir="$srcdir/$pkgname"
+options="!check" # no test suite
+
+prepare() {
+	default_prepare
+	rm durden/.gitignore # what is this doing here?
+}
+
+package() {
+	install -dm755 "$pkgdir"/usr/share/arcan/appl/
+	cp -r "$pkgname" "$pkgdir"/usr/share/arcan/appl/
+	install -Dm755 distr/"$pkgname" -t "$pkgdir"/usr/bin/
+
+	install -Dm644 CHANGELOG.md HACKING.md README.md \
+		-t "$pkgdir"/usr/share/doc/"$pkgname"/
+}
+
+sha512sums="
+15f56bee4735d112f7eb35099281c924f71a2c6b08c54d1495cd75733eea996b51eb01b5b0bc97018ab82fc88465e4b811fa69c07c992ed2478fb923db5145f3  durden-5e8b51a4959ab0fc10ceded111fd62cba6369622.tar.gz
+"
