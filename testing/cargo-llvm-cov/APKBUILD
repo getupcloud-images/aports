@@ -1,0 +1,52 @@
+# Contributor: Jonathan Grotelüschen <tippfehlr@tippfehlr.eu>
+# Maintainer: Jonathan Grotelüschen <tippfehlr@tippfehlr.eu>
+pkgname=cargo-llvm-cov
+pkgver=0.9.1
+pkgrel=0
+pkgdesc="Cargo subcommand to easily use LLVM source-based code coverage"
+url="https://github.com/taiki-e/cargo-llvm-cov"
+arch="all !riscv64"
+license="MIT OR Apache-2.0"
+depends="llvm"
+makedepends="cargo cargo-auditable"
+checkdepends="git"
+subpackages="$pkgname-doc"
+source="
+	$pkgname-$pkgver.tar.gz::https://github.com/taiki-e/cargo-llvm-cov/archive/refs/tags/v$pkgver.tar.gz
+	Cargo.lock
+"
+options="net" # cargo fetch
+
+prepare() {
+	default_prepare
+	cp "$srcdir/Cargo.lock" .
+	cargo fetch --target="$CTARGET" --locked
+}
+
+build() {
+	cargo auditable build --release --frozen
+}
+
+check() {
+	# the tests require a git repository
+	git init
+	git add .
+	git config user.name "fake"
+	git config user.email "fake@example.com"
+	git commit -m "fake init"
+
+	LLVM_COV=/usr/bin/llvm-cov \
+	LLVM_PROFDATA=/usr/bin/llvm-profdata \
+	cargo test --frozen
+}
+
+package() {
+	install -Dm 755 target/release/$pkgname -t "$pkgdir"/usr/bin
+	install -Dm 644 README.md -t "$pkgdir"/usr/share/doc/$pkgname
+	install -Dm 644 LICENSE-MIT -t "$pkgdir"/usr/share/licenses/$pkgname
+	install -Dm 644 LICENSE-APACHE -t "$pkgdir"/usr/share/licenses/$pkgname
+}
+sha512sums="
+d15c3501e16a6df6a0e39f1c815f5e0a761273c82c66b4b733ed9d9a5ad3d411cdecfd2127326c67a3d699438647ae801388402ac54e97abbf06745d16b7feb1  cargo-llvm-cov-0.9.1.tar.gz
+14d6a5e3372af9d36887b097fbd033bc5da9f6012f5912bae4c360b0e9aafdc522de03972b80041eee65c469b689ff21e5c63176041236fc78d53106db151777  Cargo.lock
+"

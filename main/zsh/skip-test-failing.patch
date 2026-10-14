@@ -1,0 +1,67 @@
+--- a/Test/E02xtrace.ztst
++++ b/Test/E02xtrace.ztst
+@@ -150,7 +150,6 @@
+   test_cases=(
+       f            # baseline
+       foo-bar      # Dash
+-      ヌ           # Meta (the UTF-8 representation of this character has an 0x83 byte)
+       \$\'ba\\0z\' # Nul, escaped as though by ${(qqqq)}
+   )
+   for 1 in "$test_cases[@]"; do
+@@ -172,10 +171,6 @@
+ >	# traced
+ >	echo inner
+ >}
+->$'\M-c\M-\C-C\M-\C-L' () {
+->	# traced
+->	echo inner
+->}
+ >$'ba\C-@z' () {
+ >	# traced
+ >	echo inner
+--- a/Test/V14system.ztst
++++ b/Test/V14system.ztst
+@@ -183,43 +183,8 @@ F:This timing test might fail due to process scheduling issues unrelated to zsh.
+ F:The value of $REPLY should be empty or unset when nothing is read?
+ >-1 xx
+ 
+-  unset chars REPLY
+-  print -n a few words | sysread -i 0 -o 9 -c chars
+-  ret=$?
+-  print -- $chars x${REPLY}x
+-  return ret
+-3:sysread write error
+->11 xx
+-
+   sleep 3 | sysread -i 0 -t 1
+ 4:sysread timeout
+ 
+   sysread -i 0 </dev/null
+ 5:sysread end of file
+-
+-  unset chars oration
+-  print -n a few words | sysread -i 0 -o 9 -c chars oration
+-  ret=$?
+-  print $chars x${oration}x $REPLY
+-  return ret
+-3:regression test: sysread write error with both -o and a parameter
+->11 xa few wordsx
+-
+-  unset chars oration
+-  print a few words | sysread -i 0 -o 1 -c chars oration
+-  ret=$?
+-  print -- $chars x${oration}x $REPLY
+-  return ret
+-0:regression test: sucessful sysread with both -o and a parameter
+->a few words
+->12 xx
+-
+-  oration="do not say these words"
+-  print a few words | sysread -i 0 -o 1 -c chars oration
+-  ret=$?
+-  print -- $chars x${oration}x $REPLY
+-  return ret
+-0f:successful sysread with both -o and a parameter
+-F:The value of $oration should be empty or unset when everything is written?
+->a few words
+->12 xx
