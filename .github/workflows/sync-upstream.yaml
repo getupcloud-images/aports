@@ -12,8 +12,13 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
-      - name: Sync with upstream
+
+      - name: Sync master branch with upstream
         run: gh repo sync ${{ github.repository }} -b master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Sync 3.24-stable branch with upstream
+        run: gh repo sync ${{ github.repository }} -b 3.24-stable
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
