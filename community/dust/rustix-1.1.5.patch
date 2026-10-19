@@ -1,7 +1,8 @@
-diff -rupN a/Cargo.lock b/Cargo.lock
---- a/Cargo.lock	2026-08-03 20:28:37.000000000 +0000
-+++ b/Cargo.lock	2026-09-18 17:45:59.826000000 +0000
-@@ -961,9 +961,9 @@ checksum = "323c417e1d9665a65b263ec744ba
+diff --git a/Cargo.lock b/Cargo.lock
+index 7f08660..66cffb0 100644
+--- a/Cargo.lock
++++ b/Cargo.lock
+@@ -716,9 +716,9 @@ checksum = "94300abf3f1ae2e2b8ffb7b58043de3d399c73fa6f4b73826402a5c457614dbe"
  
  [[package]]
  name = "rustix"
