@@ -1,17 +1,24 @@
-diff --git a/Cargo.lock b/Cargo.lock
-index 5232539..4cbcb2b 100644
 --- a/Cargo.lock
 +++ b/Cargo.lock
-@@ -1071,7 +1071,7 @@ dependencies = [
+@@ -1244,7 +1244,7 @@
   "tokio",
-  "tokio-rustls 0.26.2",
-  "url",
+  "tokio-rustls",
+  "tower-service",
 - "webpki-roots 1.0.2",
 + "webpki-roots 1.0.10",
  ]
  
  [[package]]
-@@ -2540,14 +2540,14 @@ version = "0.26.11"
+@@ -2738,7 +2738,7 @@
+  "wasm-bindgen",
+  "wasm-bindgen-futures",
+  "web-sys",
+- "webpki-roots 1.0.2",
++ "webpki-roots 1.0.10",
+ ]
+ 
+ [[package]]
+@@ -4566,14 +4566,14 @@
  source = "registry+https://github.com/rust-lang/crates.io-index"
  checksum = "521bc38abb08001b01866da9f51eb7c5d647a19260e00054a8c7fd5f9e57f7a9"
  dependencies = [
