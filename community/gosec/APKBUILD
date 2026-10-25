@@ -1,19 +1,20 @@
 # Contributor: Clayton Craft <clayton@craftyguy.net>
 # Maintainer: Clayton Craft <clayton@craftyguy.net>
 pkgname=gosec
-pkgver=2.28.0
-pkgrel=1
+pkgver=2.30.0
+pkgrel=0
 pkgdesc="Go source code static analyzer, focusing on security"
 url="https://github.com/securego/gosec"
 arch="all"
 license="Apache-2.0"
 makedepends="go"
-source="$pkgname-$pkgver.tar.gz::https://github.com/securego/gosec/archive/refs/tags/v$pkgver.tar.gz"
+source="$pkgname-$pkgver.tar.gz::https://github.com/securego/gosec/archive/refs/tags/v$pkgver.tar.gz
+	do-not-invoke-git.patch"
 # downloads go deps
 options="net"
 
 build() {
-	make PREFIX="/usr" VERSION="$pkgver"
+	make PREFIX="/usr" GIT_TAG="$pkgver"
 }
 
 check() {
@@ -25,5 +26,6 @@ package() {
 }
 
 sha512sums="
-7bcf0740598684645d1fa18d40741ae64d7eb22c2801e299f8e64d09c09556eff8d69ec3db63a29abbe98728520c0fb25e1ec868dd5fe98b5a62b40c91ed7198  gosec-2.28.0.tar.gz
+2323bfc31d3cc8ac0ee8f363ca49b9838057b6f796f78e68a89a9915e61784c458690fbf9a3e9981de46b6f88f43179dc33e1b19f5b06843236f0218b8e9ee06  gosec-2.30.0.tar.gz
+6c44a8979801dc8fd6c8fe9b3c8f4bc83d19d5f4267a7bc62faea3df4e15d048de26d7299cdbf7988cb96a2a65d980169a2e5350fddba7a58d0835661dea213f  do-not-invoke-git.patch
 "
