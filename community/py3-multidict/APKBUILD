@@ -3,7 +3,7 @@
 maintainer="Achill Gilgenast <achill@achill.org>"
 pkgname=py3-multidict
 _pkgname=multidict
-pkgver=7.2.0
+pkgver=7.2.1
 pkgrel=0
 pkgdesc="multidict implementation"
 url="https://github.com/aio-libs/multidict/"
@@ -35,5 +35,5 @@ package() {
 }
 
 sha512sums="
-b70e277d44f27da30d4ef4b3faa9879c0239f9920618685c61c59b63d53f77707c161e6ba86c2ebb30f440425e1a2a1ee0494e852242a806cace182f8ce11a30  multidict-7.2.0.tar.gz
+a42af12f31fd167fc0c150760f02dcce9fb64246b9c9a6d1d5e91a7303ade39dcab1dfff333c42c72825784c434f3bf62eef623fe6388d710bb5053b76f4f421  multidict-7.2.1.tar.gz
 "
