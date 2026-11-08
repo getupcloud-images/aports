@@ -4,7 +4,7 @@
 # Contributor: Aaron Fischer <mail@aaron-fischer.net>
 # Maintainer: Simon Frankenberger <simon-alpine@fraho.eu>
 pkgname=proftpd
-pkgver=1.3.9c
+pkgver=1.3.9e
 _vroot_pkgver=0.9.12
 _geoip2_pkgver=0.1.1
 _prometheus_pkgver=0.2
@@ -12,7 +12,7 @@ _proxy_pkgver=0.9.7
 _proxy_protocol_pkgver=0.6
 _statsd_pkgver=0.1
 _pkgver=${pkgver/_/}
-pkgrel=0
+pkgrel=1
 pkgdesc="Highly configurable FTP server software"
 url="https://github.com/proftpd/proftpd"
 pkgusers=$pkgname
@@ -68,11 +68,16 @@ source="$pkgname-$_pkgver.tar.gz::https://github.com/proftpd/proftpd/archive/v$_
 	$pkgname.initd
 	$pkgname.conf
 	mod_sftp.conf
-	mod_tls_shmcache.conf"
+	mod_tls_shmcache.conf
+	933abc9ae115ffc59e4b2a98495ec267bf341d23.patch"
 
 builddir="$srcdir/$pkgname-$_pkgver/"
 
 # secfixes:
+#   1.3.9e-r0:
+#     - CVE-2026-119146
+#     - CVE-2026-119147
+#     - CVE-2026-119364
 #   1.3.9b-r0:
 #     - CVE-2026-44331
 #   1.3.9a-r0:
@@ -233,7 +238,7 @@ _post_mod_sftp() {
 }
 
 sha512sums="
-b5003a02af58281cbad73edd4de81848c27def76cec88b1d234c32f1d04a5c8aa54cf08958815d5a927280fb2c6973df6f04209731bc92eee0f8f635e5e3aa5b  proftpd-1.3.9c.tar.gz
+95e2b361d6bb2df84d4994922ffa9670dd4e03cd8495eec0b32aeea5c797d6436b5f6bf6a4d1b53f770bd24bb9bb440f0996a4e725a3c10659fe23d19ed65565  proftpd-1.3.9e.tar.gz
 a84c14b9d05c4890abe50c86f832c91fa4d0971bc2b1866a3a34d73ff85acd1e902fc0cae739e22ea46e530c73230fb005ea9edeb68fd6cfb963e0c5ca9655ec  proftpd-mod_vroot-0.9.12.tar.gz
 5d5b0b62178dc2d0d1f4e847be7220f0477ba0e6783a8a567ea6f06cd2a10b724af90f92b9d455e8c00041f23298ee83e42dd8f1f295621e4f189d5404a4b606  proftpd-mod_geoip2-0.1.1.tar.gz
 99f595426f94824aac0ecd537072e0af2b3d252250ce24e9779999e0607ab32b97b1a908e6d2f8dc80a2b630f9a5385bc3161c3294be5c4c6f91e4e11c9fc023  proftpd-mod_prometheus-0.2.tar.gz
@@ -245,4 +250,5 @@ a03124a88c0c9f3981762804c62aa479f36227f24408a60437bf737c1e783c539a2d2c0aed0b1d95
 c6c6b6c32dd00d31fc1e328e989c77944aac993818747da05794c9560a270630e9bc7e09ac29215b57bcc709299d3720ae9009d3e2a94a0aef8cc5729fae1d0b  proftpd.conf
 8c810838219dd0663d3a7390c4e3a31739c1389238f92f856a4c74cd5a71317e1cae0dcfecc4e43cc3057f8c4132539e87511e06620debb2f166694a15adc13e  mod_sftp.conf
 2b5beaa4e01588b6d936b7ffda790e270fcba1e337eb43af11a1ad9c615d443d627c4bf66fe2b7946e57c65f5b1075568ab32df3c982e7e7d263b39d422693cd  mod_tls_shmcache.conf
+5c225f8619fb91869a62ce482cfc698eb4e883e439db43227a6a7633f0854ee964f18e1bb793b36f349c216eaa4d57b36d0e0e47112be3a7ebe0f8f32fe352fb  933abc9ae115ffc59e4b2a98495ec267bf341d23.patch
 "

@@ -1,0 +1,58 @@
+# Contributor: Victoria Brekenfeld <pkg@drakulix.de>
+# Contributor: Casey Connolly <kcxt@postmarketos.org>
+maintainer="Anton Bambura <jenneron@protonmail.com>"
+pkgname=inputplumber
+pkgver=0.84.0
+pkgrel=0
+pkgdesc="Open source input router and remapper daemon for Linux"
+url="https://github.com/ShadowBlip/InputPlumber"
+# ppc64le, s390x: error[E0659]: `STATX_TYPE` is ambiguous
+# loongarch64: error[E0432]: unresolved import `self::consts`
+arch="all !ppc64le !s390x !loongarch64"
+license="GPL-3.0-or-later"
+makedepends="
+	cargo
+	cargo-auditable
+	clang21-dev
+	eudev-dev
+	linux-headers
+	rust
+	sccache
+"
+checkdepends="rust-clippy"
+source="$pkgname-$pkgver.tar.gz::https://github.com/ShadowBlip/InputPlumber/archive/refs/tags/v$pkgver.tar.gz"
+builddir="$srcdir/InputPlumber-$pkgver"
+subpackages="
+	$pkgname-udev
+	$pkgname-systemd
+	$pkgname-polkit
+	$pkgname-dbus
+"
+
+build() {
+	cargo auditable build --release --target "$CHOST" --locked
+}
+
+check() {
+	make test
+}
+
+package() {
+	make install PREFIX="$pkgdir"/usr
+}
+
+polkit() {
+	pkgdesc="$pkgname (polkit policies)"
+	install_if="$pkgname=$pkgver-r$pkgrel polkit"
+	amove usr/share/polkit-1
+}
+
+dbus() {
+	pkgdesc="$pkgname (dbus files)"
+	install_if="$pkgname=$pkgver-r$pkgrel dbus"
+	amove usr/share/dbus-1
+}
+
+sha512sums="
+d9ad0c8c0929f6467b174c890d1df648028e3d20903e09b6c3a919261bbb4cee45f1ea1dccd2c4ce1df617014e49c5304122da72e60fc6daf0c6ac294f34993e  inputplumber-0.84.0.tar.gz
+"

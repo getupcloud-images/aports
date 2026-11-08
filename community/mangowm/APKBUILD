@@ -1,7 +1,7 @@
 # Maintainer: omni <omni+alpine@hack.org>
 maintainer="omni <omni+alpine@hack.org>"
 pkgname=mangowm
-pkgver=0.18.3
+pkgver=0.18.5
 pkgrel=0
 pkgdesc="Lightweight, high-performance Wayland compositor built on dwl"
 arch="all"
@@ -44,6 +44,6 @@ package() {
 }
 
 sha512sums="
-016a79da765a3f389d8ebbe6c7ab64a72ea07b629ff035ea964931e8416174a124011c0263af18d490b6931a857f050fc32bd71464cfa6e93b96f6f61d275941  mangowm-0.18.3.tar.gz
-0631b1f1aba138220e79e007f7e17c9339057bd27354ab7488086d38f30a6d6fd4e19131f531526d4681ab3a60b202c07c1da09f1a4d5efca3094ff65f38e930  mangowm-mck-0.18.3.sh
+9831b4c27be18a8db75330703e089b577d1753b8b68ca4bc9b327310011d5bbb7e8d3fa696d4ce3004f5a1104f8608b64e191e01dbb7ada5aba48f88ecd47ad8  mangowm-0.18.5.tar.gz
+0631b1f1aba138220e79e007f7e17c9339057bd27354ab7488086d38f30a6d6fd4e19131f531526d4681ab3a60b202c07c1da09f1a4d5efca3094ff65f38e930  mangowm-mck-0.18.5.sh
 "
