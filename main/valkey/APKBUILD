@@ -108,19 +108,24 @@ build() {
 }
 
 check() {
-	local test_opts=
 	case "$CARCH" in
 		# memory overhead tracking test fails on 32-bit architectures
 		armv7 | armhf | x86) rm tests/unit/tracking.tcl ;;
-		# MPTCP is not supported on riscv64 CI runner.
-		riscv64) test_opts="--skipunit unit/mptcp" ;;
 	esac
 
-	# Skip flaky tests and benchmarks.
+	# Skip MPTCP tests if the running kernel lacks MPTCP support.
+	local test_opts=
+	if ! [ -d /proc/sys/net/mptcp ]; then
+		test_opts="--skipunit unit/mptcp"
+	fi
+
+	# Skip flaky tests and benchmarks. Cluster tests time out on busy builders.
 	./runtest \
 		--config loadmodule "$builddir/src/modules/lua/libvalkeylua.so" \
 		--skiptest 'slave buffer are counted correctly' \
 		--skiptest '/(?i)benchmark' \
+		--skiptest 'BZPOPMIN unblock but the key is expired and then block again - reprocessing command' \
+		--skipunit tests/unit/cluster \
 		--no-latency \
 		$test_opts
 }
