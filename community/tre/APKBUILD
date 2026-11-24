@@ -1,0 +1,40 @@
+# Contributor: Al-Hassan Abdel-Raouf <alhassanaraouf@disroot.org>
+# Maintainer: Al-Hassan Abdel-Raouf <alhassanaraouf@disroot.org>
+pkgname=tre
+pkgver=0.9.0
+pkgrel=0
+pkgdesc="POSIX compliant regexp matching library"
+options="!check" # No testsuite
+url="https://github.com/laurikari/tre"
+arch="all"
+license="BSD-2-Clause"
+subpackages="$pkgname-static $pkgname-dev agrep agrep-doc"
+makedepends="autoconf automake gettext-dev libtool"
+source="$pkgname-$pkgver.tar.gz::https://github.com/laurikari/tre/archive/refs/tags/v$pkgver.tar.gz"
+
+prepare() {
+	default_prepare
+	autoreconf -fi
+}
+
+build() {
+	./configure \
+		--build=$CBUILD \
+		--host=$CHOST \
+		--prefix=/usr \
+		--enable-static
+	make
+}
+
+package() {
+	make DESTDIR="$pkgdir" install
+}
+
+agrep() {
+	pkgdesc="approximate grepping"
+	amove usr/bin/agrep
+}
+
+sha512sums="
+465f4273b6bcfd41a13716e91db4e12497266cbb97d5260b8d20114d19229e35f1641eebeb1b315e13ff6182608440ddd78ab386032c99e8265cfce9c8ef69c2  tre-0.9.0.tar.gz
+"

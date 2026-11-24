@@ -1,0 +1,22 @@
+#!/sbin/openrc-run
+
+: ${cfgfile:="/etc/piler/manticore.conf"}
+
+description="Searchd for piler daemon"
+command="/usr/bin/searchd"
+command_args="--config $cfgfile $command_args"
+command_user="piler:piler"
+
+# must match pid_file in /etc/piler/manticore.conf
+piddir=${piddir:-"/run/piler"}
+pidfile="${piddir}/searchd.pid"
+
+depend() {
+	need net
+	after firewall mariadb
+}
+
+start_pre() {
+	checkpath --directory --owner "piler:piler" "$piddir"
+}
+

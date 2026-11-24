@@ -1,0 +1,127 @@
+# Contributor: Noel Kuntze <noel.kuntze@thermi.consulting>
+# Maintainer: Miguel da Silva <midas@contauro.com>
+pkgname=piler
+pkgver=1.4.9
+pkgrel=3
+pkgdesc="Open source email archiving solution with all the necessary features for your enterprise"
+url="https://www.mailpiler.org/"
+arch="x86_64 aarch64" # libmanticore-columnar is only supported on x86_64 and aarch64
+license="GPL-3.0-only"
+_php=php84
+depends="
+	bash
+	catdoc
+	coreutils
+	findutils
+	libcurl
+	libzip
+	libmanticore-columnar
+	manticore
+	memcached
+	poppler-utils
+	python3
+	py3-mysqlclient
+	sysstat
+	tnef
+	tre
+	unrtf
+	xlhtml
+	"
+# bash is required to execute the cron maintenance scripts
+# optional = poppler: for reading attachments
+#            catdoc: for reading attachments
+#            tnef: for reading attachments
+# php pkgs = php84 php84-cgi php84-common php84-ctype php84-curl php84-fpm
+#            php84-gd php84-iconv php84-ldap php84-mbstring php84-pdo
+#            php84-pdo_mysql php84-pecl-memcached php84-xml php84-zip
+makedepends="$depends curl-dev mariadb-connector-c-dev $_php-dev openssl-dev tre-dev libzip-dev"
+install="$pkgname.pre-install $pkgname-openrc.pre-upgrade $pkgname-openrc.post-upgrade"
+options="!check"
+subpackages="$pkgname-openrc"
+pkgusers="piler"
+pkggroups="piler"
+source="https://github.com/jsuto/piler/archive/refs/tags/piler-$pkgver.tar.gz
+	0001-manticore-conf.patch
+	0002-disable-ssl.patch
+	0003-iconv-musl.patch
+
+	piler-fpm.conf
+	piler.initd
+	piler-smtp.initd
+	piler-searchd.initd
+	piler-searchd.confd
+	"
+builddir="$srcdir/piler-piler-$pkgver"
+
+build() {
+	./configure \
+		--build=$CBUILD \
+		--host=$CHOST \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--sbindir=/usr/bin \
+		--localstatedir=/var \
+		--libexecdir=/usr/lib \
+		--with-piler-user=root \
+		--enable-memcached
+
+	#Attention! The makefile is not formulated correctly for multithreading! We need to use one thread or it breaks.
+	make -j1
+}
+
+package() {
+
+	make installdirs DESTDIR="$pkgdir"
+	make install DESTDIR="$pkgdir"
+
+	# service files
+	rm -rf "$pkgdir"/etc/init.d
+	install -Dm755 "$srcdir"/$pkgname.initd "$pkgdir"/etc/init.d/$pkgname
+	install -Dm755 "$srcdir"/$pkgname-smtp.initd "$pkgdir"/etc/init.d/$pkgname-smtp
+	install -Dm755 "$srcdir"/$pkgname-searchd.initd "$pkgdir"/etc/init.d/$pkgname-searchd
+	install -Dm644 "$srcdir"/$pkgname-searchd.confd "$pkgdir"/etc/conf.d/$pkgname-searchd
+
+	# crontab
+	install -Dm600 "$pkgdir"/usr/share/piler/piler.cron "$pkgdir"/etc/crontabs/piler
+
+	# php-fpm fix
+	sed -i "s@/run/php/php.*-fpm.sock@/run/php-fpm${_php#php}/piler.sock@" contrib/webserver/piler-nginx.conf
+	sed -i "s@/run/php/php.*-fpm.sock@/run/php-fpm${_php#php}/piler.sock@" "$srcdir"/piler-fpm.conf
+
+	# configuration
+	install -Dm644 "$srcdir"/piler-fpm.conf "$pkgdir"/etc/piler/piler-fpm.conf
+	install -Dm655 "$builddir"/contrib/webserver/piler-nginx.conf "$pkgdir"/etc/piler/piler-nginx.conf
+	install -Dm644 "$builddir"/etc/example.conf "$pkgdir"/etc/piler/piler.conf
+	install -Dm644 "$builddir"/etc/smtp.acl.example "$pkgdir"/etc/piler/smtp.acl.example
+	install -Dm644 "$builddir"/util/db-upgrade.sql "$pkgdir"/usr/share/piler/db-upgrade.sql
+	mv "$pkgdir"/etc/piler/manticore.conf.dist "$pkgdir"/etc/piler/manticore.conf
+	mv "$pkgdir"/etc/piler/config-site.dist.php "$pkgdir"/etc/piler/config-site.php
+	rm -f "$pkgdir"/etc/piler/sphinx.conf.dist
+	touch "$pkgdir"/etc/piler/MANTICORE
+
+	# license
+	install -Dm644 LICENSE "$pkgdir"/usr/share/licenses/$pkgname/LICENSE
+
+	# Fix directory permissions
+	chmod -R a-s "$pkgdir"/usr/bin
+	chmod 644 "$pkgdir"/etc/piler/*
+	chmod 770 "$pkgdir"/var/piler/www/tmp "$pkgdir"/var/piler/www/images
+	chown piler:www-data "$pkgdir"/var/piler/www/tmp
+
+	install -d "$pkgdir"/var/log/$pkgname
+
+	# remove unnecessary files
+	rm -f "$pkgdir"/usr/lib/piler/*.service "$pkgdir"/usr/lib/piler/postinstall.sh
+}
+
+sha512sums="
+a6a5238ecd4629b1b5494e1fff1e2e353ddb6b47280bb0ec101b2b8013de8401bb368b75b9c03694eac165afa93ebbe6ad31a82430ca0123d7da00404adbc483  piler-1.4.9.tar.gz
+5ecffbf061b23ab0176e7e1d9486f5c348bfcbf3682e540dbcac03d207358ff851599b652342e00967eb9a70033966c5083f2dcd23c3f1166da3e9e32b598879  0001-manticore-conf.patch
+ecd9211858c61fc5cfd389fda0acc1afda133d59635bae721fcf0c8daea65b00709612ba438f1876112ff20e53644cf4ca60d3b4114b71fd9b6f7540d28f32c6  0002-disable-ssl.patch
+1ed776a3be99fa4e1a44a07a3809244ef3db34d50e67bcf853927adcef4702e6fce3e20c2f2ed23ca7e24414d20be133c3ec6efcd524ee40fde3d7b6feb19cc7  0003-iconv-musl.patch
+053ad0c4cca92b66366ed5e53b666b83ee463bc69a3dcb29b97049474a0d4ff70da7fe26eb565dfb8c911d243791358411ff902933e2433d6dbd7cb8fae05156  piler-fpm.conf
+4c67e8894898c34e5478c2304498ff8fb5bf5896c552f48fcbf4d9e52dad38e6c7ef4b03b9da1bc1ba293e4d320c25673724b5df168375b12bc27c80ade6fb6b  piler.initd
+5458dbdb2e639d6c1c6c7d0b22c3188a83c6434247b2eebbe7ac18876a30ddc5f3c5eb025b9f94735b7a378049f5f82b51efa7f5b2284e8492daa3b7c374b86a  piler-smtp.initd
+2eccd9feb6e4b3075e3d73d1dc37b6c12868f83f2537d8f877be5c16df6855e933caf7d3ee0ff8cbbf8f591068cb1e2b24621c671824b2c8a9a498b92c598b4f  piler-searchd.initd
+d6a57f4f972786898d39e94666daa36ba6265dbb577d97e4a9586d4e7b2f3f7b4e69537b316529123186df30f530dc54c03af10c88c8e205192d2b8568571bb3  piler-searchd.confd
+"
