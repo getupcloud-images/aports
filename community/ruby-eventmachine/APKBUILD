@@ -3,7 +3,7 @@
 pkgname=ruby-eventmachine
 _gemname=eventmachine
 pkgver=1.2.7
-pkgrel=8
+pkgrel=9
 pkgdesc="Fast, simple event-processing library for Ruby programs"
 url="https://github.com/eventmachine/eventmachine"
 arch="all"
@@ -34,8 +34,7 @@ build() {
 	gem build $_gemname.gemspec
 	gem install \
 		--local \
-		--install-dir dist \
-		--ignore-dependencies \
+		--build-root dist \
 		--no-document \
 		--verbose \
 		$_gemname
@@ -43,7 +42,8 @@ build() {
 
 check() {
 	# test_defers somtimes hangs
-	GEM_PATH='./dist' ruby -Itests -e "Dir.glob './tests/**/test_*.rb', &method(:require)" -- \
+	GEM_PATH="dist$(ruby -e 'puts Gem.default_dir')" \
+	ruby -Itests -e "Dir.glob './tests/**/test_*.rb', &method(:require)" -- \
 		--verbose \
 		--ignore-name=/^test_em_system_pid$/ \
 		--ignore-name=/^test_invalid_address_bind_connect_dst$/ \
@@ -54,15 +54,17 @@ check() {
 
 package() {
 	local gemdir="$pkgdir/$(ruby -e 'puts Gem.default_dir')"
-	cd "$builddir"/dist
 
-	mkdir -p "$gemdir"
-	cp -r extensions gems specifications "$gemdir"/
+	mkdir -p "$pkgdir"
+	cp -r dist/* "$pkgdir"/
 
 	# Remove unnecessary files and rubbish...
-	find "$gemdir"/extensions/ -name mkmf.log -delete
+	cd "$gemdir"
+	rm -r build_info cache doc
+	rmdir plugins || true
+	find extensions/ -name mkmf.log -delete
 
-	cd "$gemdir"/gems/$_gemname-$pkgver
+	cd gems/$_gemname-$pkgver
 	rm -r ext/ lib/*.so
 }
 

@@ -3,7 +3,7 @@
 pkgname=ruby-pathutil
 _gemname=pathutil
 pkgver=0.16.2
-pkgrel=5
+pkgrel=6
 pkgdesc="A faster pure Ruby implementation of Pathname with extra bits"
 url="https://github.com/envygeeks/pathutil"
 arch="noarch"
@@ -32,8 +32,7 @@ package() {
 
 	gem install \
 		--local \
-		--install-dir "$gemdir" \
-		--ignore-dependencies \
+		--build-root "$pkgdir" \
 		--no-document \
 		--verbose \
 		$_gemname
@@ -41,6 +40,7 @@ package() {
 	# Remove unnecessary files and rubbish...
 	cd "$gemdir"
 	rm -r cache build_info doc extensions
+	rmdir plugins || true
 }
 
 sha512sums="

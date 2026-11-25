@@ -4,7 +4,7 @@
 pkgname=ruby-escape_utils
 _gemname=${pkgname#ruby-}
 pkgver=1.3.0
-pkgrel=3
+pkgrel=4
 pkgdesc="Faster string escaping routines for your Ruby apps"
 url="https://github.com/brianmario/escape_utils"
 arch="all"
@@ -34,8 +34,7 @@ prepare() {
 build() {
 	gem build $_gemname.gemspec
 	gem install --local \
-		--install-dir dist \
-		--ignore-dependencies \
+		--build-root dist \
 		--no-document \
 		--verbose \
 		$_gemname
@@ -47,13 +46,16 @@ check() {
 
 package() {
 	local gemdir="$pkgdir/$(ruby -e 'puts Gem.default_dir')"
-	cd "$builddir"/dist
 
-	mkdir -p "$gemdir"
-	cp -r extensions gems specifications "$gemdir"/
+	mkdir -p "$pkgdir"
+	cp -r dist/* "$pkgdir"/
 
 	# Remove unnecessary files.
-	rm -r "$gemdir"/gems/$_gemname-$pkgver/ext
+	cd "$gemdir"
+	rm -r build_info cache doc
+	rmdir plugins || true
+
+	rm -r gems/$_gemname-$pkgver/ext
 }
 
 sha512sums="

@@ -5,7 +5,7 @@ _gemname=nkf
 # Keep version in sync with "Bundled gems" (https://stdgems.org) for the
 # packaged Ruby version.
 pkgver=0.2.0
-pkgrel=0
+pkgrel=1
 pkgdesc="Ruby extension for Network Kanji Filter"
 url="https://github.com/ruby/nkf"
 arch="all"
@@ -13,6 +13,7 @@ license="BSD-2-Clause AND Ruby"
 depends="ruby"
 makedepends="ruby-dev"
 checkdepends="ruby-test-unit"
+subpackages="$pkgname-doc"
 source="https://github.com/ruby/nkf/archive/v$pkgver/$_gemname-$pkgver.tar.gz
 	gemspec.patch
 	"
@@ -23,31 +24,38 @@ build() {
 
 	gem install \
 		--local \
-		--install-dir dist \
-		--ignore-dependencies \
+		--build-root dist \
 		--document ri \
 		--verbose \
 		$_gemname
 }
 
 check() {
-	GEM_PATH="dist" ruby -I lib \
+	GEM_PATH="dist$(ruby -e 'puts Gem.default_dir')" \
+	ruby -I lib \
 		-e "Dir.glob('./test/**/test_*.rb', &method(:require))" -- --verbose
 }
 
 package() {
 	local gemdir="$pkgdir/$(ruby -e 'puts Gem.default_dir')"
 
-	cd "$builddir"/dist
-
-	mkdir -p "$gemdir"
-	cp -r extensions gems specifications "$gemdir"/
+	mkdir -p "$pkgdir"
+	cp -r dist/* "$pkgdir"/
 
 	# Remove unnecessary files.
-	find "$gemdir"/extensions/ -name mkmf.log -delete
+	cd "$gemdir"
+	rm -r build_info cache
+	rmdir plugins || true
+	find extensions/ -name mkmf.log -delete
 
-	cd "$gemdir"/gems/$_gemname-$pkgver
+	cd gems/$_gemname-$pkgver
 	rm -r ext/
+}
+
+doc() {
+	pkgdesc="$pkgdesc (ri docs)"
+
+	amove "$(ruby -e 'puts Gem.default_dir')"/doc
 }
 
 sha512sums="

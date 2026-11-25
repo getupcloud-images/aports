@@ -3,7 +3,7 @@
 pkgname=ruby-jekyll-watch
 _gemname=jekyll-watch
 pkgver=2.2.1
-pkgrel=5
+pkgrel=6
 pkgdesc="Rebuild your Jekyll site when a file changes with the --watch switch"
 url="https://github.com/jekyll/jekyll-watch"
 arch="noarch"
@@ -24,8 +24,7 @@ package() {
 
 	gem install \
 		--local \
-		--install-dir "$gemdir" \
-		--ignore-dependencies \
+		--build-root "$pkgdir" \
 		--no-document \
 		--verbose \
 		$_gemname
@@ -33,6 +32,7 @@ package() {
 	# Remove unnecessary files and rubbish...
 	cd "$gemdir"
 	rm -r cache build_info doc extensions
+	rmdir plugins || true
 }
 
 sha512sums="

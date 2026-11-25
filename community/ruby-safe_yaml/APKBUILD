@@ -3,12 +3,12 @@
 pkgname=ruby-safe_yaml
 _gemname=safe_yaml
 pkgver=1.0.5
-pkgrel=5
+pkgrel=6
 pkgdesc="Parse YAML safely"
 url="https://github.com/dtao/safe_yaml"
 arch="noarch"
 license="MIT"
-depends="ruby"
+depends="ruby ruby-base64"
 checkdepends="ruby-rspec ruby-hashie"
 source="https://github.com/dtao/safe_yaml/archive/$pkgver/$_gemname-$pkgver.tar.gz
 	gemspec.patch
@@ -29,15 +29,17 @@ package() {
 
 	gem install \
 		--local \
-		--install-dir "$gemdir" \
-		--ignore-dependencies \
+		--build-root "$pkgdir" \
 		--no-document \
 		--verbose \
 		$_gemname
 
 	# Remove unnecessary files and rubbish...
+	rm -r "$pkgdir"/usr/bin
+
 	cd "$gemdir"
-	rm -r bin cache build_info doc extensions
+	rm -r cache build_info doc extensions
+	rmdir plugins || true
 }
 
 sha512sums="

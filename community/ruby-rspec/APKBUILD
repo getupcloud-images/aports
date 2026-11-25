@@ -3,7 +3,7 @@
 pkgname=ruby-rspec
 _gemname=${pkgname#ruby-}
 pkgver=3.13.2
-pkgrel=0
+pkgrel=1
 pkgdesc="Behaviour Driven Development for Ruby"
 url="http://rspec.info/"
 arch="noarch"
@@ -25,8 +25,7 @@ package() {
 	local gemdir="$pkgdir/$(ruby -e 'puts Gem.default_dir')"
 
 	gem install --local \
-		--install-dir "$gemdir" \
-		--ignore-dependencies \
+		--build-root "$pkgdir" \
 		--no-document \
 		--verbose \
 		$_gemname
@@ -34,7 +33,9 @@ package() {
 	# Clean-up...
 	rm -r "$gemdir"/cache \
 		"$gemdir"/build_info \
-		"$gemdir"/doc
+		"$gemdir"/doc \
+		"$gemdir"/extensions
+	rmdir "$gemdir"/plugins || true
 }
 
 sha512sums="

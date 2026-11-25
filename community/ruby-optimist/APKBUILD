@@ -3,7 +3,7 @@
 pkgname=ruby-optimist
 _gemname=optimist
 pkgver=3.2.1
-pkgrel=0
+pkgrel=1
 pkgdesc="A commandline option parser for Ruby that just gets out of your way"
 url="https://www.manageiq.org/optimist/"
 arch="noarch"
@@ -30,13 +30,13 @@ package() {
 	local geminstdir="$gemdir/gems/$_gemname-$pkgver"
 
 	gem install --local \
-		--install-dir "$gemdir" \
-		--ignore-dependencies \
+		--build-root "$pkgdir" \
 		--no-document \
 		--verbose \
 		$_gemname
 
-	rm -r "$gemdir"/cache "$gemdir"/doc
+	rm -r "$gemdir"/cache "$gemdir"/doc "$gemdir"/extensions
+	rmdir "$gemdir"/plugins || true
 }
 
 sha512sums="

@@ -4,12 +4,12 @@ maintainer="Will Sinatra <wpsinatra@gmail.com>"
 pkgname=ruby-ansi
 _gemname=${pkgname#ruby-}
 pkgver=1.6.1
-pkgrel=0
+pkgrel=1
 pkgdesc="A collection of ansi escape code libraries"
 url="https://rubygems.org/gems/ansi"
 arch="noarch"
 license="BSD-2-Clause"
-depends="ruby"
+depends="ruby ruby-logger"
 checkdepends="ruby-rake ruby-bundler ruby-test-unit"
 source="$pkgname-$pkgver.tar.gz::https://github.com/rubyworks/ansi/archive/refs/tags/v$pkgver.tar.gz"
 builddir="$srcdir/$_gemname-$pkgver"
@@ -33,15 +33,16 @@ package() {
 	local gemdir="$pkgdir/$(ruby -e 'puts Gem.default_dir')"
 
 	gem install --local \
-		--install-dir "$gemdir" \
-		--ignore-dependencies \
+		--build-root "$pkgdir" \
 		--no-document \
 		--verbose \
 		$_gemname
 
 	rm -r "$gemdir"/cache \
 		"$gemdir"/build_info \
-		"$gemdir"/doc
+		"$gemdir"/doc \
+		"$gemdir"/extensions
+	rmdir "$gemdir"/plugins || true
 
 	cd "$gemdir/gems/$_gemname-$pkgver"
 	rm -r ./*.md demo

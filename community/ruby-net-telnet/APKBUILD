@@ -3,11 +3,11 @@
 pkgname=ruby-net-telnet
 _gemname=net-telnet
 pkgver=0.2.0
-pkgrel=4
+pkgrel=5
 pkgdesc="A telnet client functionality for Ruby"
 url="https://github.com/ruby/net-telnet"
 arch="noarch"
-license="BSD-2-Clause"
+license="BSD-2-Clause OR Ruby"
 depends="ruby"
 checkdepends="ruby-minitest ruby-rake"
 makedepends="ruby-rdoc"
@@ -36,15 +36,15 @@ package() {
 
 	gem install \
 		--local \
-		--install-dir "$gemdir" \
-		--ignore-dependencies \
+		--build-root "$pkgdir" \
 		--document ri \
 		--verbose \
 		$_gemname
 
 	# Remove unnessecary files
 	cd "$gemdir"
-	rm -rf build_info cache extensions plugins
+	rm -r build_info cache extensions
+	rmdir plugins || true
 }
 
 doc() {

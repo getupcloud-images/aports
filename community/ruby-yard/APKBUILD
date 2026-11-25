@@ -3,7 +3,7 @@
 pkgname=ruby-yard
 _gemname=${pkgname#ruby-}
 pkgver=0.9.45
-pkgrel=0
+pkgrel=1
 pkgdesc="a documentation generation tool for Ruby"
 url="https://rubygems.org/gems/yard"
 arch="noarch"
@@ -31,15 +31,16 @@ package() {
 	local gemdir="$pkgdir/$(ruby -e 'puts Gem.default_dir')"
 
 	gem install --local \
-		--install-dir "$gemdir" \
-		--ignore-dependencies \
+		--build-root "$pkgdir" \
 		--no-document \
 		--verbose \
 		$_gemname
 
 	rm -r "$gemdir"/cache \
 		"$gemdir"/build_info \
-		"$gemdir"/doc
+		"$gemdir"/doc \
+		"$gemdir"/extensions
+	rmdir "$gemdir"/plugins || true
 
 	mkdir -p "$pkgdir"/usr/share/doc/"$pkgname"/
 	install -Dm644 "$builddir"/docs/*.md "$pkgdir"/usr/share/doc/"$pkgname"/

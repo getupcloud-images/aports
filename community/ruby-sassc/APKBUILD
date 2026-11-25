@@ -3,7 +3,7 @@
 pkgname=ruby-sassc
 _gemname=sassc
 pkgver=2.4.0
-pkgrel=5
+pkgrel=6
 pkgdesc="Use libsass with Ruby!"
 url="https://github.com/sass/sassc-ruby"
 arch="noarch"
@@ -31,15 +31,15 @@ package() {
 
 	gem install \
 		--local \
-		--install-dir "$gemdir" \
-		--ignore-dependencies \
+		--build-root "$pkgdir" \
 		--no-document \
 		--verbose \
 		$_gemname
 
 	# Remove unnecessary files and rubbish...
 	cd "$gemdir"
-	rm -r cache build_info doc
+	rm -r cache build_info doc extensions
+	rmdir plugins || true
 }
 
 sha512sums="

@@ -3,12 +3,16 @@
 pkgname=ruby-json-schema
 _gemname=${pkgname#ruby-}
 pkgver=6.2.1
-pkgrel=0
+pkgrel=1
 pkgdesc="Ruby JSON Schema Validator"
 url="https://github.com/voxpupuli/json-schema"
 arch="noarch"
 license="MIT"
-depends="ruby ruby-addressable"
+depends="
+	ruby
+	ruby-addressable
+	ruby-bigdecimal
+	"
 checkdepends="
 	ruby-minitest
 	ruby-rake
@@ -31,18 +35,18 @@ package() {
 	local geminstdir="$gemdir/gems/$_gemname-$pkgver"
 
 	gem install --local \
-		--install-dir "$gemdir" \
-		--ignore-dependencies \
+		--build-root "$pkgdir" \
 		--no-document \
 		--verbose \
 		$_gemname
 
 	# Remove unnecessary files.
 	cd "$gemdir"
-	rm -r cache/ build_info/ doc/ extensions/ plugins/
+	rm -r cache/ build_info/ doc/ extensions/
+	rmdir plugins || true
 
 	cd "$geminstdir"
-	rm -rf ./*.md
+	rm -r ./*.md
 
 }
 

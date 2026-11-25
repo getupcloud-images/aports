@@ -3,7 +3,7 @@
 pkgname=ruby-builder
 _gemname=builder
 pkgver=3.3.0
-pkgrel=1
+pkgrel=2
 pkgdesc="Provide a simple way to create XML markup and data structures"
 url="https://github.com/jimweirich/builder"
 arch="noarch"
@@ -19,13 +19,13 @@ package() {
 
 	gem install \
 		--local \
-		--install-dir "$gemdir" \
-		--ignore-dependencies \
+		--build-root "$pkgdir" \
 		--no-document \
 		--verbose \
 		"$srcdir"/$_gemname-$pkgver.gem
 
-	rm -rf "$gemdir"/cache \
+	rm -r "$gemdir"/cache \
+		"$gemdir"/extensions \
 		"$geminstdir"/doc \
 		"$geminstdir"/rakelib \
 		"$geminstdir"/test \
@@ -33,6 +33,7 @@ package() {
 		"$geminstdir"/*LICENSE \
 		"$geminstdir"/Rakefile \
 		"$geminstdir"/*.md
+	rmdir "$gemdir"/plugins || true
 }
 
 sha512sums="

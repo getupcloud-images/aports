@@ -3,7 +3,7 @@
 pkgname=ruby-mini_portile2
 _gemname=${pkgname#ruby-}
 pkgver=2.8.9
-pkgrel=0
+pkgrel=1
 pkgdesc="Simplistic port-like solution for developers"
 url="https://github.com/flavorjones/mini_portile"
 arch="noarch"
@@ -19,19 +19,19 @@ package() {
 
 	gem install \
 		--local \
-		--install-dir "$gemdir" \
-		--ignore-dependencies \
+		--build-root "$pkgdir" \
 		--no-document \
 		--verbose \
 		"$srcdir"/$_gemname-$pkgver.gem
 
-	rm -rf "$gemdir"/cache \
+	rm -r "$gemdir"/cache \
+		"$gemdir"/extensions \
 		"$geminstdir"/.github \
 		"$geminstdir"/test \
 		"$geminstdir"/*.md \
 		"$geminstdir"/*.txt \
-		"$geminstdir"/*.yml \
 		"$geminstdir"/Rakefile
+	rmdir "$gemdir"/plugins || true
 }
 
 sha512sums="

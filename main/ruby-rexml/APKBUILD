@@ -5,7 +5,7 @@ _gemname=rexml
 # Keep version in sync with "Bundled gems" (https://stdgems.org) for the
 # packaged Ruby version.
 pkgver=3.4.4
-pkgrel=0
+pkgrel=1
 pkgdesc="An XML toolkit for Ruby"
 url="https://github.com/ruby/rexml"
 arch="noarch"
@@ -49,15 +49,15 @@ package() {
 
 	gem install \
 		--local \
-		--install-dir "$gemdir" \
-		--ignore-dependencies \
+		--build-root "$pkgdir" \
 		--document ri \
 		--verbose \
 		$_gemname
 
 	# Remove unnecessary files and rubbish...
 	cd "$gemdir"
-	rm -r cache build_info extensions plugins
+	rm -r cache build_info extensions
+	rmdir plugins || true
 
 	cd "$geminstdir"
 	rm -r doc LICENSE* *.md

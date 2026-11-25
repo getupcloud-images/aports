@@ -3,12 +3,12 @@
 pkgname=ruby-mercenary
 _gemname=mercenary
 pkgver=0.4.0
-pkgrel=5
+pkgrel=6
 pkgdesc="An easier way to build your command-line scripts in Ruby"
 url="https://github.com/jekyll/mercenary"
 arch="noarch"
 license="MIT"
-depends="ruby"
+depends="ruby ruby-logger"
 checkdepends="ruby-rspec"
 source="https://github.com/jekyll/mercenary/archive/v$pkgver/$_gemname-$pkgver.tar.gz
 	gemspec.patch
@@ -28,8 +28,7 @@ package() {
 
 	gem install \
 		--local \
-		--install-dir "$gemdir" \
-		--ignore-dependencies \
+		--build-root "$pkgdir" \
 		--no-document \
 		--verbose \
 		$_gemname
@@ -37,6 +36,7 @@ package() {
 	# Remove unnecessary files and rubbish...
 	cd "$gemdir"
 	rm -r cache build_info doc extensions
+	rmdir plugins || true
 }
 
 sha512sums="

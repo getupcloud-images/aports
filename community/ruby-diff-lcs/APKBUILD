@@ -3,7 +3,7 @@
 pkgname=ruby-diff-lcs
 _gemname=${pkgname#ruby-}
 pkgver=1.6.1
-pkgrel=1
+pkgrel=2
 pkgdesc="Generate difference sets between Ruby sequences"
 url="https://halostatue.github.io/diff-lcs/"
 arch="noarch"
@@ -23,16 +23,15 @@ package() {
 	local geminstdir="$gemdir/gems/$_gemname-$pkgver"
 
 	gem install --local \
-		--install-dir "$gemdir" \
-		--bindir "$pkgdir/usr/bin" \
-		--ignore-dependencies \
+		--build-root "$pkgdir" \
 		--no-document \
 		--verbose \
 		$_gemname
 
 	# Remove unnecessary files.
 	cd "$gemdir"
-	rm -r cache/ build_info/ doc/
+	rm -r cache/ build_info/ doc/ extensions/
+	rmdir plugins || true
 	cd "$geminstdir"
 	rm -r docs/ spec/ Rakefile *.md *.txt
 }

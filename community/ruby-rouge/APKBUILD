@@ -3,7 +3,7 @@
 pkgname=ruby-rouge
 _gemname=rouge
 pkgver=4.6.1
-pkgrel=0
+pkgrel=1
 pkgdesc="A pure Ruby code highlighter that is compatible with Pygments"
 url="https://github.com/rouge-ruby/rouge"
 arch="noarch"
@@ -24,9 +24,7 @@ package() {
 
 	gem install \
 		--local \
-		--install-dir "$gemdir" \
-		--bindir "$pkgdir/usr/bin" \
-		--ignore-dependencies \
+		--build-root "$pkgdir" \
 		--no-document \
 		--verbose \
 		$_gemname
@@ -34,6 +32,7 @@ package() {
 	# Remove unnecessary files and rubbish...
 	cd "$gemdir"
 	rm -r cache build_info doc extensions
+	rmdir plugins || true
 
 	rm "$geminstdir"/Gemfile
 }

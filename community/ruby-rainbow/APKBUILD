@@ -3,7 +3,7 @@
 pkgname=ruby-rainbow
 _gemname=${pkgname#ruby-}
 pkgver=3.1.1
-pkgrel=1
+pkgrel=2
 pkgdesc="colorize printed text on ANSI terminals"
 url="https://rubygems.org/gems/rainbow"
 arch="noarch"
@@ -32,15 +32,16 @@ package() {
 	local gemdir="$pkgdir/$(ruby -e 'puts Gem.default_dir')"
 
 	gem install --local \
-		--install-dir "$gemdir" \
-		--ignore-dependencies \
+		--build-root "$pkgdir" \
 		--no-document \
 		--verbose \
 		$_gemname
 
 	rm -r "$gemdir"/cache \
 		"$gemdir"/build_info \
-		"$gemdir"/doc
+		"$gemdir"/doc \
+		"$gemdir"/extensions
+	rmdir "$gemdir"/plugins || true
 
 	cd "$gemdir/gems/$_gemname-$pkgver"
 	rm -r README.markdown Changelog.md LICENSE

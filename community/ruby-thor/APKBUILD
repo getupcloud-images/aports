@@ -2,7 +2,7 @@
 # Maintainer: Kevin Daudt <kdaudt@alpinelinux.org>
 pkgname=ruby-thor
 pkgver=1.5.0
-pkgrel=0
+pkgrel=1
 pkgdesc="toolkit for building powerfull command-line interfaces"
 url="http://whatisthor.com/"
 arch="noarch"
@@ -26,9 +26,7 @@ package() {
 
 	gem install \
 		--local \
-		--install-dir "$gemdir" \
-		--bindir "$pkgdir/usr/bin" \
-		--ignore-dependencies \
+		--build-root "$pkgdir" \
 		--no-document \
 		--verbose \
 		thor
@@ -36,6 +34,7 @@ package() {
 	rm -r "$gemdir"/cache \
 		"$gemdir"/extensions \
 		"$gemdir"/doc
+	rmdir "$gemdir"/plugins || true
 }
 
 sha512sums="

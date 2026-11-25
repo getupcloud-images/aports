@@ -2,7 +2,7 @@
 # Maintainer: Kevin Daudt <kdaudt@alpinelinux.org>
 pkgname=ruby-xdg
 pkgver=9.5.0
-pkgrel=0
+pkgrel=1
 pkgdesc="xdg base directory standard library for ruby"
 url="https://www.alchemists.io/projects/xdg/"
 arch="noarch"
@@ -28,9 +28,7 @@ package() {
 
 	gem install \
 		--local \
-		--install-dir "$gemdir" \
-		--bindir "$pkgdir/usr/bin" \
-		--ignore-dependencies \
+		--build-root "$pkgdir" \
 		--no-document \
 		--verbose \
 		xdg
@@ -38,6 +36,7 @@ package() {
 	rm -r "$gemdir"/cache \
 		"$gemdir"/extensions \
 		"$gemdir"/doc
+	rmdir "$gemdir"/plugins || true
 }
 
 sha512sums="

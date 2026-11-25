@@ -4,7 +4,7 @@ maintainer="Will Sinatra <wpsinatra@gmail.com>"
 pkgname=ruby-connection_pool
 _gemname=${pkgname#ruby-}
 pkgver=3.0.3
-pkgrel=0
+pkgrel=1
 pkgdesc="generic connection pool for ruby"
 url="https://rubygems.org/gems/connection_pool"
 arch="noarch"
@@ -36,15 +36,16 @@ package() {
 	local gemdir="$pkgdir/$(ruby -e 'puts Gem.default_dir')"
 
 	gem install --local \
-		--install-dir "$gemdir" \
-		--ignore-dependencies \
+		--build-root "$pkgdir" \
 		--no-document \
 		--verbose \
 		$_gemname
 
 	rm -r "$gemdir"/cache \
 		"$gemdir"/build_info \
-		"$gemdir"/doc
+		"$gemdir"/doc \
+		"$gemdir"/extensions
+	rmdir "$gemdir"/plugins || true
 
 	cd "$gemdir/gems/$_gemname-$pkgver"
 	rm README.md Changes.md

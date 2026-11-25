@@ -2,13 +2,13 @@
 pkgname=ruby-multi_xml
 _gemname=${pkgname#ruby-}
 pkgver=0.9.1
-pkgrel=0
+pkgrel=1
 pkgdesc="Swappable XML backends utilizing LibXML, Nokogiri, Ox, or REXML."
 url="https://rubygems.org/gems/multi_xml"
 arch="noarch"
 license="MIT"
 checkdepends="ruby-rake ruby-bundler ruby-rspec"
-depends="ruby"
+depends="ruby ruby-bigdecimal"
 source="$pkgname-$pkgver.tar.gz::https://github.com/sferik/multi_xml/archive/refs/tags/v$pkgver.tar.gz
 	gemspec.patch"
 builddir="$srcdir/$_gemname-$pkgver"
@@ -32,18 +32,19 @@ package() {
 	local gemdir="$pkgdir/$(ruby -e 'puts Gem.default_dir')"
 
 	gem install --local \
-		--install-dir "$gemdir" \
-		--ignore-dependencies \
+		--build-root "$pkgdir" \
 		--no-document \
 		--verbose \
 		$_gemname
 
 	rm -r "$gemdir"/cache \
 		"$gemdir"/build_info \
-		"$gemdir"/doc
+		"$gemdir"/doc \
+		"$gemdir"/extensions
+	rmdir "$gemdir"/plugins || true
 }
 
 sha512sums="
 5179aac1da2be0a4d5f5a28b8b1d22c14d0c43a494fbbe6e530b799a2f0561c38ced7caf5b5629bf23d0ea096222766f786968dfc89280a7039f503d977e3a5e  ruby-multi_xml-0.9.1.tar.gz
-a9543e60087b3385b38b39768e94bdff11f7b498972b96df4cc411430eb100c25eb81f991bed2ebb17a0e68883ca156be885fbbe5abd7ae11ab1e24ff3ceb425  gemspec.patch
+f0e24276d3072bcab18206fd164f92c4fe9717adbc1cbbf920a40e988bf18d294810d26946fcc4f9573f1b88036718dcb36ffe9839c900e29211157cadfcd47c  gemspec.patch
 "

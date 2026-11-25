@@ -3,7 +3,7 @@
 pkgname=ruby-tcxread
 _gemname=${pkgname#ruby-}
 pkgver=0.2.1
-pkgrel=0
+pkgrel=1
 pkgdesc="Parser for TCX files"
 url="https://github.com/firefly-cpp/tcxread"
 arch="noarch"
@@ -26,8 +26,7 @@ package() {
 	local gemdir="$pkgdir/$(ruby -e 'puts Gem.default_dir')"
 
 	gem install --local \
-		--install-dir "$gemdir" \
-		--ignore-dependencies \
+		--build-root "$pkgdir" \
 		--no-document \
 		--verbose \
 		$_gemname
@@ -36,7 +35,8 @@ package() {
 
 	# Remove unnecessary files.
 	cd "$gemdir"
-	rm -r cache/ build_info/ doc/
+	rm -r cache/ build_info/ doc/ extensions/
+	rmdir plugins || true
 }
 
 sha512sums="

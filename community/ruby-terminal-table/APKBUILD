@@ -4,7 +4,7 @@ pkgname=ruby-terminal-table
 _gemname=terminal-table
 # NOTE: Before bumping, check version required by jekyll.
 pkgver=3.0.2
-pkgrel=4
+pkgrel=5
 pkgdesc="Ruby ASCII Table Generator, simple and feature rich"
 url="https://github.com/tj/terminal-table"
 arch="noarch"
@@ -30,8 +30,7 @@ package() {
 
 	gem install \
 		--local \
-		--install-dir "$gemdir" \
-		--ignore-dependencies \
+		--build-root "$pkgdir" \
 		--no-document \
 		--verbose \
 		$_gemname
@@ -39,6 +38,7 @@ package() {
 	# Remove unnecessary files and rubbish...
 	cd "$gemdir"
 	rm -r cache build_info doc extensions
+	rmdir plugins || true
 }
 
 sha512sums="

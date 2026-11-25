@@ -5,7 +5,7 @@ _gemname=${pkgname#ruby-}
 pkgver=1.0.0
 # This is tagged as 1.0.0 on ruby gems, but not in the repo.
 _commit=1d86852bd820e1dc4f2d204231f1ebbc1b146075
-pkgrel=0
+pkgrel=1
 pkgdesc="forces all tests to prove success"
 url="https://rubygems.org/gems/minitest-proveit"
 arch="noarch"
@@ -37,15 +37,16 @@ package() {
 	local gemdir="$pkgdir/$(ruby -e 'puts Gem.default_dir')"
 
 	gem install --local \
-		--install-dir "$gemdir" \
-		--ignore-dependencies \
+		--build-root "$pkgdir" \
 		--no-document \
 		--verbose \
 		$_gemname
 
 	rm -r "$gemdir"/cache \
 		"$gemdir"/build_info \
-		"$gemdir"/doc
+		"$gemdir"/doc \
+		"$gemdir"/extensions
+	rmdir "$gemdir"/plugins || true
 
 	cd "$gemdir/gems/$_gemname-$pkgver"
 	rm -r test Rakefile .autotest ./*.rdoc ./*.txt

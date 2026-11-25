@@ -3,14 +3,13 @@
 pkgname=ruby-simplecov
 _gemname=${pkgname#ruby-}
 pkgver=1.3.2
-pkgrel=0
+pkgrel=1
 pkgdesc="Code coverage for Ruby"
 url="https://rubygems.org/gems/simplecov"
 arch="noarch"
 license="MIT"
 depends="ruby"
 checkdepends="ruby-rake ruby-bundler ruby-rspec"
-depends="ruby-docile ruby-simplecov-html ruby-simplecov_json_formatter"
 source="$pkgname-$pkgver.tar.gz::https://github.com/simplecov-ruby/simplecov/archive/refs/tags/v$pkgver.tar.gz"
 builddir="$srcdir/$_gemname-$pkgver"
 subpackages="$pkgname-doc"
@@ -34,8 +33,7 @@ package() {
 	local gemdir="$pkgdir$(ruby -e 'puts Gem.default_dir')"
 
 	gem install --local \
-		--install-dir "$gemdir" \
-		--ignore-dependencies \
+		--build-root "$pkgdir" \
 		--no-document \
 		--verbose \
 		$_gemname
@@ -44,7 +42,9 @@ package() {
 	install -Dm644 "$builddir"/docs/*.md "$pkgdir"/usr/share/doc/"$pkgname"/
 
 	rm -r "$gemdir"/cache \
-		"$gemdir"/build_info
+		"$gemdir"/build_info \
+		"$gemdir"/extensions
+	rmdir "$gemdir"/plugins || true
 
 	cd "$gemdir/gems/$_gemname-$pkgver"
 	rm -r README.md

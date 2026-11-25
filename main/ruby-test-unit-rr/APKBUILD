@@ -3,7 +3,7 @@
 pkgname=ruby-test-unit-rr
 _gemname=test-unit-rr
 pkgver=1.0.5
-pkgrel=3
+pkgrel=4
 pkgdesc="RR adapter for test-unit"
 url="https://github.com/test-unit/test-unit-rr"
 arch="noarch"
@@ -30,15 +30,15 @@ package() {
 
 	gem install \
 		--local \
-		--install-dir "$gemdir" \
-		--ignore-dependencies \
+		--build-root "$pkgdir" \
 		--document ri \
 		--verbose \
 		$_gemname
 
 	# Remove unnessecary files
 	cd "$gemdir"
-	rm -rf build_info cache extensions plugins
+	rm -r build_info cache extensions
+	rmdir plugins || true
 }
 
 doc() {

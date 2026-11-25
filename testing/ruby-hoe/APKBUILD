@@ -4,12 +4,12 @@ maintainer="Will Sinatra <wpsinatra@gmail.com>"
 pkgname=ruby-hoe
 _gemname=${pkgname#ruby-}
 pkgver=4.7.2
-pkgrel=0
+pkgrel=1
 pkgdesc="a rake/rubygems helper for project Rakefiles"
 url="https://rubygems.org/gems/hoe"
 arch="noarch"
 license="MIT"
-depends="ruby"
+depends="ruby ruby-rake"
 checkdepends="ruby-rake ruby-bundler ruby-test-unit ruby-simplecov ruby-rdoc ruby-minitest"
 source="$pkgname-$pkgver.tar.gz::https://github.com/seattlerb/hoe/archive/refs/tags/v$pkgver.tar.gz
 	https://rubygems.org/downloads/$_gemname-$pkgver.gem
@@ -37,15 +37,16 @@ package() {
 	local gemdir="$pkgdir/$(ruby -e 'puts Gem.default_dir')"
 
 	gem install --local \
-		--install-dir "$gemdir" \
-		--ignore-dependencies \
+		--build-root "$pkgdir" \
 		--no-document \
 		--verbose \
 		$_gemname
 
 	rm -r "$gemdir"/cache \
 		"$gemdir"/build_info \
-		"$gemdir"/doc
+		"$gemdir"/doc \
+		"$gemdir"/extensions
+	rmdir "$gemdir"/plugins || true
 
 	cd "$gemdir/gems/$_gemname-$pkgver"
 	rm -r ./*.rdoc ./*.pdf ./*.txt Rakefile .autotest template test

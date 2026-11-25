@@ -3,7 +3,7 @@
 pkgname=ruby-parse-cron
 _gemname=parse-cron
 pkgver=0.1.4
-pkgrel=3
+pkgrel=4
 pkgdesc="Parse crontab syntax to determine scheduled run times"
 url="https://github.com/siebertm/parse-cron"
 arch="noarch"
@@ -28,15 +28,15 @@ package() {
 
 	gem install \
 		--local \
-		--install-dir "$gemdir" \
-		--ignore-dependencies \
+		--build-root "$pkgdir" \
 		--no-document \
 		--verbose \
 		$_gemname
 
 	# Remove unnecessary files and rubbish...
 	cd "$gemdir"
-	rm -r cache build_info doc extensions plugins
+	rm -r cache build_info doc extensions
+	rmdir plugins || true
 }
 
 sha512sums="

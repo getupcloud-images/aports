@@ -3,7 +3,7 @@
 pkgname=ruby-hashdiff
 _gemname=${pkgname#ruby-}
 pkgver=1.2.2
-pkgrel=0
+pkgrel=1
 pkgdesc="compute the smallest difference between two hashes"
 url="https://rubygems.org/gems/hashdiff"
 arch="noarch"
@@ -32,8 +32,7 @@ package() {
 	local gemdir="$pkgdir/$(ruby -e 'puts Gem.default_dir')"
 
 	gem install --local \
-		--install-dir "$gemdir" \
-		--ignore-dependencies \
+		--build-root "$pkgdir" \
 		--no-document \
 		--verbose \
 		$_gemname
@@ -42,7 +41,9 @@ package() {
 
 	rm -r "$gemdir"/cache \
 		"$gemdir"/build_info \
-		"$gemdir"/doc
+		"$gemdir"/doc \
+		"$gemdir"/extensions
+	rmdir "$gemdir"/plugins || true
 }
 
 sha512sums="

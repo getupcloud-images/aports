@@ -4,7 +4,7 @@ maintainer="Will Sinatra <wpsinatra@gmail.com>"
 pkgname=ruby-ruby-progressbar
 _gemname=${pkgname#ruby-ruby-}
 pkgver=1.13.0
-pkgrel=0
+pkgrel=1
 pkgdesc="An extremely fleible text progressbar library"
 url="https://rubygems.org/gems/progressbar"
 arch="noarch"
@@ -35,22 +35,22 @@ package() {
 	local gemdir="$pkgdir/$(ruby -e 'puts Gem.default_dir')"
 
 	gem install --local \
-		--install-dir "$gemdir" \
-		--ignore-dependencies \
+		--build-root "$pkgdir" \
 		--no-document \
 		--verbose \
 		$_gemname
 
 	gem install --local \
-		--install-dir "$gemdir" \
-		--ignore-dependencies \
+		--build-root "$pkgdir" \
 		--no-document \
 		--verbose \
 		ruby-$_gemname
 
 	rm -r "$gemdir"/cache \
 		"$gemdir"/build_info \
-		"$gemdir"/doc
+		"$gemdir"/doc \
+		"$gemdir"/extensions
+	rmdir "$gemdir"/plugins || true
 
 	cd "$gemdir/gems/$_gemname-$pkgver"
 	rm -r ./*.md ./*.txt Rakefile

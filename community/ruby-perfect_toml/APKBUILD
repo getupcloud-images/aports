@@ -3,7 +3,7 @@
 pkgname=ruby-perfect_toml
 _gemname=perfect_toml
 pkgver=0.9.1
-pkgrel=0
+pkgrel=1
 pkgdesc="A fast TOML parser gem fully compliant with TOML v1.0.0"
 url="https://github.com/mame/perfect_toml"
 arch="noarch"
@@ -28,8 +28,7 @@ package() {
 	local gemdir="$pkgdir/$(ruby -e 'puts Gem.default_dir')"
 
 	gem install --local \
-		--install-dir "$gemdir" \
-		--ignore-dependencies \
+		--build-root "$pkgdir" \
 		--no-document \
 		--verbose \
 		$_gemname
@@ -37,7 +36,8 @@ package() {
 	rm -r "$gemdir"/build_info \
 		"$gemdir"/cache \
 		"$gemdir"/doc \
-		"$gemdir"/plugins
+		"$gemdir"/extensions
+	rmdir "$gemdir"/plugins || true
 }
 
 sha512sums="

@@ -3,7 +3,7 @@
 pkgname=ruby-timecop
 _gemname=${pkgname#ruby-}
 pkgver=0.9.11
-pkgrel=0
+pkgrel=1
 pkgdesc="A gem providing 'time travel' and 'time freezing' capabilities"
 url="https://github.com/travisjeffery/timecop"
 arch="noarch"
@@ -21,15 +21,15 @@ package() {
 	local gemdir="$pkgdir/$(ruby -e 'puts Gem.default_dir')"
 
 	gem install --local \
-		--install-dir "$gemdir" \
-		--ignore-dependencies \
+		--build-root "$pkgdir" \
 		--no-document \
 		--verbose \
 		$_gemname
 
 	# Remove unnecessary files.
 	cd "$gemdir"
-	rm -r cache/ build_info/ doc/
+	rm -r cache/ build_info/ doc/ extensions/
+	rmdir plugins || true
 	cd gems/$_gemname-$pkgver
 	rm -r Rakefile README* LICENSE
 }

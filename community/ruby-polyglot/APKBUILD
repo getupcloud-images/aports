@@ -3,7 +3,7 @@
 pkgname=ruby-polyglot
 _gemname=polyglot
 pkgver=0.3.5
-pkgrel=3
+pkgrel=4
 pkgdesc="Augment 'require' to load non-ruby file types"
 url="https://github.com/cjheath/polyglot"
 arch="noarch"
@@ -33,15 +33,15 @@ package() {
 
 	gem install \
 		--local \
-		--install-dir "$gemdir" \
-		--ignore-dependencies \
+		--build-root "$pkgdir" \
 		--no-document \
 		--verbose \
 		$_gemname
 
 	# Remove unnecessary files and rubbish...
 	cd "$gemdir"
-	rm -r cache build_info doc extensions plugins
+	rm -r cache build_info doc extensions
+	rmdir plugins || true
 
 	cd "$geminstdir"
 	rm -f ./*.txt Rakefile

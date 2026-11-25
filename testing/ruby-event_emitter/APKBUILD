@@ -3,7 +3,7 @@
 pkgname=ruby-event_emitter
 _gemname=${pkgname#ruby-}
 pkgver=0.2.6
-pkgrel=0
+pkgrel=1
 pkgdesc="Ruby port of EventEmitter from Node.js"
 url="https://rubygems.org/gems/event_emitter"
 arch="noarch"
@@ -35,15 +35,16 @@ package() {
 	local gemdir="$pkgdir/$(ruby -e 'puts Gem.default_dir')"
 
 	gem install --local \
-		--install-dir "$gemdir" \
-		--ignore-dependencies \
+		--build-root "$pkgdir" \
 		--no-document \
 		--verbose \
 		$_gemname
 
 	rm -r "$gemdir"/cache \
 		"$gemdir"/build_info \
-		"$gemdir"/doc
+		"$gemdir"/doc \
+		"$gemdir"/extensions
+	rmdir "$gemdir"/plugins || true
 
 	install -m644 -D "$builddir"/LICENSE.txt "$pkgdir"/usr/share/licenses/$pkgname/LICENSE
 }

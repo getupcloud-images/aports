@@ -3,7 +3,7 @@
 pkgname=ruby-sqlite3
 _gemname=${pkgname#ruby-}
 pkgver=2.10.2
-pkgrel=0
+pkgrel=1
 pkgdesc="Ruby bindings for SQLite3"
 url="https://rubygems.org/gems/sqlite3"
 arch="all"
@@ -17,6 +17,13 @@ options="!check" # requires rubocop
 
 build() {
 	gem build $_gemname.gemspec
+	gem install \
+		--local \
+		--build-root dist \
+		--no-document \
+		--verbose \
+		$_gemname-$pkgver.gem -- \
+			--enable-system-libraries
 }
 
 check() {
@@ -25,28 +32,19 @@ check() {
 
 package() {
 	local gemdir="$pkgdir/$(ruby -e 'puts Gem.default_dir')"
-	local geminstdir="$gemdir/gems/sqlite3-$pkgver"
+	local geminstdir="$gemdir/gems/$_gemname-$pkgver"
 
-	gem install \
-		--local \
-		--install-dir "$gemdir" \
-		--bindir "$pkgdir/usr/bin" \
-		--ignore-dependencies \
-		--no-document \
-		--verbose \
-		"$builddir"/$_gemname-$pkgver.gem -- \
-					--use-system-libraries
+	mkdir -p "$pkgdir"
+	cp -r dist/* "$pkgdir"/
 
-	rm -r "$gemdir"/cache \
-		"$gemdir"/doc \
-		"$gemdir"/build_info \
-		"$geminstdir"/ext \
-		"$geminstdir"/ports \
-		"$geminstdir"/*.md \
-		"$geminstdir"/*.yml \
-		"$geminstdir"/.gemtest
+	# Remove unnecessary files...
+	cd "$gemdir"
+	rm -r build_info cache doc
+	rmdir plugins || true
+	find extensions/ -name mkmf.log -delete
 
-	find "$gemdir"/extensions/ -name mkmf.log -delete
+	cd "$geminstdir"
+	rm -r ext ./*.md ./*.yml .gemtest
 }
 
 sha512sums="
